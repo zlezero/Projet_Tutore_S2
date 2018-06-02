@@ -13,6 +13,8 @@ import javax.swing.JPanel;
 
 import controleur.Controleur;
 import modele.ConstantesTextes;
+import modele.Date;
+import modele.Evenement;
 import modele.FriseChronologique;
 import modele.LectureEcriture;
 
@@ -33,6 +35,8 @@ public class PanelFils extends JPanel implements ActionListener, ConstantesTexte
 			maFrise = affichageDemarrage();
 		}
 		
+		//maFrise.ajoutEvenement(2000, 0, new Evenement(new Date(1, 1, 2000), "TEST", "TEST"));
+		
 		PanelAffichagePrincipal panelAffichagePrincipal = new PanelAffichagePrincipal(maFrise);
 		add(panelAffichagePrincipal);
 		
@@ -48,7 +52,7 @@ public class PanelFils extends JPanel implements ActionListener, ConstantesTexte
 			int resultat = JOptionPane.showOptionDialog(this, "Choisissez une option : ", "Bienvenue !", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, intitulesBoutons, intitulesBoutons[0]);
 			
 			if (resultat == JOptionPane.YES_OPTION) { //Si l'on veut créer une nouvelle frise
-				return new FriseChronologique(); //Alors on renvoit juste une frise vide
+				return new FriseChronologique("TEST", new Date(1, 1, 2000), new Date(1, 1, 2018), 5); //Alors on renvoit juste une frise vide
 			}
 			else if (resultat == JOptionPane.NO_OPTION) { //Si l'on veut ouvrir une nouvelle frise
 				

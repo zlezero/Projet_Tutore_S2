@@ -18,7 +18,7 @@ public class FriseChronologique {
 		periodeFrise = parPeriodeFrise;
 		hashMapEvts = new HashMap<>();
 		
-		for (int i=0; i != dateDebut.getAnnee() - dateFin.getAnnee();i++) {
+		for (int i=0; i != dateFin.getAnnee() - dateDebut.getAnnee();i++) {
 			HashMap<Integer, Evenement> hashMap = new HashMap<>();
 			hashMap.put(0, new Evenement(new Date(1, 1, dateDebut.getAnnee() + i), "", ""));
 			hashMapEvts.put(dateDebut.getAnnee() + i, hashMap);
@@ -45,5 +45,36 @@ public class FriseChronologique {
 		}
 		
 		return 0;
+	}
+	
+	public int ajoutEvenement(int parAnnee, int parPoids, Evenement parEvenement) {
+		
+		if (hashMapEvts.containsKey(parAnnee)) {
+			if (hashMapEvts.get(parAnnee).size() <= 4) {
+				hashMapEvts.get(parAnnee).put(parPoids, parEvenement);
+				return 1;
+			}
+			else {
+				return -1;
+			}
+		}
+		else {
+			hashMapEvts.put(parAnnee, new HashMap<Integer, Evenement>());
+			hashMapEvts.get(parAnnee).put(parPoids, parEvenement);
+			return 1;
+		}
+		
+	}
+	
+	public int getPeriode() {
+		return periodeFrise;
+	}
+	
+	public Date getDateDebut() {
+		return dateDebut;
+	}
+	
+	public Date getDateFin() {
+		return dateFin;
 	}
 }
