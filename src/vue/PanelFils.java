@@ -26,7 +26,11 @@ public class PanelFils extends JPanel implements ActionListener, ConstantesTexte
 		monGestionnaireDeCartes = new CardLayout(50, 50);
 		setLayout(monGestionnaireDeCartes);
 		
-		FriseChronologique maFrise = affichageDemarrage();
+		FriseChronologique maFrise = null;
+		
+		while (maFrise == null) {
+			maFrise = affichageDemarrage();
+		}
 		
 	}
 	
@@ -50,8 +54,7 @@ public class PanelFils extends JPanel implements ActionListener, ConstantesTexte
 					File monFichier = ouvrirFrise.getSelectedFile(); //On récupère ce fichier
 					
 					try {
-						FriseChronologique maFrise = (FriseChronologique) LectureEcriture.lecture(monFichier); //Et on le retourne déserialisé
-						return maFrise;
+						return (FriseChronologique) LectureEcriture.lecture(monFichier); //Et on le retourne déserialisé
 					}
 					catch (FileNotFoundException e) {
 						e.printStackTrace();
@@ -66,7 +69,9 @@ public class PanelFils extends JPanel implements ActionListener, ConstantesTexte
 				} //if
 				
 			} //else if
-			
+			else 
+				System.exit(0);
+						
 		} //while
 			
 	} //affichageDemarrage()

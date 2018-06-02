@@ -23,11 +23,9 @@ public class LectureEcriture {
 		}
 		catch (ClassNotFoundException parException) {
 			System.err.println("Erreur lecture du fichier : " + parException.toString());
-			System.exit(1);
 		}
 		catch (IOException parException) {
 			System.err.println("Erreur lecture du fichier : " + parException.toString());
-			System.exit(1);
 		}
 		
 		return objetLu;
