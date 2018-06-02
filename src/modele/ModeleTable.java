@@ -39,16 +39,18 @@ public class ModeleTable extends DefaultTableModel {
 		
 		Collection<HashMap<Integer, Evenement>> evenements = parFrise.getHashMapEvenementsPoids();
 
-		if (evenements != null) {		
+		if (evenements != null) {	
 			
 			Iterator<HashMap<Integer, Evenement>> iterateur = evenements.iterator();
-			HashMap<Integer, Evenement> hashMap = iterateur.next();
+
+			while (iterateur.hasNext()) {
+				
+				HashMap<Integer, Evenement> hashMap = iterateur.next();
 			
-			for (int i=0;i!=evenements.size();i++) {
-				System.out.println(hashMap.get(i));
-				ajoutEvenement(0, hashMap.get(i));
+				//for (int i=0;i!=evenements.size();i++) {
+					ajoutEvenement(0, (Evenement)hashMap.values().toArray()[0]);
+				//}
 			}
-			
 		}
 		
 	}
@@ -63,7 +65,7 @@ public class ModeleTable extends DefaultTableModel {
 	
 	public void ajoutEvenement(int parPoids, Evenement parEvt) {
 
-		int indiceColonne = chFrise.getDateFin().getAnnee() - 2018;
+		int indiceColonne = chFrise.getDateFin().getAnnee() - parEvt.getDate().getAnnee();
 		int indiceLigne = parPoids;
 
 		while (indiceLigne < columnNumber && getValueAt(indiceLigne, indiceColonne) != null) {
