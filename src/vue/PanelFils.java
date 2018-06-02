@@ -32,6 +32,9 @@ public class PanelFils extends JPanel implements ActionListener, ConstantesTexte
 			maFrise = affichageDemarrage();
 		}
 		
+		PanelAffichagePrincipal panelAffichagePrincipal = new PanelAffichagePrincipal(maFrise);
+		add(panelAffichagePrincipal);
+		
 	}
 	
 	public FriseChronologique affichageDemarrage() {
