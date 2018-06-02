@@ -22,7 +22,7 @@ public class FriseChronologique {
 		
 		for (int i=0; i != dateFin.getAnnee() - dateDebut.getAnnee();i++) {
 			HashMap<Integer, Evenement> hashMap = new HashMap<>();
-			hashMap.put(0, new Evenement(new Date(1, 1, dateDebut.getAnnee() + i), "", ""));
+			hashMap.put(0, null);
 			hashMapEvts.put(dateDebut.getAnnee() + i, hashMap);
 		}
 		
@@ -39,14 +39,6 @@ public class FriseChronologique {
 	}
 	
 	public Collection<HashMap<Integer, Evenement>> getHashMapEvenementsPoids() {
-		
-		/* ArrayList<HashMap<Integer, Evenement>> listeEvts = new ArrayList<HashMap<Integer, Evenement>>();
-		
-		for (int i=0;i!=hashMapEvts.values().size();i++) {
-			listeEvts.add(hashMapEvts.get(i));
-		}
-		
-		return listeEvts; */
 		return hashMapEvts.values();
 	}
 	

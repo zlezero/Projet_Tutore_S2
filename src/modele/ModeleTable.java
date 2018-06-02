@@ -46,10 +46,10 @@ public class ModeleTable extends DefaultTableModel {
 			while (iterateur.hasNext()) {
 				
 				HashMap<Integer, Evenement> hashMap = iterateur.next();
-			
-				//for (int i=0;i!=evenements.size();i++) {
+				
+				if ((Evenement)hashMap.values().toArray()[0] != null) {
 					ajoutEvenement(0, (Evenement)hashMap.values().toArray()[0]);
-				//}
+				}
 			}
 		}
 		
