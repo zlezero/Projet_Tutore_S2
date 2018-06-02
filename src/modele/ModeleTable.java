@@ -36,7 +36,6 @@ public class ModeleTable extends DefaultTableModel {
 		
 		setColumnIdentifiers(intitulesTab.toArray());
 		
-		
 		Collection<HashMap<Integer, Evenement>> evenements = parFrise.getHashMapEvenementsPoids();
 
 		if (evenements != null) {	
@@ -47,9 +46,12 @@ public class ModeleTable extends DefaultTableModel {
 				
 				HashMap<Integer, Evenement> hashMap = iterateur.next();
 				
-				if ((Evenement)hashMap.values().toArray()[0] != null) {
-					ajoutEvenement(0, (Evenement)hashMap.values().toArray()[0]);
+				for (int i = 0; i!=hashMap.values().toArray().length;i++) {
+					if ((Evenement)hashMap.values().toArray()[i] != null) {
+						ajoutEvenement((int)hashMap.keySet().toArray()[i], (Evenement)hashMap.values().toArray()[i]);
+					}
 				}
+				
 			}
 		}
 		
@@ -64,14 +66,24 @@ public class ModeleTable extends DefaultTableModel {
 	}
 	
 	public void ajoutEvenement(int parPoids, Evenement parEvt) {
-
-		int indiceColonne = chFrise.getDateFin().getAnnee() - parEvt.getDate().getAnnee();
+		
+		int indiceColonne = this.findColumn(Integer.toString(parEvt.getDate().getAnnee()));
 		int indiceLigne = parPoids;
-
+		
+		System.out.println("Indice colonne : " + indiceColonne + " / Indice Ligne : " + indiceLigne);
+		
+		int i = this.columnNumber;
+		
+		if (indiceColonne == -1) {
+			while(this.findColumn(Integer.toString(parEvt.getDate().getAnnee())) != -1) ) {
+				
+			}
+		}
+		
 		while (indiceLigne < columnNumber && getValueAt(indiceLigne, indiceColonne) != null) {
 			indiceLigne++;
 		}
-
+		
 		setValueAt(parEvt, indiceLigne, indiceColonne);
 
 	}

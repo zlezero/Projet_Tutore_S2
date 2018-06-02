@@ -53,11 +53,12 @@ public class FriseChronologique {
 		return 0;
 	}
 	
-	public int ajoutEvenement(int parAnnee, int parPoids, Evenement parEvenement) {
+	public int ajoutEvenement(int parPoids, Evenement parEvenement) {
 		
-		if (hashMapEvts.containsKey(parAnnee)) {
-			if (hashMapEvts.get(parAnnee).size() <= 4) {
-				hashMapEvts.get(parAnnee).put(parPoids, parEvenement);
+		if (hashMapEvts.containsKey(parEvenement.getDate().getAnnee())) {
+			
+			if (hashMapEvts.get(parEvenement.getDate().getAnnee()).size() <= 4) {
+				hashMapEvts.get(parEvenement.getDate().getAnnee()).put(parPoids, parEvenement);
 				return 1;
 			}
 			else {
@@ -65,8 +66,8 @@ public class FriseChronologique {
 			}
 		}
 		else {
-			hashMapEvts.put(parAnnee, new HashMap<Integer, Evenement>());
-			hashMapEvts.get(parAnnee).put(parPoids, parEvenement);
+			hashMapEvts.put(parEvenement.getDate().getAnnee(), new HashMap<Integer, Evenement>());
+			hashMapEvts.get(parEvenement.getDate().getAnnee()).put(parPoids, parEvenement);
 			return 1;
 		}
 		
@@ -86,6 +87,10 @@ public class FriseChronologique {
 	
 	public String getTitre() {
 		return titreFrise;
+	}
+	
+	public HashMap<Integer, HashMap<Integer, Evenement>> getHashMapEvts() {
+		return hashMapEvts;
 	}
 	
 	public String toString() {
