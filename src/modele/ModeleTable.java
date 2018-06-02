@@ -73,11 +73,13 @@ public class ModeleTable extends DefaultTableModel {
 		System.out.println("Indice colonne : " + indiceColonne + " / Indice Ligne : " + indiceLigne);
 		
 		int i = this.columnNumber;
+		int compteur = 0;
 		
 		if (indiceColonne == -1) {
-			while(this.findColumn(Integer.toString(parEvt.getDate().getAnnee())) != -1) ) {
-				
+			while(Integer.parseInt((String) this.columnIdentifiers.lastElement()) - compteur != parEvt.getDate().getAnnee()) {
+				compteur += 1;
 			}
+			indiceColonne = (this.columnNumber - compteur) - 1;
 		}
 		
 		while (indiceLigne < columnNumber && getValueAt(indiceLigne, indiceColonne) != null) {
