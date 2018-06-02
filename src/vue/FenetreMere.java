@@ -3,8 +3,9 @@ package vue;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import modele.ConstantesTextes;
 
-public class FenetreMere extends JFrame {
+public class FenetreMere extends JFrame implements ConstantesTextes {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -18,7 +19,7 @@ public class FenetreMere extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		this.setJMenuBar(menuBar);
 		
-		String[] nomsItemsMenu = {"Création", "Affichage", "Aide", "Quitter"};
+		String[] nomsItemsMenu = {MENU_CREATION, MENU_AFFICHAGE, MENU_AIDE, MENU_QUITTER};
 		
 		for (int i = 0; i!=nomsItemsMenu.length;i++) {
 			JMenuItem item = new JMenuItem(nomsItemsMenu[i]);
