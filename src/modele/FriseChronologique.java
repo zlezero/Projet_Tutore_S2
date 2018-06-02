@@ -1,5 +1,7 @@
 package modele;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 
 public class FriseChronologique {
@@ -30,10 +32,22 @@ public class FriseChronologique {
 		
 	}
 	
-	public Evenement[] getListeEvenementsAnnee(int parAnnee) {
+	public Evenement[] getListeEvenements(int parAnnee) {
 		
 		
 		return null;
+	}
+	
+	public Collection<HashMap<Integer, Evenement>> getHashMapEvenementsPoids() {
+		
+		/* ArrayList<HashMap<Integer, Evenement>> listeEvts = new ArrayList<HashMap<Integer, Evenement>>();
+		
+		for (int i=0;i!=hashMapEvts.values().size();i++) {
+			listeEvts.add(hashMapEvts.get(i));
+		}
+		
+		return listeEvts; */
+		return hashMapEvts.values();
 	}
 	
 	public int getPoidsEvenement(int parAnnee, Evenement parEvenement) {
@@ -76,5 +90,13 @@ public class FriseChronologique {
 	
 	public Date getDateFin() {
 		return dateFin;
+	}
+	
+	public String getTitre() {
+		return titreFrise;
+	}
+	
+	public String toString() {
+		return hashMapEvts.toString();
 	}
 }

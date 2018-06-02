@@ -35,8 +35,8 @@ public class PanelFils extends JPanel implements ActionListener, ConstantesTexte
 			maFrise = affichageDemarrage();
 		}
 		
-		//maFrise.ajoutEvenement(2000, 0, new Evenement(new Date(1, 1, 2000), "TEST", "TEST"));
-		
+		maFrise.ajoutEvenement(2000, 0, new Evenement(new Date(1, 1, 2000), "TEST", "TEST"));
+		System.out.println(maFrise);
 		PanelAffichagePrincipal panelAffichagePrincipal = new PanelAffichagePrincipal(maFrise);
 		add(panelAffichagePrincipal);
 		
