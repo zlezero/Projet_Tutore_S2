@@ -11,6 +11,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import controleur.Controleur;
 import modele.ConstantesTextes;
 import modele.FriseChronologique;
 import modele.LectureEcriture;
@@ -34,6 +35,8 @@ public class PanelFils extends JPanel implements ActionListener, ConstantesTexte
 		
 		PanelAffichagePrincipal panelAffichagePrincipal = new PanelAffichagePrincipal(maFrise);
 		add(panelAffichagePrincipal);
+		
+		Controleur controleur = new Controleur(maFrise, panelAffichagePrincipal);
 		
 	}
 	

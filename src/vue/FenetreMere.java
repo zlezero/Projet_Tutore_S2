@@ -29,11 +29,10 @@ public class FenetreMere extends JFrame implements ConstantesTextes {
 		}
 		
 		setContentPane(contentPane);
-		//contentPane.setBackground(new Color(100, 60, 120));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(1200, 700);
 		setVisible(true);
-		setLocation(200, 300);
+		//setLocation(200, 300);
 	}
 	
 	public static void main(String[] args) {
