@@ -32,46 +32,51 @@ public class PanelFils extends JPanel implements ActionListener, ConstantesTexte
 	
 	public FriseChronologique affichageDemarrage() {
 		
-		String intitulesBoutons[] = {"Nouvelle frise", "Ouvrir une frise"};	
-		int resultat = JOptionPane.showOptionDialog(this, "Choisissez une option : ", "Bienvenue !", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, intitulesBoutons, intitulesBoutons[0]);
-		
-		if (resultat == JOptionPane.NO_OPTION) {
+		while (true) {
 			
-			JFileChooser ouvrirFrise = new JFileChooser();
-			int resultatOuverture = ouvrirFrise.showOpenDialog(this);
+			String intitulesBoutons[] = {"Nouvelle frise", "Ouvrir une frise"};	
+			int resultat = JOptionPane.showOptionDialog(this, "Choisissez une option : ", "Bienvenue !", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, intitulesBoutons, intitulesBoutons[0]);
 			
-			if (resultatOuverture == JFileChooser.APPROVE_OPTION) {
-				
-				File monFichier = ouvrirFrise.getSelectedFile();
-				
-				try {
-					return (FriseChronologique) LectureEcriture.lecture(monFichier);
-				}
-				catch (FileNotFoundException e) {
-					e.printStackTrace();
-					return new FriseChronologique();
-				} 
-				catch (IOException e) {
-					e.printStackTrace();
-					return new FriseChronologique();
-				}
-								
+			if (resultat == JOptionPane.YES_OPTION) { //Si l'on veut créer une nouvelle frise
+				return new FriseChronologique(); //Alors on renvoit juste une frise vide
 			}
+			else if (resultat == JOptionPane.NO_OPTION) { //Si l'on veut ouvrir une nouvelle frise
+				
+				JFileChooser ouvrirFrise = new JFileChooser();
+				int resultatOuverture = ouvrirFrise.showOpenDialog(this); //Alors on demande à l'utilisateur d'ouvrir le fichier correspondant
+				
+				if (resultatOuverture == JFileChooser.APPROVE_OPTION) { //Si l'utilisateur a sélectionné un fichier
+					
+					File monFichier = ouvrirFrise.getSelectedFile(); //On récupère ce fichier
+					
+					try {
+						FriseChronologique maFrise = (FriseChronologique) LectureEcriture.lecture(monFichier); //Et on le retourne déserialisé
+						return maFrise;
+					}
+					catch (FileNotFoundException e) {
+						e.printStackTrace();
+					} 
+					catch (IOException e) {
+						e.printStackTrace();
+					}
+					finally {
+						JOptionPane.showMessageDialog(this, "Une erreur est survenue lors de l'ouverture du fichier !", "Erreur", JOptionPane.ERROR_MESSAGE);
+					}
+									
+				} //if
+				
+			} //else if
 			
-		}
-		else {
-			return new FriseChronologique();
-		}
-		
-		return new FriseChronologique();
-		
-	}
+		} //while
+			
+	} //affichageDemarrage()
 	
 	
 	public void actionPerformed(ActionEvent evt) {
 		
 		//On gère le menu
-		if (evt.getActionCommand().equals(MENU_QUITTER)) {
+		
+		if (evt.getActionCommand().equals(MENU_QUITTER)) { //Si l'utilisateur veut quitter
 			
 			int resultat = JOptionPane.showConfirmDialog(this, "Voulez-vous vraiment quitter ?", "Quitter ?", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
 			
@@ -85,10 +90,10 @@ public class PanelFils extends JPanel implements ActionListener, ConstantesTexte
 					break;
 			}
 		} 
-		else if (evt.getActionCommand().equals(MENU_AIDE)) {
+		else if (evt.getActionCommand().equals(MENU_AIDE)) { //Affichage du menu d'aide
 			JOptionPane.showMessageDialog(this, "Frise Chronologique 1.0 créer par Thomas Vathonne et Yanis Levesque", "Aide", JOptionPane.INFORMATION_MESSAGE);
 		}
-		else {
+		else { //Affichage des autres panels
 			monGestionnaireDeCartes.show(this, evt.getActionCommand());
 		}
 		
