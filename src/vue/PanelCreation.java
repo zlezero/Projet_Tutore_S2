@@ -61,6 +61,7 @@ public class PanelCreation extends JPanel {
 	
 	public void enrengistreEcouteur(Controleur parC) {
 		panelCreationFrise.enrengistreEcouteur(parC);
+		panelAjoutEvt.enrengistreEcouteur(parC);
 	}
 
 	public PanelCreationAjoutEvt getPanelAjoutEvt() {

@@ -13,9 +13,10 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import controleur.Controleur;
+import modele.ConstantesTextes;
 import modele.Date;
 
-public class PanelCreationAjoutEvt extends JPanel {
+public class PanelCreationAjoutEvt extends JPanel implements ConstantesTextes {
 
 	private static final long serialVersionUID = 1L;
 
@@ -59,7 +60,7 @@ public class PanelCreationAjoutEvt extends JPanel {
 		contrainte.gridx = 5;
 		contrainte.gridy = 0;
 
-		boutonAjout = new JButton(INTITULE_BOUTON_AJOUT);
+		boutonAjout = new JButton(CREATION_EVT_BOUTON_AJOUT);
 		//boutonAjout.addActionListener(this);
 		add(boutonAjout, contrainte);
 

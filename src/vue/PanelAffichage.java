@@ -2,6 +2,7 @@ package vue;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Dimension;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -36,7 +37,7 @@ public class PanelAffichage extends JPanel {
 		
 		panelFrise = new PanelAffichageFrise(parFrise);
 		add(panelFrise, BorderLayout.SOUTH);
-		
+
 		JPanel panelNord = new JPanel();
 		
 		//On ajoute le titre de la frise
