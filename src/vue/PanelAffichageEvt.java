@@ -13,6 +13,14 @@ public class PanelAffichageEvt extends JPanel {
 	
 	public PanelAffichageEvt(String parTitre, Date parDate, String parDescription) {
 		
+		intituleLabel[0] = new JLabel(parDate.toString());
+		intituleLabel[1] = new JLabel(parTitre);
+		intituleLabel[2] = new JLabel(parDescription);
+		
+		for (int i=0;i!=2;i++) {
+			add(intituleLabel[i]);
+		}
+		
 	}
 	
 }

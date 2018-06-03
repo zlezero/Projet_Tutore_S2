@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import controleur.Controleur;
 import modele.Date;
 
 public class PanelCreationAjoutEvt extends JPanel {
@@ -163,6 +164,10 @@ public class PanelCreationAjoutEvt extends JPanel {
 		listeLabels[5].setLabelFor(textareaDescription);
 
 		listeTextField[0].requestFocus();
+	}
+	
+	public void enrengistreEcouteur(Controleur parC) {
+		boutonAjout.addActionListener(parC);
 	}
 
 }

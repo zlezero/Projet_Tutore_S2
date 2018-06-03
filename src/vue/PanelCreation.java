@@ -57,7 +57,6 @@ public class PanelCreation extends JPanel {
 			panelCreationFrise.setFrise(friseChronologique);
 		}
 		
-		
 	}
 	
 	public void enrengistreEcouteur(Controleur parC) {

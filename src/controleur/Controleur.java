@@ -46,6 +46,7 @@ public class Controleur implements ActionListener, ConstantesTextes {
 				//friseChronologique.ajoutEvenement(2, new Evenement(new Date(6, 6, 2014), "TEST2", "TEST2", "C'est un bel evt 2 !"));
 				panelAP.getPanelFrise().updateTable(friseChronologique);
 				panelCreation.updateComponents();
+				panelAP.updatePanelNord();
 				/*try {
 					LectureEcriture.ecriture(new File("Frise.ser"), friseChronologique);
 				} catch (IOException e) {
