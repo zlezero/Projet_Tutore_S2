@@ -13,6 +13,7 @@ public class FriseChronologique implements Serializable {
 	private Date dateDebut;
 	private Date dateFin;
 	private int periodeFrise;
+	private boolean estInitialisee = true;
 	
 	public FriseChronologique(String parTitre, Date parDateDebut, Date parDateFin, int parPeriodeFrise) {
 		
@@ -21,6 +22,7 @@ public class FriseChronologique implements Serializable {
 		dateFin = parDateFin;
 		periodeFrise = parPeriodeFrise;
 		hashMapEvts = new HashMap<>();
+		estInitialisee = true;
 		
 		for (int i=0; i != dateFin.getAnnee() - dateDebut.getAnnee();i++) {
 			HashMap<Integer, Evenement> hashMap = new HashMap<>();
@@ -30,12 +32,13 @@ public class FriseChronologique implements Serializable {
 		
 	}
 	
-	public FriseChronologique() {
+	public FriseChronologique(boolean parInitialisee) {
 		titreFrise = "";
 		dateDebut = new Date();
 		dateFin = new Date();
 		periodeFrise = 1;
 		hashMapEvts = new HashMap<>();
+		estInitialisee = parInitialisee;
 	}
 	
 	public Evenement[] getListeEvenements(int parAnnee) {
@@ -104,5 +107,13 @@ public class FriseChronologique implements Serializable {
 	
 	public String toString() {
 		return hashMapEvts.toString();
+	}
+
+	public boolean isEstInitialisee() {
+		return estInitialisee;
+	}
+
+	public void setEstInitialisee(boolean estInitialisee) {
+		this.estInitialisee = estInitialisee;
 	}
 }

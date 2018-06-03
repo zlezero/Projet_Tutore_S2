@@ -43,7 +43,7 @@ public class LectureEcriture {
 			flux.close();
 		}
 		catch (IOException parException) {
-			System.err.println("Erreur lecture du fichier : " + parException.toString());
+			System.err.println("Erreur écriture du fichier : " + parException.toString());
 			System.exit(1);
 		}
 	}

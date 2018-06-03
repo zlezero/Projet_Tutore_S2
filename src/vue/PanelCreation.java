@@ -22,9 +22,11 @@ public class PanelCreation extends JPanel {
 		panelCreationFrise = new PanelCreationFrise();
 		
 		add(panelAjoutEvt, BorderLayout.EAST);
-		add(panelCreationFrise, BorderLayout.WEST);
+		add(panelCreationFrise, BorderLayout.WEST);	
 		
-		panelCreationFrise.setFrise(parFrise);
+		if (parFrise.isEstInitialisee()) {
+			panelCreationFrise.setFrise(parFrise);
+		}
 	}
 	
 	public void enrengistreEcouteur(Controleur parC) {
@@ -34,7 +36,6 @@ public class PanelCreation extends JPanel {
 	public PanelAjoutEvt getPanelAjoutEvt() {
 		return panelAjoutEvt;
 	}
-
 
 	public PanelCreationFrise getPanelCreationFrise() {
 		return panelCreationFrise;

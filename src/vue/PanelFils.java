@@ -13,8 +13,6 @@ import javax.swing.JPanel;
 
 import controleur.Controleur;
 import modele.ConstantesTextes;
-import modele.Date;
-import modele.Evenement;
 import modele.FriseChronologique;
 import modele.LectureEcriture;
 
@@ -23,13 +21,14 @@ public class PanelFils extends JPanel implements ActionListener, ConstantesTexte
 	private static final long serialVersionUID = 1L;
 
 	CardLayout monGestionnaireDeCartes;
-
+	FriseChronologique maFrise;
+	
 	public PanelFils() {
 
 		monGestionnaireDeCartes = new CardLayout(50, 50);
 		setLayout(monGestionnaireDeCartes);
 
-		FriseChronologique maFrise = null;
+		maFrise = null;
 
 		while (true) {
 
@@ -37,7 +36,7 @@ public class PanelFils extends JPanel implements ActionListener, ConstantesTexte
 			int resultat = JOptionPane.showOptionDialog(this, "Choisissez une option : ", "Bienvenue !", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, intitulesBoutons, intitulesBoutons[0]);
 
 			if (resultat == JOptionPane.YES_OPTION) { //Si l'on veut créer une nouvelle frise
-				maFrise = new FriseChronologique(); //Alors on renvoit juste une frise vide
+				maFrise = new FriseChronologique(false); //Alors on renvoit juste une frise vide
 				break;
 			}
 			else if (resultat == JOptionPane.NO_OPTION) { //Si l'on veut ouvrir une nouvelle frise
@@ -77,22 +76,28 @@ public class PanelFils extends JPanel implements ActionListener, ConstantesTexte
 
 		} //while
 
-		maFrise.ajoutEvenement(1, new Evenement(new Date(6, 6, 2005), "TEST", "TEST"));
-		maFrise.ajoutEvenement(2, new Evenement(new Date(6, 6, 2014), "TEST2", "TEST2"));
+		//maFrise.ajoutEvenement(1, new Evenement(new Date(6, 6, 2005), "TEST", "TEST"));
+		//maFrise.ajoutEvenement(2, new Evenement(new Date(6, 6, 2014), "TEST2", "TEST2"));
 
 		try {
 			LectureEcriture.ecriture(new File("Frise.ser"), maFrise);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		
+		PanelCreation panelCreation = new PanelCreation(maFrise);
+		add(panelCreation, ConstantesTextes.MENU_CREATION);
+		
 		PanelAffichage panelAffichage = new PanelAffichage(maFrise);
 		add(panelAffichage, ConstantesTextes.MENU_AFFICHAGE);
 
-		PanelCreation panelCreation = new PanelCreation(maFrise);
-		add(panelCreation, ConstantesTextes.MENU_CREATION);
-
 		new Controleur(maFrise, panelAffichage, panelCreation);
+		
+		if (!maFrise.isEstInitialisee()) 
+			monGestionnaireDeCartes.show(this, ConstantesTextes.MENU_CREATION);
+		else 
+			monGestionnaireDeCartes.show(this, ConstantesTextes.MENU_AFFICHAGE);
+		
 
 	}
 
@@ -118,7 +123,12 @@ public class PanelFils extends JPanel implements ActionListener, ConstantesTexte
 			JOptionPane.showMessageDialog(this, "Frise Chronologique 1.0 créer par Thomas Vathonne et Yanis Levesque", "Aide", JOptionPane.INFORMATION_MESSAGE);
 		}
 		else { //Affichage des autres panels
-			monGestionnaireDeCartes.show(this, evt.getActionCommand());
+			
+			if (!maFrise.isEstInitialisee() && evt.getActionCommand().equals(MENU_AFFICHAGE)) {
+				JOptionPane.showMessageDialog(this, "Impossible de visualiser la frise tant qu'elle n'a pas été créer !", "Erreur", JOptionPane.ERROR_MESSAGE);
+			}
+			else 
+				monGestionnaireDeCartes.show(this, evt.getActionCommand());
 		}
 
 	}
