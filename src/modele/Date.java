@@ -5,7 +5,7 @@ import java.util.GregorianCalendar;
 import java.util.Calendar;
 
 /**
- * Gère la date
+ * GÃ¨re la date
  * @author Thomas Vathonne
  * @version 1
  */
@@ -18,7 +18,7 @@ public class Date implements Comparable<Date>, Serializable{
 	private int mois;
 	private int annee;
 	/**
-	 * Contient le jour de la semaine de la date instanciée
+	 * Contient le jour de la semaine de la date instanciÃ©e
 	 */
 	private int jourSemaine;
 
@@ -39,8 +39,8 @@ public class Date implements Comparable<Date>, Serializable{
 	}
 
 	/**
-	 * retourne 0 si this et parDate sont égales, -1 si this précèdes parDate, 1
-	 * si parDate précède this
+	 * retourne 0 si this et parDate sont Ã©gales, -1 si this prÃ©cÃ¨des parDate, 1
+	 * si parDate prÃ©cÃ¨de this
 	 */
 	
 	public int compareTo(Date parDate) {
@@ -48,7 +48,7 @@ public class Date implements Comparable<Date>, Serializable{
 			return -1;
 		if (annee > parDate.annee)
 			return 1;
-		// les annï¿½es sont =
+		// les annÃ¯Â¿Â½es sont =
 		if (mois < parDate.mois)
 			return -1;
 		if (mois > parDate.mois)
@@ -91,7 +91,7 @@ public class Date implements Comparable<Date>, Serializable{
 	}
 
 	/**
-	 * Retourne le dernier jour du mois selon le mois et l'année en paramÃ¨tre 
+	 * Retourne le dernier jour du mois selon le mois et l'annÃ©e en paramÃ¨tre 
 	 * @param parMois
 	 * @param parAnnee
 	 * @return Soit 29/28/30/31
@@ -115,7 +115,7 @@ public class Date implements Comparable<Date>, Serializable{
 	}
 
 	/**
-	 * Retourne si l'année en paramètre est bissextile ou non
+	 * Retourne si l'annÃ©e en paramÃ¨tre est bissextile ou non
 	 * @param parAnnee
 	 * @return True ou False
 	 */
@@ -156,7 +156,7 @@ public class Date implements Comparable<Date>, Serializable{
 			chaine += "janvier";
 			break;
 		case 2:
-			chaine += "février";
+			chaine += "fÃ©vrier";
 			break;
 		case 3:
 			chaine += "mars";
@@ -174,7 +174,7 @@ public class Date implements Comparable<Date>, Serializable{
 			chaine += "juillet";
 			break;
 		case 8:
-			chaine += "août";
+			chaine += "aoÃ»t";
 			break;
 		case 9:
 			chaine += "septembre";
@@ -186,7 +186,7 @@ public class Date implements Comparable<Date>, Serializable{
 			chaine += "novembre";
 			break;
 		case 12:
-			chaine += "décembre";
+			chaine += "dÃ©cembre";
 			break;
 		}
 		return chaine;
@@ -205,7 +205,7 @@ public class Date implements Comparable<Date>, Serializable{
 	}
 	
 	/**
-	 * Renvoie le nom du mois associé à un numéro de mois
+	 * Renvoie le nom du mois associÃ© Ã Â un numÃ©ro de mois
 	 * @param numeroMois
 	 * @return Un nom de mois
 	 */
@@ -215,7 +215,7 @@ public class Date implements Comparable<Date>, Serializable{
 		case 1:
 			return "janvier";
 		case 2:
-			return "février";
+			return "fÃ©vrier";
 		case 3:
 			return "mars";
 		case 4:
@@ -227,7 +227,7 @@ public class Date implements Comparable<Date>, Serializable{
 		case 7:
 			return "juillet";
 		case 8:
-			return "août";
+			return "aoÃ»t";
 		case 9:
 			return "septembre";
 		case 10:
@@ -235,7 +235,7 @@ public class Date implements Comparable<Date>, Serializable{
 		case 11:
 			return "novembre";
 		case 12:
-			return "décembre";
+			return "dÃ©cembre";
 		default:
 			return "Mois invalide";
 		}
@@ -260,14 +260,14 @@ public class Date implements Comparable<Date>, Serializable{
 	}
 
 	public static String getChMoisString(int chMois) {
-		String mois[] = { "janvier", "février", "mars", "avril", "mai", "juin",
-				"juillet", "août", "septembre", "novembre", "octobre",
-				"décembre" };
+		String mois[] = { "janvier", "fÃ©vrier", "mars", "avril", "mai", "juin",
+				"juillet", "aoÃ»t", "septembre", "novembre", "octobre",
+				"dÃ©cembre" };
 		return mois[chMois - 1];
 	}
 	
 	/**
-	 * Retourne si l'objet date correspond à la date d'aujourd'hui
+	 * Retourne si l'objet date correspond Ã  la date d'aujourd'hui
 	 * @return True ou False
 	 */
 	
