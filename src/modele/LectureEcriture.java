@@ -20,13 +20,13 @@ public class LectureEcriture {
 			flux = new ObjectInputStream(new FileInputStream(parFichier));
 			objetLu = (Object)flux.readObject();
 			flux.close();
-		}
+		} 
 		catch (ClassNotFoundException parException) {
 			System.err.println("Erreur lecture du fichier : " + parException.toString());
-		}
+		} /*
 		catch (IOException parException) {
 			System.err.println("Erreur lecture du fichier : " + parException.toString());
-		}
+		} */
 		
 		return objetLu;
 		

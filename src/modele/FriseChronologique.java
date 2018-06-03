@@ -31,12 +31,14 @@ public class FriseChronologique implements Serializable {
 	}
 	
 	public FriseChronologique() {
-		
+		titreFrise = "";
+		dateDebut = new Date();
+		dateFin = new Date();
+		periodeFrise = 0;
+		hashMapEvts = new HashMap<>();
 	}
 	
 	public Evenement[] getListeEvenements(int parAnnee) {
-		
-		
 		return null;
 	}
 	

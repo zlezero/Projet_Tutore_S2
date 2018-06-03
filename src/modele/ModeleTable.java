@@ -25,6 +25,7 @@ public class ModeleTable extends DefaultTableModel {
 
 		ArrayList<String> intitulesTab = new ArrayList<String>();
 		
+		//Créer les intitulés du tableau
 		for (int i=0;i!=(parFrise.getDateFin().getAnnee() - parFrise.getDateDebut().getAnnee())+1;i++) {
 			if ( (i % parFrise.getPeriode() == 0) || (i == (parFrise.getDateFin().getAnnee() - parFrise.getDateDebut().getAnnee())) ) {
 				intitulesTab.add(Integer.toString(parFrise.getDateDebut().getAnnee() + i));

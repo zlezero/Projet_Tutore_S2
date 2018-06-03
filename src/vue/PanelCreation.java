@@ -3,6 +3,8 @@ package vue;
 import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
+
+import controleur.Controleur;
 import modele.FriseChronologique;
 
 public class PanelCreation extends JPanel {
@@ -21,6 +23,21 @@ public class PanelCreation extends JPanel {
 		
 		add(panelAjoutEvt, BorderLayout.EAST);
 		add(panelCreationFrise, BorderLayout.WEST);
+		
+		panelCreationFrise.setFrise(parFrise);
 	}
 	
+	public void enrengistreEcouteur(Controleur parC) {
+		panelCreationFrise.enrengistreEcouteur(parC);
+	}
+
+	public PanelAjoutEvt getPanelAjoutEvt() {
+		return panelAjoutEvt;
+	}
+
+
+	public PanelCreationFrise getPanelCreationFrise() {
+		return panelCreationFrise;
+	}
+		
 }

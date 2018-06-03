@@ -8,4 +8,7 @@ public interface ConstantesTextes {
 	final String MENU_AIDE = "Aide";
 	final String MENU_QUITTER = "Quitter";
 	
+	//Constantes des panels de création
+	
+	final String CREATION_FRISE_BOUTON_AJOUT = "Créer la frise";
 }
