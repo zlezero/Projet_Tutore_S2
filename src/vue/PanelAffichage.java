@@ -1,9 +1,11 @@
 package vue;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 
 import javax.swing.JPanel;
 
+import modele.Evenement;
 import modele.FriseChronologique;
 
 public class PanelAffichage extends JPanel {
@@ -12,12 +14,17 @@ public class PanelAffichage extends JPanel {
 	
 	PanelAffichageFrise panelFrise;
 	
+	CardLayout monGestionnaireDeCartes;
+	
 	public PanelAffichage(FriseChronologique parFrise) {
 		
 		setLayout(new BorderLayout());
+		monGestionnaireDeCartes = new CardLayout(50, 50);
 		
-		PanelAffichageEvt panelAffichageEvt = new PanelAffichageEvt();
-		add(panelAffichageEvt, BorderLayout.NORTH);
+		for (Evenement monEvt : parFrise.getListeEvenements()) {
+			PanelAffichageEvt panelAffichageEvt = new PanelAffichageEvt(monEvt.getTitre(), monEvt.getDate(), monEvt.getChDescription());
+			add(panelAffichageEvt, BorderLayout.NORTH);
+		}
 		
 		panelFrise = new PanelAffichageFrise(parFrise);
 		add(panelFrise, BorderLayout.SOUTH);

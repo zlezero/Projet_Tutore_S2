@@ -9,16 +9,26 @@ public class Evenement implements Comparable <Evenement>, Serializable
 	private Date chDate;
 	private String chTitre;
 	private String chLieu;
+	private String chDescription;
 	private static int chNbInstancie;
 	
-	public Evenement(Date parDate, String parTitre, String parLieu)
+	public Evenement(Date parDate, String parTitre, String parLieu, String parDescription)
 	{
 		chDate = parDate;
 		chTitre = parTitre;
 		chLieu = parLieu;
+		chDescription = parDescription;
 		chNbInstancie += 1;
 	}
 	
+	public String getChDescription() {
+		return chDescription;
+	}
+
+	public void setChDescription(String chDescription) {
+		this.chDescription = chDescription;
+	}
+
 	public Date getDate()
 	{
 		return chDate;
@@ -52,38 +62,6 @@ public class Evenement implements Comparable <Evenement>, Serializable
 	public void setLieu(String parLieu)
 	{
 		chLieu = parLieu;
-	}
-	
-	/*
-	public void lireEvenement()
-	{
-		chDate = Date.lireDate();
-		System.out.print("Entrez le titre de l'événement : ");
-		chTitre = Clavier.lireString();
-		System.out.print("Entrez le lieu de l'événement : ");
-		chLieu = Clavier.lireString();
-	}
-	
-	public static Evenement returnEvenement()
-	{
-		Date chDate = Date.lireDate();
-		System.out.print("Entrez le titre de l'événement : ");
-		String chTitre = Clavier.lireString();
-		System.out.print("Entrez le lieu de l'événement : ");
-		String chLieu = Clavier.lireString();
-		return new Evenement(chDate, chTitre, chLieu);
-	} */
-	
-	public int compareToMauvais(Evenement parEvt)
-	{
-		if (this.chDate.compareTo(parEvt.chDate) == 0 && this.chTitre.equals(parEvt.chTitre) && this.chLieu.equals(parEvt.chLieu))
-			return 0;
-		else if (this.chDate == parEvt.chDate)
-			return 0;
-		else if (chDate.compareTo(parEvt.chDate) == 1)
-			return 1;
-		else
-			return -1;
 	}
 	
 	public int compareTo(Evenement parEvt)

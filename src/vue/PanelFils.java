@@ -77,9 +77,6 @@ public class PanelFils extends JPanel implements ActionListener, ConstantesTexte
 
 		} //while
 
-		//maFrise.ajoutEvenement(1, new Evenement(new Date(6, 6, 2005), "TEST", "TEST"));
-		//maFrise.ajoutEvenement(2, new Evenement(new Date(6, 6, 2014), "TEST2", "TEST2"));
-
 		try {
 			LectureEcriture.ecriture(new File("Frise.ser"), maFrise);
 		} catch (IOException e) {
