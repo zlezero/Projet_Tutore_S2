@@ -36,12 +36,21 @@ public class PanelFils extends JPanel implements ActionListener, ConstantesTexte
 		}
 		
 		maFrise.ajoutEvenement(1, new Evenement(new Date(6, 6, 2000), "TEST", "TEST"));
-		maFrise.ajoutEvenement(2, new Evenement(new Date(6, 6, 2019), "TEST2", "TEST2"));
+		maFrise.ajoutEvenement(2, new Evenement(new Date(6, 6, 2018), "TEST2", "TEST2"));
 		
-		PanelAffichagePrincipal panelAffichagePrincipal = new PanelAffichagePrincipal(maFrise);
-		add(panelAffichagePrincipal);
+		try {
+			LectureEcriture.ecriture(new File("Frise.ser"), maFrise);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
-		Controleur controleur = new Controleur(maFrise, panelAffichagePrincipal);
+		PanelAffichage panelAffichage = new PanelAffichage(maFrise);
+		add(panelAffichage, ConstantesTextes.MENU_AFFICHAGE);
+		
+		PanelCreation panelCreation = new PanelCreation(maFrise);
+		add(panelCreation, ConstantesTextes.MENU_CREATION);
+		
+		Controleur controleur = new Controleur(maFrise, panelAffichage);
 		
 	}
 	

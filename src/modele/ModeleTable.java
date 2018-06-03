@@ -13,11 +13,11 @@ public class ModeleTable extends DefaultTableModel {
 
 	private int rowNumber = 4;
 	private int columnNumber;
-	private FriseChronologique chFrise;
+	//private FriseChronologique chFrise;
 	
 	public ModeleTable(FriseChronologique parFrise) {
 		
-		chFrise = parFrise;
+		//chFrise = parFrise;
 		columnNumber = (parFrise.getDateFin().getAnnee() - parFrise.getDateDebut().getAnnee())+1;
 		
 		this.setRowCount(rowNumber);
@@ -72,7 +72,6 @@ public class ModeleTable extends DefaultTableModel {
 		
 		System.out.println("Indice colonne : " + indiceColonne + " / Indice Ligne : " + indiceLigne);
 		
-		int i = this.columnNumber;
 		int compteur = 0;
 		
 		if (indiceColonne == -1) {

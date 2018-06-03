@@ -1,10 +1,12 @@
 package modele;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashMap;
 
-public class FriseChronologique {
+public class FriseChronologique implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	
 	private HashMap<Integer, HashMap<Integer, Evenement>> hashMapEvts;
 	private String titreFrise;
@@ -55,20 +57,25 @@ public class FriseChronologique {
 	
 	public int ajoutEvenement(int parPoids, Evenement parEvenement) {
 		
-		if (hashMapEvts.containsKey(parEvenement.getDate().getAnnee())) {
-			
-			if (hashMapEvts.get(parEvenement.getDate().getAnnee()).size() <= 4) {
+		if (parEvenement.getDate().getAnnee() >= dateDebut.getAnnee() && parEvenement.getDate().getAnnee() <= dateFin.getAnnee()) {
+			if (hashMapEvts.containsKey(parEvenement.getDate().getAnnee())) {
+				
+				if (hashMapEvts.get(parEvenement.getDate().getAnnee()).size() <= 4) {
+					hashMapEvts.get(parEvenement.getDate().getAnnee()).put(parPoids, parEvenement);
+					return 1;
+				}
+				else {
+					return -1;
+				}
+			}
+			else {
+				hashMapEvts.put(parEvenement.getDate().getAnnee(), new HashMap<Integer, Evenement>());
 				hashMapEvts.get(parEvenement.getDate().getAnnee()).put(parPoids, parEvenement);
 				return 1;
 			}
-			else {
-				return -1;
-			}
 		}
 		else {
-			hashMapEvts.put(parEvenement.getDate().getAnnee(), new HashMap<Integer, Evenement>());
-			hashMapEvts.get(parEvenement.getDate().getAnnee()).put(parPoids, parEvenement);
-			return 1;
+			return -1;
 		}
 		
 	}

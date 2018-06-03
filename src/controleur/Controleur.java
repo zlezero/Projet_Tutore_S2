@@ -4,14 +4,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import modele.FriseChronologique;
-import vue.PanelAffichagePrincipal;
+import vue.PanelAffichage;
 
 public class Controleur implements ActionListener {
 	
 	private FriseChronologique friseChronologique;
-	private PanelAffichagePrincipal panelAP;
+	private PanelAffichage panelAP;
 	
-	public Controleur(FriseChronologique parFrise, PanelAffichagePrincipal parPanelAP) {
+	public Controleur(FriseChronologique parFrise, PanelAffichage parPanelAP) {
 		friseChronologique = parFrise;
 		panelAP = parPanelAP;
 	}
