@@ -8,13 +8,13 @@ import javax.swing.ScrollPaneConstants;
 import modele.FriseChronologique;
 import modele.ModeleTable;
 
-public class PanelFrise extends JPanel {
+public class PanelAffichageFrise extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
 	
 	JTable tableFrise;
 	
-	public PanelFrise(FriseChronologique parFrise) {
+	public PanelAffichageFrise(FriseChronologique parFrise) {
 		
 		ModeleTable monModele = new ModeleTable(parFrise);
 		
@@ -28,6 +28,18 @@ public class PanelFrise extends JPanel {
 		
 		add(scrollPane);
 		
+	}
+
+	public JTable getTableFrise() {
+		return tableFrise;
+	}
+
+	public void setTableFrise(JTable tableFrise) {
+		this.tableFrise = tableFrise;
+	}
+	
+	public void updateTable(FriseChronologique parFrise) {
+		tableFrise.setModel(new ModeleTable(parFrise));
 	}
 	
 }

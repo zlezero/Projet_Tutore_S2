@@ -36,7 +36,7 @@ public class PanelFils extends JPanel implements ActionListener, ConstantesTexte
 			int resultat = JOptionPane.showOptionDialog(this, "Choisissez une option : ", "Bienvenue !", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, intitulesBoutons, intitulesBoutons[0]);
 
 			if (resultat == JOptionPane.YES_OPTION) { //Si l'on veut créer une nouvelle frise
-				maFrise = new FriseChronologique(false); //Alors on renvoit juste une frise vide
+				maFrise = new FriseChronologique(); //Alors on renvoit juste une frise vide
 				break;
 			}
 			else if (resultat == JOptionPane.NO_OPTION) { //Si l'on veut ouvrir une nouvelle frise
@@ -52,7 +52,7 @@ public class PanelFils extends JPanel implements ActionListener, ConstantesTexte
 					
 					try {
 						FriseChronologique maFriseTmp = (FriseChronologique) LectureEcriture.lecture(monFichier);
-						maFrise =  new FriseChronologique(maFriseTmp.getTitre(), maFriseTmp.getDateDebut(), maFriseTmp.getDateFin(), maFriseTmp.getPeriode(), maFriseTmp.getHashMapEvts()); //Et on le retourne déserialisé
+						maFrise =  new FriseChronologique(maFriseTmp.getTitreFrise(), maFriseTmp.getDateDebut(), maFriseTmp.getDateFin(), maFriseTmp.getPeriodeFrise(), maFriseTmp.getHashMapEvts()); //Et on le retourne déserialisé
 					}
 					catch (FileNotFoundException e) {
 						e.printStackTrace();

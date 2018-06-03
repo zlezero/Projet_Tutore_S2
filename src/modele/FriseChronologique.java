@@ -42,13 +42,13 @@ public class FriseChronologique implements Serializable {
 		estInitialisee = true;	
 	}
 
-	public FriseChronologique(boolean parInitialisee) {
+	public FriseChronologique() {
 		titreFrise = "";
 		dateDebut = new Date();
 		dateFin = new Date();
 		periodeFrise = 1;
 		hashMapEvts = new HashMap<>();
-		estInitialisee = parInitialisee;
+		estInitialisee = false;
 	}
 
 	public Evenement[] getListeEvenements(int parAnnee) {
@@ -95,28 +95,49 @@ public class FriseChronologique implements Serializable {
 
 	}
 
-	public int getPeriode() {
-		return periodeFrise;
+	
+	public String toString() {
+		return hashMapEvts.toString();
+	}
+	
+	public HashMap<Integer, HashMap<Integer, Evenement>> getHashMapEvts() {
+		return hashMapEvts;
+	}
+
+	public void setHashMapEvts(HashMap<Integer, HashMap<Integer, Evenement>> hashMapEvts) {
+		this.hashMapEvts = hashMapEvts;
+	}
+
+	public String getTitreFrise() {
+		return titreFrise;
+	}
+
+	public void setTitreFrise(String titreFrise) {
+		this.titreFrise = titreFrise;
 	}
 
 	public Date getDateDebut() {
 		return dateDebut;
 	}
 
+	public void setDateDebut(Date dateDebut) {
+		this.dateDebut = dateDebut;
+	}
+
 	public Date getDateFin() {
 		return dateFin;
 	}
 
-	public String getTitre() {
-		return titreFrise;
+	public void setDateFin(Date dateFin) {
+		this.dateFin = dateFin;
 	}
 
-	public HashMap<Integer, HashMap<Integer, Evenement>> getHashMapEvts() {
-		return hashMapEvts;
+	public int getPeriodeFrise() {
+		return periodeFrise;
 	}
 
-	public String toString() {
-		return hashMapEvts.toString();
+	public void setPeriodeFrise(int periodeFrise) {
+		this.periodeFrise = periodeFrise;
 	}
 
 	public boolean isEstInitialisee() {
@@ -125,5 +146,14 @@ public class FriseChronologique implements Serializable {
 
 	public void setEstInitialisee(boolean estInitialisee) {
 		this.estInitialisee = estInitialisee;
+	}
+	
+	public void updateDefaultEvts() {
+		System.out.println(dateFin.getAnnee() + " / " + dateDebut.getAnnee());
+		for (int i=0; i != dateFin.getAnnee() - dateDebut.getAnnee();i++) {
+			HashMap<Integer, Evenement> hashMap = new HashMap<>();
+			hashMap.put(0, null);
+			hashMapEvts.put(dateDebut.getAnnee() + i, hashMap);
+		}
 	}
 }

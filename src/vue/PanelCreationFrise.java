@@ -97,10 +97,10 @@ public class PanelCreationFrise extends JPanel implements ConstantesTextes {
 	}
 	
 	public void setFrise(FriseChronologique parFrise) {
-		listeTextField[0].setText(parFrise.getTitre());
+		listeTextField[0].setText(parFrise.getTitreFrise());
 		listeTextField[1].setText(Integer.toString(parFrise.getDateDebut().getAnnee()));
 		listeTextField[2].setText(Integer.toString(parFrise.getDateFin().getAnnee()));
-		spinner.setValue(parFrise.getPeriode());
+		spinner.setValue(parFrise.getPeriodeFrise());
 	}
 
 	public JButton getBoutonAjout() {

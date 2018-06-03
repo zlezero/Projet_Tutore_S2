@@ -1,6 +1,7 @@
 package vue;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 
 import javax.swing.JPanel;
 
@@ -27,6 +28,23 @@ public class PanelCreation extends JPanel {
 		if (parFrise.isEstInitialisee()) {
 			panelCreationFrise.setFrise(parFrise);
 		}
+		else {
+			disablePanelComponents(panelAjoutEvt);
+		}
+	}
+	
+	public void disablePanelComponents(JPanel parPanel) {
+		Component[] com = parPanel.getComponents();
+		for (int a = 0; a < com.length; a++) {
+		     com[a].setEnabled(false);
+		}
+	}
+	
+	public void activatePanelComponents(JPanel parPanel) {
+		Component[] com = parPanel.getComponents();
+		for (int a = 0; a < com.length; a++) {
+		     com[a].setEnabled(true);
+		}
 	}
 	
 	public void enrengistreEcouteur(Controleur parC) {
@@ -40,5 +58,7 @@ public class PanelCreation extends JPanel {
 	public PanelCreationFrise getPanelCreationFrise() {
 		return panelCreationFrise;
 	}
+	
+	
 		
 }
