@@ -1,6 +1,7 @@
 package modele;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
@@ -51,8 +52,20 @@ public class FriseChronologique implements Serializable {
 		estInitialisee = false;
 	}
 
-	public Evenement[] getListeEvenements(int parAnnee) {
-		return null;
+	public ArrayList<Evenement> getListeEvenements() {
+		
+		ArrayList<Evenement> maListe = new ArrayList<Evenement>();
+		
+		for (HashMap<Integer,Evenement> hashMap : hashMapEvts.values()) {	
+			for (Evenement monEvt : hashMap.values()) {
+				if (monEvt != null) {
+					maListe.add(monEvt);
+				}
+			}
+		}
+		
+		return maListe;
+		
 	}
 
 	public Collection<HashMap<Integer, Evenement>> getHashMapEvenementsPoids() {
@@ -148,6 +161,7 @@ public class FriseChronologique implements Serializable {
 		this.estInitialisee = estInitialisee;
 	}
 	
+	/*
 	public void updateDefaultEvts() {
 		System.out.println(dateFin.getAnnee() + " / " + dateDebut.getAnnee());
 		for (int i=0; i != dateFin.getAnnee() - dateDebut.getAnnee();i++) {
@@ -155,5 +169,5 @@ public class FriseChronologique implements Serializable {
 			hashMap.put(0, null);
 			hashMapEvts.put(dateDebut.getAnnee() + i, hashMap);
 		}
-	}
+	} */
 }

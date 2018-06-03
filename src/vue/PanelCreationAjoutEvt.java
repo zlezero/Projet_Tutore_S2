@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 
 import modele.Date;
 
-public class PanelAjoutEvt extends JPanel {
+public class PanelCreationAjoutEvt extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
@@ -26,7 +26,7 @@ public class PanelAjoutEvt extends JPanel {
 	JLabel listeLabels[] = new JLabel[6];
 	JTextArea textareaDescription = new JTextArea(5, 10);
 
-	public PanelAjoutEvt() {
+	public PanelCreationAjoutEvt() {
 
 		setLayout(new GridBagLayout());
 		GridBagConstraints contrainte = new GridBagConstraints();

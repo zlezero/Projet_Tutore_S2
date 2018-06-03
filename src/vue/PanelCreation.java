@@ -12,20 +12,23 @@ public class PanelCreation extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	
-	PanelAjoutEvt panelAjoutEvt;
+	PanelCreationAjoutEvt panelAjoutEvt;
 	PanelCreationFrise panelCreationFrise;
+	FriseChronologique friseChronologique;
 	
 	public PanelCreation(FriseChronologique parFrise) {
 		
+		friseChronologique = parFrise;
+		
 		setLayout(new BorderLayout());
 		
-		panelAjoutEvt = new PanelAjoutEvt();
+		panelAjoutEvt = new PanelCreationAjoutEvt();
 		panelCreationFrise = new PanelCreationFrise();
 		
 		add(panelAjoutEvt, BorderLayout.EAST);
 		add(panelCreationFrise, BorderLayout.WEST);	
 		
-		if (parFrise.isEstInitialisee()) {
+		if (friseChronologique.isEstInitialisee()) {
 			panelCreationFrise.setFrise(parFrise);
 		}
 		else {
@@ -47,11 +50,21 @@ public class PanelCreation extends JPanel {
 		}
 	}
 	
+	public void updateComponents() {
+		
+		if (friseChronologique.isEstInitialisee()) {
+			activatePanelComponents(panelAjoutEvt);
+			panelCreationFrise.setFrise(friseChronologique);
+		}
+		
+		
+	}
+	
 	public void enrengistreEcouteur(Controleur parC) {
 		panelCreationFrise.enrengistreEcouteur(parC);
 	}
 
-	public PanelAjoutEvt getPanelAjoutEvt() {
+	public PanelCreationAjoutEvt getPanelAjoutEvt() {
 		return panelAjoutEvt;
 	}
 
