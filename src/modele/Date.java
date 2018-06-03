@@ -5,7 +5,7 @@ import java.util.GregorianCalendar;
 import java.util.Calendar;
 
 /**
- * G�re la date
+ * Gère la date
  * @author Thomas Vathonne
  * @version 1
  */
@@ -39,7 +39,7 @@ public class Date implements Comparable<Date>, Serializable{
 	}
 
 	/**
-	 * retourne 0 si this et parDate sont égales, -1 si this précédes parDate, 1
+	 * retourne 0 si this et parDate sont égales, -1 si this précèdes parDate, 1
 	 * si parDate précède this
 	 */
 	
@@ -48,7 +48,7 @@ public class Date implements Comparable<Date>, Serializable{
 			return -1;
 		if (annee > parDate.annee)
 			return 1;
-		// les ann�es sont =
+		// les annï¿½es sont =
 		if (mois < parDate.mois)
 			return -1;
 		if (mois > parDate.mois)
@@ -91,7 +91,7 @@ public class Date implements Comparable<Date>, Serializable{
 	}
 
 	/**
-	 * Retourne le dernier jour du mois selon le mois et l'année en paramètre 
+	 * Retourne le dernier jour du mois selon le mois et l'année en paramÃ¨tre 
 	 * @param parMois
 	 * @param parAnnee
 	 * @return Soit 29/28/30/31
@@ -156,7 +156,7 @@ public class Date implements Comparable<Date>, Serializable{
 			chaine += "janvier";
 			break;
 		case 2:
-			chaine += "févirer";
+			chaine += "février";
 			break;
 		case 3:
 			chaine += "mars";
@@ -205,7 +205,7 @@ public class Date implements Comparable<Date>, Serializable{
 	}
 	
 	/**
-	 * Renvoie le nom du mois associé à un numéro de mois
+	 * Renvoie le nom du mois associé à un numéro de mois
 	 * @param numeroMois
 	 * @return Un nom de mois
 	 */
@@ -215,7 +215,7 @@ public class Date implements Comparable<Date>, Serializable{
 		case 1:
 			return "janvier";
 		case 2:
-			return "févirer";
+			return "février";
 		case 3:
 			return "mars";
 		case 4:
