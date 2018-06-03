@@ -91,7 +91,7 @@ public class Date implements Comparable<Date>, Serializable{
 	}
 
 	/**
-	 * Retourne le dernier jour du mois selon le mois et l'année en paramÃ¨tre 
+	 * Retourne le dernier jour du mois selon le mois et l'année en paramètre 
 	 * @param parMois
 	 * @param parAnnee
 	 * @return Soit 29/28/30/31

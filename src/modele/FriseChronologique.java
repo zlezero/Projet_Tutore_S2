@@ -34,7 +34,7 @@ public class FriseChronologique implements Serializable {
 		titreFrise = "";
 		dateDebut = new Date();
 		dateFin = new Date();
-		periodeFrise = 0;
+		periodeFrise = 1;
 		hashMapEvts = new HashMap<>();
 	}
 	

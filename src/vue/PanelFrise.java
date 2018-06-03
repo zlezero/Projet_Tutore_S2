@@ -20,6 +20,7 @@ public class PanelFrise extends JPanel {
 		
 		tableFrise = new JTable(monModele);
 		tableFrise.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		tableFrise.getTableHeader().setReorderingAllowed(false);
 		
 		JScrollPane scrollPane = new JScrollPane(tableFrise,
 				ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
