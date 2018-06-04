@@ -66,7 +66,7 @@ public class PanelAffichage extends JPanel {
 		panelFrise = new PanelAffichageFrise(parFrise, monGestionnaireDeCartes, panelNordCL);
 		add(panelFrise, BorderLayout.SOUTH);
 		
-		//On gère les événements des flèches
+		//On gÃ¨re les Ã©vÃ©nements des flï¿½ches
 		flecheGauche.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent evt) {
 				monGestionnaireDeCartes.previous(panelNordCL);

@@ -13,7 +13,6 @@ public class ModeleTable extends DefaultTableModel {
 
 	private int rowNumber = 4;
 	private int columnNumber;
-	//private FriseChronologique chFrise;
 
 	public ModeleTable(FriseChronologique parFrise) {
 		
@@ -24,7 +23,7 @@ public class ModeleTable extends DefaultTableModel {
 
 		ArrayList<String> intitulesTab = new ArrayList<String>();
 
-		//Créer les intitulés du tableau
+		//CrÃ©er les intitulÃ©s du tableau
 		for (int i=0;i!=(parFrise.getDateFin().getAnnee() - parFrise.getDateDebut().getAnnee())+1;i++) {
 			if ( (i % parFrise.getPeriodeFrise() == 0) || (i == (parFrise.getDateFin().getAnnee() - parFrise.getDateDebut().getAnnee())) ) {
 				intitulesTab.add(Integer.toString(parFrise.getDateDebut().getAnnee() + i));
@@ -70,7 +69,7 @@ public class ModeleTable extends DefaultTableModel {
 		int indiceColonne = this.findColumn(Integer.toString(parEvt.getDate().getAnnee()));
 		int indiceLigne = parPoids;
 
-		System.out.println("Indice colonne : " + indiceColonne + " / Indice Ligne : " + indiceLigne);
+		//System.out.println("Indice colonne : " + indiceColonne + " / Indice Ligne : " + indiceLigne);
 
 		int compteur = 0;
 

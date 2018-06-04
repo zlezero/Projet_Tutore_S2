@@ -23,10 +23,7 @@ public class LectureEcriture {
 		} 
 		catch (ClassNotFoundException parException) {
 			System.err.println("Erreur lecture du fichier : " + parException.toString());
-		} /*
-		catch (IOException parException) {
-			System.err.println("Erreur lecture du fichier : " + parException.toString());
-		} */
+		}
 		
 		return objetLu;
 		
@@ -35,7 +32,7 @@ public class LectureEcriture {
 	public static void ecriture(File parFichier, Object parObjet) throws IOException
 	{
 		ObjectOutputStream flux = null;
-		//Ouverture du fichier en mode écriture
+		//Ouverture du fichier en mode Ã©criture
 		try {
 			flux = new ObjectOutputStream(new FileOutputStream(parFichier));
 			flux.writeObject(parObjet);
@@ -43,7 +40,7 @@ public class LectureEcriture {
 			flux.close();
 		}
 		catch (IOException parException) {
-			System.err.println("Erreur écriture du fichier : " + parException.toString());
+			System.err.println("Erreur Ã©criture du fichier : " + parException.toString());
 			System.exit(1);
 		}
 	}

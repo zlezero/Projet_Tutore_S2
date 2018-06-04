@@ -31,9 +31,9 @@ public class PanelCreationAjoutEvt extends JPanel implements ConstantesTextes {
 		setLayout(new GridBagLayout());
 		GridBagConstraints contrainte = new GridBagConstraints();
 
-		// Ajouts des labels à gauche
+		// Ajouts des labels Ã  gauche
 
-		String intitulesLabels[] = {"Création d'un événement", "Titre", "Date (JJ/MM/AAAA)",
+		String intitulesLabels[] = {"CrÃ©ation d'un Ã©vÃ©nement", "Titre", "Date (JJ/MM/AAAA)",
 				"Photo", "Poids", "Description"};
 
 		contrainte.gridx = 0;
@@ -95,7 +95,7 @@ public class PanelCreationAjoutEvt extends JPanel implements ConstantesTextes {
 
 		add(textareaDescription, contrainte);
 
-		// Ajout des mnémoniques
+		// Ajout des mnï¿½moniques
 
 		listeLabels[1].setDisplayedMnemonic('T');
 		listeLabels[1].setLabelFor(listeTextField[0]);

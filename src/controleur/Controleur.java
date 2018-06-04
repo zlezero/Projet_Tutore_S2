@@ -39,7 +39,7 @@ public class Controleur implements ActionListener, ConstantesTextes {
 
 	public void actionPerformed(ActionEvent parEvt) {
 
-		if (parEvt.getActionCommand().equals(CREATION_FRISE_BOUTON_AJOUT)) { //Si l'on veut créer / modifier une frise
+		if (parEvt.getActionCommand().equals(CREATION_FRISE_BOUTON_AJOUT)) { //Si l'on veut crÃ©er / modifier une frise
 
 			if (!panelCreation.getPanelCreationFrise().getListeTextField()[0].getText().isEmpty()) {
 
@@ -68,22 +68,22 @@ public class Controleur implements ActionListener, ConstantesTextes {
 									LectureEcriture.ecriture(new File("Frise.ser"), friseChronologique);
 								} catch (IOException e) {
 									e.printStackTrace();
-									JOptionPane.showMessageDialog(panelCreation, "Erreur : La frise n'a pas pu être sauvegardée !", "Erreur", JOptionPane.ERROR_MESSAGE);
+									JOptionPane.showMessageDialog(panelCreation, "Erreur : La frise n'a pas pu Ã©tre sauvegardÃ©e !", "Erreur", JOptionPane.ERROR_MESSAGE);
 								}
 								
 								if (!friseChronologique.isEstInitialisee())
-									JOptionPane.showMessageDialog(panelCreation, "La frise a été créer avec succès !", "Succès", JOptionPane.INFORMATION_MESSAGE);
+									JOptionPane.showMessageDialog(panelCreation, "La frise a Ã©tÃ© crÃ©er avec succÃ©s !", "SuccÃ¨s", JOptionPane.INFORMATION_MESSAGE);
 								else
-									JOptionPane.showMessageDialog(panelCreation, "La frise a été modifiée avec succès !", "Succès", JOptionPane.INFORMATION_MESSAGE);
+									JOptionPane.showMessageDialog(panelCreation, "La frise a Ã©tÃ© modifiÃ©e avec succÃ©s !", "SuccÃ¨s", JOptionPane.INFORMATION_MESSAGE);
 
 							}
 							else {
-								JOptionPane.showMessageDialog(panelCreation, "Erreur : L'année de départ est supérieure à l'année de fin !", "Erreur", JOptionPane.ERROR_MESSAGE);
+								JOptionPane.showMessageDialog(panelCreation, "Erreur : L'annÃ©e de dÃ©part est supÃ©rieure Ã  l'annÃ©e de fin !", "Erreur", JOptionPane.ERROR_MESSAGE);
 							}
 
 						}
 						else {
-							JOptionPane.showMessageDialog(panelCreation, "Le champ 'Période' est incorrect !", "Erreur", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(panelCreation, "Le champ 'PÃ©riode' est incorrect !", "Erreur", JOptionPane.ERROR_MESSAGE);
 						}
 
 					}
@@ -93,16 +93,16 @@ public class Controleur implements ActionListener, ConstantesTextes {
 
 				}
 				else {
-					JOptionPane.showMessageDialog(panelCreation, "Le champ 'Début' est incorrect !", "Erreur", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(panelCreation, "Le champ 'DÃ©but' est incorrect !", "Erreur", JOptionPane.ERROR_MESSAGE);
 				}
 
 			}
 			else {
-				JOptionPane.showMessageDialog(panelCreation, "Le champ 'Titre' ne peut pas être vide !", "Erreur", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(panelCreation, "Le champ 'Titre' ne peut pas Ã©tre vide !", "Erreur", JOptionPane.ERROR_MESSAGE);
 			}
 
 		}
-		else if (parEvt.getActionCommand().equals(CREATION_EVT_BOUTON_AJOUT)) { //Si l'on veut ajouter un événement
+		else if (parEvt.getActionCommand().equals(CREATION_EVT_BOUTON_AJOUT)) { //Si l'on veut ajouter un Ã©vÃ©nement
 
 			if (!panelCreation.getPanelAjoutEvt().getListeTextField()[0].getText().isEmpty()) {
 
@@ -129,20 +129,20 @@ public class Controleur implements ActionListener, ConstantesTextes {
 								LectureEcriture.ecriture(new File("Frise.ser"), friseChronologique);
 							} catch (IOException e) {
 								e.printStackTrace();
-								JOptionPane.showMessageDialog(panelCreation, "Erreur : La frise n'a pas pu être sauvegardée !", "Erreur", JOptionPane.ERROR_MESSAGE);
+								JOptionPane.showMessageDialog(panelCreation, "Erreur : La frise n'a pas pu Ãªtre sauvegardÃ©e !", "Erreur", JOptionPane.ERROR_MESSAGE);
 							}
 							
-							JOptionPane.showMessageDialog(panelCreation, "L'événement " + panelCreation.getPanelAjoutEvt().getListeTextField()[0].getText() + " a été créer !", "Succès", JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(panelCreation, "L'Ã©vÃ©nement " + panelCreation.getPanelAjoutEvt().getListeTextField()[0].getText() + " a Ã©tÃ© crÃ©er !", "SuccÃ©s", JOptionPane.INFORMATION_MESSAGE);
 							
 							panelCreation.getPanelAjoutEvt().resetUI();
 						}
 						else {
-							JOptionPane.showMessageDialog(panelCreation, "L'événement n'est pas dans la période de la frise chronologique !", "Erreur", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(panelCreation, "L'Ã©vÃ©nement n'est pas dans la pÃ©riode de la frise chronologique !", "Erreur", JOptionPane.ERROR_MESSAGE);
 						}
 		
 					}
 					else {
-						JOptionPane.showMessageDialog(panelCreation, "Le champ 'Description' ne peut pas être vide !", "Erreur", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(panelCreation, "Le champ 'Description' ne peut pas Ãªtre vide !", "Erreur", JOptionPane.ERROR_MESSAGE);
 					}
 
 				}
@@ -152,7 +152,7 @@ public class Controleur implements ActionListener, ConstantesTextes {
 
 			}
 			else {
-				JOptionPane.showMessageDialog(panelCreation, "Le champ 'Titre' ne peut pas être vide !", "Erreur", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(panelCreation, "Le champ 'Titre' ne peut pas Ã©tre vide !", "Erreur", JOptionPane.ERROR_MESSAGE);
 			}
 
 		}
@@ -164,17 +164,17 @@ public class Controleur implements ActionListener, ConstantesTextes {
 			ouvrirPhoto.setFileFilter(monFiltre);	
 			ouvrirPhoto.setAcceptAllFileFilterUsed(false);
 			
-			int resultatOuverture = ouvrirPhoto.showOpenDialog(panelCreation); //Alors on demande à l'utilisateur d'ouvrir le fichier correspondant
+			int resultatOuverture = ouvrirPhoto.showOpenDialog(panelCreation); //Alors on demande Ã  l'utilisateur d'ouvrir le fichier correspondant
 
-			if (resultatOuverture == JFileChooser.APPROVE_OPTION) { //Si l'utilisateur a sélectionné un fichier
+			if (resultatOuverture == JFileChooser.APPROVE_OPTION) { //Si l'utilisateur a sÃ©lectionnÃ© un fichier
 				panelCreation.getPanelAjoutEvt().getListeTextField()[2].setText(ouvrirPhoto.getSelectedFile().getPath());
 			}
 
 		}
-		else if (parEvt.getActionCommand().equals(AFFICHAGE_POPUPMENU_MODIFIER)) { //Si l'on veut modifier un événement
+		else if (parEvt.getActionCommand().equals(AFFICHAGE_POPUPMENU_MODIFIER)) { //Si l'on veut modifier un Ã©vÃ©nement
 			System.out.println("Modifier");
 		}
-		else if (parEvt.getActionCommand().equals(AFFICHAGE_POPUPMENU_SUPPRIMER)) { //Si l'on veut supprimer un événement
+		else if (parEvt.getActionCommand().equals(AFFICHAGE_POPUPMENU_SUPPRIMER)) { //Si l'on veut supprimer un Ã©vÃ©nement
 			System.out.println("Supprimer");
 			JMenuItem m = (JMenuItem)parEvt.getSource();
 		}

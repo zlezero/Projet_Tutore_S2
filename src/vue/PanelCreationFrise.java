@@ -30,9 +30,9 @@ public class PanelCreationFrise extends JPanel implements ConstantesTextes {
 		setLayout(new GridBagLayout());
 		GridBagConstraints contrainte = new GridBagConstraints();
 
-		//Ajouts des labels à gauche
+		//Ajouts des labels Ã  gauche
 
-		String intitulesLabels[] = { "Création de la frise", "Titre", "Début (Année)", "Fin (Année)", "Période" };
+		String intitulesLabels[] = { "CrÃ©ation de la frise", "Titre", "DÃ©but (AnnÃ©e)", "Fin (AnnÃ©e)", "PÃ©riode" };
 
 		contrainte.gridx = 0;
 		contrainte.gridwidth = 1;
@@ -51,7 +51,7 @@ public class PanelCreationFrise extends JPanel implements ConstantesTextes {
 			add(listeLabels[i], contrainte);
 		}
 
-		//Ajout du bouton création
+		//Ajout du bouton crÃ©ation
 
 		contrainte.gridx = 0;
 		contrainte.gridy = 5;
@@ -72,7 +72,7 @@ public class PanelCreationFrise extends JPanel implements ConstantesTextes {
 			contrainte.gridy += 1;
 		}
 		
-		//Ajouts du JSpinner pour choisir la période
+		//Ajouts du JSpinner pour choisir la pÃ©riode
 		contrainte.gridwidth = 1;
 		contrainte.gridx = 1;
 		contrainte.gridy = 4;
@@ -81,7 +81,7 @@ public class PanelCreationFrise extends JPanel implements ConstantesTextes {
 		spinner.setValue(1);
 		add(spinner, contrainte);
 		
-		//Ajout des mnémoniques
+		//Ajout des mnÃ©moniques
 
 		listeLabels[1].setDisplayedMnemonic('T');
 		listeLabels[1].setLabelFor(listeTextField[0]);

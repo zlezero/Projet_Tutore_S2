@@ -167,14 +167,4 @@ public class FriseChronologique implements Serializable {
 	public void setEstInitialisee(boolean estInitialisee) {
 		this.estInitialisee = estInitialisee;
 	}
-	
-	/*
-	public void updateDefaultEvts() {
-		System.out.println(dateFin.getAnnee() + " / " + dateDebut.getAnnee());
-		for (int i=0; i != dateFin.getAnnee() - dateDebut.getAnnee();i++) {
-			HashMap<Integer, Evenement> hashMap = new HashMap<>();
-			hashMap.put(0, null);
-			hashMapEvts.put(dateDebut.getAnnee() + i, hashMap);
-		}
-	} */
 }
