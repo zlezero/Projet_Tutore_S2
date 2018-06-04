@@ -149,8 +149,8 @@ public class PanelAffichageFrise extends JPanel implements ConstantesTextes {
 	}
 	
 	public void updateTable(FriseChronologique parFrise) {
-		tableFrise.setModel(new ModeleTable(parFrise));
-		tableFrise.setDefaultRenderer(Evenement.class, new CelluleRenderer());
+		monModele = new ModeleTable(parFrise);
+		tableFrise.setModel(monModele);
 	}
 	
 }

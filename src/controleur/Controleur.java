@@ -132,7 +132,7 @@ public class Controleur implements ActionListener, ConstantesTextes {
 							
 							panelAP.getPanelFrise().updateTable(friseChronologique);
 							panelAP.resetCardLayout();
-							System.out.print(friseChronologique);
+							
 							try {
 								LectureEcriture.ecriture(new File("Frise.ser"), friseChronologique);
 							} catch (IOException e) {
