@@ -22,6 +22,7 @@ public class PanelFils extends JPanel implements ActionListener, ConstantesTexte
 
 	CardLayout monGestionnaireDeCartes;
 	FriseChronologique maFrise;
+	PanelCreation panelCreation;
 	
 	public PanelFils() {
 
@@ -83,7 +84,7 @@ public class PanelFils extends JPanel implements ActionListener, ConstantesTexte
 			e.printStackTrace();
 		}
 		
-		PanelCreation panelCreation = new PanelCreation(maFrise);
+		panelCreation = new PanelCreation(maFrise);
 		add(panelCreation, ConstantesTextes.MENU_CREATION);
 		
 		PanelAffichage panelAffichage = new PanelAffichage(maFrise);
@@ -124,6 +125,9 @@ public class PanelFils extends JPanel implements ActionListener, ConstantesTexte
 			
 			if (!maFrise.isEstInitialisee() && evt.getActionCommand().equals(MENU_AFFICHAGE)) {
 				JOptionPane.showMessageDialog(this, "Impossible de visualiser la frise tant qu'elle n'a pas été créer !", "Erreur", JOptionPane.ERROR_MESSAGE);
+			}
+			else if (panelCreation.getPanelAjoutEvt().isEstModification() && evt.getActionCommand().equals(MENU_AFFICHAGE)) {
+				JOptionPane.showMessageDialog(this, "Impossible de visualiser la frise tant que la modification n'est pas terminée !", "Erreur", JOptionPane.ERROR_MESSAGE);
 			}
 			else 
 				monGestionnaireDeCartes.show(this, evt.getActionCommand());
