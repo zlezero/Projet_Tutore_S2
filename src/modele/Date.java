@@ -305,6 +305,6 @@ public class Date implements Comparable<Date>, Serializable{
 	*/
 	
 	public String dateFormatee() {
-		return jour + "/" + mois + "/" + annee;
+		return String.format("%02d", jour) +  "/" + String.format("%02d", mois) + "/" + annee;
 	}
 } // class Date
