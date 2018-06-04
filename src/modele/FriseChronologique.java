@@ -118,6 +118,10 @@ public class FriseChronologique implements Serializable {
 		}
 
 	}
+	
+	public void supprimerEvenement(Evenement parEvt) {
+		
+	}
 
 	
 	public String toString() {

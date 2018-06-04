@@ -41,7 +41,7 @@ public class PanelAffichage extends JPanel {
 		panelNordCL.setLayout(monGestionnaireDeCartes);
 		
 		for (Evenement monEvt : parFrise.getListeEvenements()) {
-			PanelAffichageEvt panelAffichageEvt = new PanelAffichageEvt(monEvt.getTitre(), monEvt.getDate(), monEvt.getChDescription());
+			PanelAffichageEvt panelAffichageEvt = new PanelAffichageEvt(monEvt);
 			panelNordCL.add(panelAffichageEvt, monEvt.toString());
 		}
 		
