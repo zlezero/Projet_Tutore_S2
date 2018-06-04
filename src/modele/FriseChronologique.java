@@ -52,6 +52,11 @@ public class FriseChronologique implements Serializable {
 		estInitialisee = false;
 	}
 
+	/**
+	* Accesseur qui permet d'obtenir la liste d'évènement  
+	* @return une liste d'évènements
+	*/
+	
 	public ArrayList<Evenement> getListeEvenements() {
 		
 		ArrayList<Evenement> maListe = new ArrayList<Evenement>();
@@ -72,6 +77,10 @@ public class FriseChronologique implements Serializable {
 		return hashMapEvts.values();
 	}
 
+	/**
+	* Accesseur qui permet d'obtenir le poids d'un Evenement
+	* @param un entier parAnnee, un Evenement evenement
+	*/
 
 	public int getPoidsEvenement(int parAnnee, Evenement parEvenement) {
 
@@ -84,6 +93,11 @@ public class FriseChronologique implements Serializable {
 		return 0;
 	}
 
+	/**
+	* Méthode qui permet d'ajouter un évènement en donnant en paramètre l'évènement que l'on veut ajouter
+	* @param un Evenement 
+	*/
+	
 	public int ajoutEvenement(int parPoids, Evenement parEvenement) {
 
 		if (parEvenement.getDate().getAnnee() >= dateDebut.getAnnee() && parEvenement.getDate().getAnnee() <= dateFin.getAnnee()) {
@@ -108,6 +122,11 @@ public class FriseChronologique implements Serializable {
 		}
 
 	}
+	
+	/**
+	* Méthode qui permet de supprimer un évènement en donnant en paramètre l'évènement que l'on veut supprimer
+	* @param un Evenement 
+	*/
 	
 	public void supprimerEvenement(Evenement parEvt) {
 		
@@ -138,7 +157,7 @@ public class FriseChronologique implements Serializable {
 		return hashMapEvts;
 	}
 
-	/*
+	/**
 	* Modifieur de la hashMap 
 	*/
 	
@@ -197,7 +216,7 @@ public class FriseChronologique implements Serializable {
 		this.dateFin = dateFin;
 	}
 	
-	/*
+	/**
 	*Accesseur qui permet d'obtenir un entier témoin de la période de la frise chronologique 
 	*@return un entier témoin de la période de la frise
 	*/
