@@ -95,14 +95,27 @@ public class PanelCreationAjoutEvt extends JPanel implements ConstantesTextes {
 
 		add(textareaDescription, contrainte);
 
-		// Ajout des mn�moniques
+		// Ajout des mnémoniques
 
-		listeLabels[1].setDisplayedMnemonic('T');
+		listeLabels[1].setDisplayedMnemonic('i');
 		listeLabels[1].setLabelFor(listeTextField[0]);
 
-		listeLabels[2].setDisplayedMnemonic('L');
+		listeLabels[2].setDisplayedMnemonic('a');
 		listeLabels[2].setLabelFor(listeTextField[1]);
-
+		
+		listeLabels[3].setDisplayedMnemonic('h');
+		listeLabels[3].setLabelFor(listeTextField[2]);
+		
+		boutonPhoto.setMnemonic('j');
+		
+		listeLabels[4].setDisplayedMnemonic('o');
+		listeLabels[4].setLabelFor(spinner);
+		
+		listeLabels[5].setDisplayedMnemonic('e');
+		listeLabels[5].setLabelFor(textareaDescription);
+		
+		boutonAjout.setMnemonic('r');
+		
 		listeTextField[0].requestFocus();
 	}
 	

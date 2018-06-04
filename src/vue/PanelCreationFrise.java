@@ -86,9 +86,17 @@ public class PanelCreationFrise extends JPanel implements ConstantesTextes {
 		listeLabels[1].setDisplayedMnemonic('T');
 		listeLabels[1].setLabelFor(listeTextField[0]);
 
-		listeLabels[2].setDisplayedMnemonic('L');
+		listeLabels[2].setDisplayedMnemonic('D');
 		listeLabels[2].setLabelFor(listeTextField[1]);
-
+		
+		listeLabels[3].setDisplayedMnemonic('F');
+		listeLabels[3].setLabelFor(listeTextField[2]);
+		
+		listeLabels[4].setDisplayedMnemonic('P');
+		listeLabels[4].setLabelFor(spinner);
+		
+		boutonAjout.setMnemonic('C');
+		
 		listeTextField[0].requestFocus();
 
 	}
@@ -102,6 +110,7 @@ public class PanelCreationFrise extends JPanel implements ConstantesTextes {
 			listeLabels[0].setText("Modification de la frise");
 			boutonAjout.setText("Modifier la frise");
 			boutonAjout.setActionCommand(CREATION_FRISE_BOUTON_AJOUT);
+			boutonAjout.setMnemonic('M');
 		}
 		listeTextField[0].setText(parFrise.getTitreFrise());
 		listeTextField[1].setText(Integer.toString(parFrise.getDateDebut().getAnnee()));
