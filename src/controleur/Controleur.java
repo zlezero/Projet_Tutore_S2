@@ -72,9 +72,9 @@ public class Controleur implements ActionListener, ConstantesTextes {
 								}
 								
 								if (!friseChronologique.isEstInitialisee())
-									JOptionPane.showMessageDialog(panelCreation, "La frise a été créer avec succés !", "Succès", JOptionPane.INFORMATION_MESSAGE);
+									JOptionPane.showMessageDialog(panelCreation, "La frise a été créer avec succès !", "Succès", JOptionPane.INFORMATION_MESSAGE);
 								else
-									JOptionPane.showMessageDialog(panelCreation, "La frise a été modifiée avec succés !", "Succès", JOptionPane.INFORMATION_MESSAGE);
+									JOptionPane.showMessageDialog(panelCreation, "La frise a été modifiée avec succès !", "Succès", JOptionPane.INFORMATION_MESSAGE);
 
 							}
 							else {
@@ -119,8 +119,8 @@ public class Controleur implements ActionListener, ConstantesTextes {
 							if (panelCreation.getPanelAjoutEvt().isEstModification()) {
 								ModeleTable modele = (ModeleTable) panelAP.getPanelFrise().getMonModele();
 								Evenement evenementTab = (Evenement) modele.getValueAt(panelAP.getPanelFrise().getRowIndex(), panelAP.getPanelFrise().getColIndex());
+								System.out.println(evenementTab);
 								friseChronologique.supprimerEvenement(evenementTab);
-								panelCreation.getPanelAjoutEvt().finirModification();
 							}
 							
 							friseChronologique.ajoutEvenement(
@@ -140,10 +140,12 @@ public class Controleur implements ActionListener, ConstantesTextes {
 								JOptionPane.showMessageDialog(panelCreation, "Erreur : La frise n'a pas pu être sauvegardée !", "Erreur", JOptionPane.ERROR_MESSAGE);
 							}
 							
-							if (panelCreation.getPanelAjoutEvt().isEstModification()) 
-								JOptionPane.showMessageDialog(panelCreation, "L'événement " + panelCreation.getPanelAjoutEvt().getListeTextField()[0].getText() + " a été modifier !", "Succés", JOptionPane.INFORMATION_MESSAGE);
+							if (panelCreation.getPanelAjoutEvt().isEstModification()) {
+								JOptionPane.showMessageDialog(panelCreation, "L'événement " + panelCreation.getPanelAjoutEvt().getListeTextField()[0].getText() + " a été modifié !", "Succès", JOptionPane.INFORMATION_MESSAGE);
+								panelCreation.getPanelAjoutEvt().finirModification();
+							}
 							else 
-								JOptionPane.showMessageDialog(panelCreation, "L'événement " + panelCreation.getPanelAjoutEvt().getListeTextField()[0].getText() + " a été créer !", "Succés", JOptionPane.INFORMATION_MESSAGE);
+								JOptionPane.showMessageDialog(panelCreation, "L'événement " + panelCreation.getPanelAjoutEvt().getListeTextField()[0].getText() + " a été créer !", "Succès", JOptionPane.INFORMATION_MESSAGE);
 							
 							
 							
@@ -197,7 +199,7 @@ public class Controleur implements ActionListener, ConstantesTextes {
 			friseChronologique.supprimerEvenement(evenementTab);
 			panelAP.getPanelFrise().updateTable(friseChronologique);
 			panelAP.resetCardLayout();
-			JOptionPane.showMessageDialog(panelCreation, "L'événement a été supprimé avec succés !", "Succès", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(panelCreation, "L'événement a été supprimé avec uccès !", "Succès", JOptionPane.INFORMATION_MESSAGE);
 		}
 
 	}
