@@ -20,7 +20,7 @@ public class PanelCreationFrise extends JPanel implements ConstantesTextes {
 
 	private static final long serialVersionUID = 1L;
 
-	JButton boutonAjout;
+	JButton boutonAjout, boutonSauvegarde;
 	JTextField listeTextField[] = new JTextField[3];
 	JLabel listeLabels[] = new JLabel[6];
 	JSpinner spinner;
@@ -58,9 +58,13 @@ public class PanelCreationFrise extends JPanel implements ConstantesTextes {
 		
 		boutonAjout = new JButton(CREATION_FRISE_BOUTON_AJOUT);
 		add(boutonAjout, contrainte);
-
+		
 		contrainte.gridx = 1;
 
+		boutonSauvegarde = new JButton(CREATION_FRISE_BOUTON_SAUVEGARDE);
+		add(boutonSauvegarde, contrainte);
+		boutonSauvegarde.setVisible(false);
+		
 		//Ajouts des JTextField
 
 		contrainte.gridx = 1;
@@ -103,6 +107,7 @@ public class PanelCreationFrise extends JPanel implements ConstantesTextes {
 	
 	public void enrengistreEcouteur(Controleur parC) {
 		boutonAjout.addActionListener(parC);
+		boutonSauvegarde.addActionListener(parC);
 	}
 	
 	public void setFrise(FriseChronologique parFrise) {
@@ -116,6 +121,7 @@ public class PanelCreationFrise extends JPanel implements ConstantesTextes {
 		listeTextField[1].setText(Integer.toString(parFrise.getDateDebut().getAnnee()));
 		listeTextField[2].setText(Integer.toString(parFrise.getDateFin().getAnnee()));
 		spinner.setValue(parFrise.getPeriodeFrise());
+		boutonSauvegarde.setVisible(true);
 	}
 	
 

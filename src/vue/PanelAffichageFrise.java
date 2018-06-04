@@ -51,6 +51,9 @@ public class PanelAffichageFrise extends JPanel implements ConstantesTextes {
 		
 		add(scrollPane, BorderLayout.CENTER);
 		
+		//scrollPane.getHorizontalScrollBar().setValue(scrollPane.getX() +500);
+		//scrollPane.getHorizontalScrollBar().setValue(scrollPane.getX() +300);
+
 		JPopupMenu popupMenu = new JPopupMenu("Outils");
 		itemModifier = new JMenuItem(AFFICHAGE_POPUPMENU_MODIFIER);
 		itemSupprimer = new JMenuItem(AFFICHAGE_POPUPMENU_SUPPRIMER);

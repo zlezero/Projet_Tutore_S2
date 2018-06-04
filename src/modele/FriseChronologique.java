@@ -1,5 +1,7 @@
 package modele;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -15,8 +17,9 @@ public class FriseChronologique implements Serializable {
 	private Date dateFin;
 	private int periodeFrise;
 	private boolean estInitialisee = true;
-
-	public FriseChronologique(String parTitre, Date parDateDebut, Date parDateFin, int parPeriodeFrise) {
+	private String emplacementSauvegarde;
+	
+	public FriseChronologique(String parTitre, Date parDateDebut, Date parDateFin, int parPeriodeFrise, String parEmplacementSauvegarde) {
 
 		titreFrise = parTitre;
 		dateDebut = parDateDebut;
@@ -24,7 +27,8 @@ public class FriseChronologique implements Serializable {
 		periodeFrise = parPeriodeFrise;
 		hashMapEvts = new HashMap<>();
 		estInitialisee = true;
-
+		emplacementSauvegarde = parEmplacementSauvegarde;
+		
 		for (int i=0; i != dateFin.getAnnee() - dateDebut.getAnnee();i++) {
 			HashMap<Integer, Evenement> hashMap = new HashMap<>();
 			hashMap.put(0, null);
@@ -33,7 +37,15 @@ public class FriseChronologique implements Serializable {
 
 	}
 
-	public FriseChronologique(String parTitre, Date parDateDebut, Date parDateFin, int parPeriodeFrise, HashMap<Integer, HashMap<Integer, Evenement>> parHashMapEvts) {
+	public String getEmplacementSauvegarde() {
+		return emplacementSauvegarde;
+	}
+
+	public void setEmplacementSauvegarde(String emplacementSauvegarde) {
+		this.emplacementSauvegarde = emplacementSauvegarde;
+	}
+
+	public FriseChronologique(String parTitre, Date parDateDebut, Date parDateFin, int parPeriodeFrise, HashMap<Integer, HashMap<Integer, Evenement>> parHashMapEvts, String parEmplacementSauvegarde) {
 
 		titreFrise = parTitre;
 		dateDebut = parDateDebut;
@@ -41,6 +53,7 @@ public class FriseChronologique implements Serializable {
 		periodeFrise = parPeriodeFrise;
 		hashMapEvts = parHashMapEvts;
 		estInitialisee = true;	
+		emplacementSauvegarde = parEmplacementSauvegarde;
 	}
 
 	public FriseChronologique() {
@@ -50,6 +63,7 @@ public class FriseChronologique implements Serializable {
 		periodeFrise = 1;
 		hashMapEvts = new HashMap<>();
 		estInitialisee = false;
+		emplacementSauvegarde = "Frise.ser";
 	}
 
 	public ArrayList<Evenement> getListeEvenements() {
@@ -119,6 +133,10 @@ public class FriseChronologique implements Serializable {
 			hashMapEvts.values().remove(maHashMap);
 		}
 
+	}
+	
+	public void sauvegarderFrise() throws IOException {
+		LectureEcriture.ecriture(new File(emplacementSauvegarde), this);
 	}
 
 	

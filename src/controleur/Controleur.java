@@ -203,10 +203,27 @@ public class Controleur implements ActionListener, ConstantesTextes {
 			friseChronologique.supprimerEvenement(evenementTab);
 			panelAP.getPanelFrise().updateTable(friseChronologique);
 			panelAP.resetCardLayout();
-			JOptionPane.showMessageDialog(panelCreation, "L'événement a été supprimé avec uccès !", "Succès", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(panelCreation, "L'événement a été supprimé avec succès !", "Succès", JOptionPane.INFORMATION_MESSAGE);
 		}
 		else if (parEvt.getActionCommand().equals(CREATION_EVT_BOUTON_ANNULATION)) { //Si l'on veut annuler la modification d'un événement
 			panelCreation.getPanelAjoutEvt().finirModification();
+		}
+		else if (parEvt.getActionCommand().equals(CREATION_FRISE_BOUTON_SAUVEGARDE)) { //Si l'on veut sauvegarder la frise
+			
+			JFileChooser enrengistrerFrise = new JFileChooser();
+			int resultatOuverture = enrengistrerFrise.showSaveDialog(panelCreation);
+			
+			if (resultatOuverture == JFileChooser.APPROVE_OPTION) { //Si l'utilisateur a sélectionné un fichier
+				friseChronologique.setEmplacementSauvegarde(enrengistrerFrise.getSelectedFile().getPath());
+				try {
+					friseChronologique.sauvegarderFrise();
+					JOptionPane.showMessageDialog(panelCreation, "La frise à été enrengistrée avec succès !", "Succès", JOptionPane.INFORMATION_MESSAGE);
+				} catch (IOException e) {
+					e.printStackTrace();
+					JOptionPane.showMessageDialog(panelCreation, "Une erreur est survenue lors de l'enrengistrement de la frise !", "Erreur", JOptionPane.INFORMATION_MESSAGE);
+				}
+			}
+			
 		}
 
 	}
