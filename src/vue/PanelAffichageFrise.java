@@ -3,6 +3,7 @@ package vue;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -42,6 +43,8 @@ public class PanelAffichageFrise extends JPanel implements ConstantesTextes {
 		JScrollPane scrollPane = new JScrollPane(tableFrise,
 				ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
 				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		
+		scrollPane.setPreferredSize(new Dimension(360, 360));
 		
 		add(scrollPane, BorderLayout.CENTER);
 		

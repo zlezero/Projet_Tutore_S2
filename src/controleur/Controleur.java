@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.swing.JFileChooser;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -175,6 +176,7 @@ public class Controleur implements ActionListener, ConstantesTextes {
 		}
 		else if (parEvt.getActionCommand().equals(AFFICHAGE_POPUPMENU_SUPPRIMER)) { //Si l'on veut supprimer un événement
 			System.out.println("Supprimer");
+			JMenuItem m = (JMenuItem)parEvt.getSource();
 		}
 
 	}
