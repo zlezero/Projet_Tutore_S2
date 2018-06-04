@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 import modele.ConstantesTextes;
@@ -51,16 +52,16 @@ public class Controleur implements ActionListener, ConstantesTextes {
 								friseChronologique.setDateFin(new Date(1, 1, Integer.parseInt(panelCreation.getPanelCreationFrise().getListeTextField()[2].getText()) ));
 								friseChronologique.setPeriodeFrise((int)panelCreation.getPanelCreationFrise().getSpinner().getValue());
 								friseChronologique.setEstInitialisee(true);
-								//friseChronologique.ajoutEvenement(1, new Evenement(new Date(6, 6, 2005), "TEST", "TEST", "C'est un bel evt !"));
-								//friseChronologique.ajoutEvenement(2, new Evenement(new Date(6, 6, 2014), "TEST2", "TEST2", "C'est un bel evt 2 !"));
+								friseChronologique.ajoutEvenement(1, new Evenement(new Date(6, 6, 2005), "TEST", "TEST", "C'est un bel evt !", ""));
+								friseChronologique.ajoutEvenement(2, new Evenement(new Date(6, 6, 2014), "TEST2", "TEST2", "C'est un bel evt 2 !", ""));
 								panelAP.getPanelFrise().updateTable(friseChronologique);
 								panelCreation.updateComponents();
 								panelAP.updatePanelNord();
-								/*try {
+								try {
 									LectureEcriture.ecriture(new File("Frise.ser"), friseChronologique);
 								} catch (IOException e) {
 									e.printStackTrace();
-								}*/
+								}
 								if (!friseChronologique.isEstInitialisee())
 									JOptionPane.showMessageDialog(panelCreation, "La frise a été créer avec succès !", "Succès", JOptionPane.INFORMATION_MESSAGE);
 								else
@@ -93,7 +94,18 @@ public class Controleur implements ActionListener, ConstantesTextes {
 
 		}
 		else if (parEvt.getActionCommand().equals(CREATION_EVT_BOUTON_AJOUT)) { //Si l'on veut ajouter un événement
-			System.out.println("Ajt evt !");
+			friseChronologique.ajoutEvenement(0, new Evenement(new Date(1, 1, 2018), "Titre", "Lieu", "Desc", ""));
+			panelAP.getPanelFrise().updateTable(friseChronologique);
+		}
+		else if (parEvt.getActionCommand().equals(CREATION_EVT_BOUTON_PHOTO)) { //Si l'on veut choisir une photo
+			
+			JFileChooser ouvrirFrise = new JFileChooser();
+			int resultatOuverture = ouvrirFrise.showOpenDialog(panelCreation); //Alors on demande à l'utilisateur d'ouvrir le fichier correspondant
+			
+			if (resultatOuverture == JFileChooser.APPROVE_OPTION) { //Si l'utilisateur a sélectionné un fichier
+				
+			}
+			
 		}
 
 	}

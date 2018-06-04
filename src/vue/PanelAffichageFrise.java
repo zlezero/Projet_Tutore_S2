@@ -1,5 +1,7 @@
 package vue;
 
+import java.awt.BorderLayout;
+
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -16,6 +18,8 @@ public class PanelAffichageFrise extends JPanel {
 	
 	public PanelAffichageFrise(FriseChronologique parFrise) {
 		
+		setLayout(new BorderLayout());
+		
 		ModeleTable monModele = new ModeleTable(parFrise);
 		
 		tableFrise = new JTable(monModele);
@@ -26,7 +30,7 @@ public class PanelAffichageFrise extends JPanel {
 				ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
 				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		
-		add(scrollPane);
+		add(scrollPane, BorderLayout.CENTER);
 		
 	}
 

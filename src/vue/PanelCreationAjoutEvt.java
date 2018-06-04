@@ -9,8 +9,10 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SpinnerNumberModel;
 
 import controleur.Controleur;
 import modele.ConstantesTextes;
@@ -20,14 +22,12 @@ public class PanelCreationAjoutEvt extends JPanel implements ConstantesTextes {
 
 	private static final long serialVersionUID = 1L;
 
-	public final static String INTITULE_BOUTON_AJOUT = "+";
-
-	JButton boutonAjout;
-	JTextField listeTextField[] = new JTextField[2];
-	JComboBox<String> listeComboBox[] = new JComboBox[4];
+	JButton boutonAjout, boutonPhoto;
+	JTextField listeTextField[] = new JTextField[4];
 	JLabel listeLabels[] = new JLabel[6];
 	JTextArea textareaDescription = new JTextArea(5, 10);
-
+	JSpinner spinner;
+	
 	public PanelCreationAjoutEvt() {
 
 		setLayout(new GridBagLayout());
@@ -35,11 +35,12 @@ public class PanelCreationAjoutEvt extends JPanel implements ConstantesTextes {
 
 		// Ajouts des labels à gauche
 
-		String intitulesLabels[] = { new Date().toString(), "Titre", "Lieu",
-				"Début", "Fin", "Description" };
+		String intitulesLabels[] = {"Création d'un événement", "Titre", "Date",
+				"Photo", "Poids", "Description"};
 
 		contrainte.gridx = 0;
 		contrainte.gridwidth = 1;
+		
 		contrainte.insets = new Insets(5, 10, 10, 10);
 		contrainte.anchor = GridBagConstraints.WEST;
 
@@ -57,11 +58,10 @@ public class PanelCreationAjoutEvt extends JPanel implements ConstantesTextes {
 
 		// Ajout du bouton ajout
 
-		contrainte.gridx = 5;
-		contrainte.gridy = 0;
+		contrainte.gridx = 0;
+		contrainte.gridy = 6;
 
 		boutonAjout = new JButton(CREATION_EVT_BOUTON_AJOUT);
-		//boutonAjout.addActionListener(this);
 		add(boutonAjout, contrainte);
 
 		contrainte.gridx = 1;
@@ -71,75 +71,25 @@ public class PanelCreationAjoutEvt extends JPanel implements ConstantesTextes {
 		contrainte.gridx = 1;
 		contrainte.gridy = 1;
 
-		for (int i = 0; i != 2; i++) {
+		for (int i = 0; i != 3; i++) {
 			listeTextField[i] = new JTextField(15);
 			add(listeTextField[i], contrainte);
-			//listeTextField[i].addActionListener(this);
 			contrainte.gridy += 1;
 		}
-
-		// Création des données pour les ComboBox
-
-		String minutes[] = new String[60];
-		String heures[] = new String[24];
-
-		for (int i = 1; i != 25; i++)
-			heures[i - 1] = String.valueOf(i);
-
-		for (int i = 0; i != 60; i++)
-			minutes[i] = String.valueOf(i);
-
-		// Ajouts des JComboBox
-
-		contrainte.gridx = 1;
+		
+		//Ajout du JSpinner
+		
+		spinner = new JSpinner(new SpinnerNumberModel(0, 0, 3, 1));
+		add(spinner, contrainte);
+		
+		// Ajout du bouton choix de photo
+		
 		contrainte.gridy = 3;
-
-		Calendar rightNow = Calendar.getInstance();
-		contrainte.gridwidth = 2;
-
-		for (int i = 0; i < 4; i++) {
-			switch (i) {
-			case 0:
-				listeComboBox[i] = new JComboBox(heures);
-				listeComboBox[i].setSelectedIndex(rightNow
-						.get(Calendar.HOUR_OF_DAY) - 1);
-				break;
-			case 1:
-				contrainte.gridx = 3;
-				listeComboBox[i] = new JComboBox(minutes);
-				listeComboBox[i]
-						.setSelectedIndex(rightNow.get(Calendar.MINUTE));
-				break;
-			case 2:
-				contrainte.gridx = 1;
-				contrainte.gridy = 4;
-				listeComboBox[i] = new JComboBox(heures);
-				listeComboBox[i].setSelectedIndex(rightNow
-						.get(Calendar.HOUR_OF_DAY) - 1);
-				break;
-			case 3:
-				contrainte.gridx = 3;
-				listeComboBox[i] = new JComboBox(minutes);
-				listeComboBox[i]
-						.setSelectedIndex(rightNow.get(Calendar.MINUTE));
-				break;
-			}
-
-			add(listeComboBox[i], contrainte);
-
-		}
-
-		// Ajout des labels entre les comboBoxs
-
-		contrainte.gridwidth = 1;
-		contrainte.gridx = 2;
-		contrainte.gridy = 3;
-
-		for (int i = 0; i != 2; i++) {
-			add(new JLabel(" : "), contrainte);
-			contrainte.gridy += 1;
-		}
-
+		contrainte.gridx = 3;
+		
+		boutonPhoto = new JButton(CREATION_EVT_BOUTON_PHOTO);
+		add(boutonPhoto, contrainte);
+		
 		// Ajout du JTextArea
 
 		contrainte.gridx = 1;
@@ -155,20 +105,12 @@ public class PanelCreationAjoutEvt extends JPanel implements ConstantesTextes {
 		listeLabels[2].setDisplayedMnemonic('L');
 		listeLabels[2].setLabelFor(listeTextField[1]);
 
-		listeLabels[3].setDisplayedMnemonic('D');
-		listeLabels[3].setLabelFor(listeComboBox[0]);
-
-		listeLabels[4].setDisplayedMnemonic('F');
-		listeLabels[4].setLabelFor(listeComboBox[2]);
-
-		listeLabels[5].setDisplayedMnemonic('e');
-		listeLabels[5].setLabelFor(textareaDescription);
-
 		listeTextField[0].requestFocus();
 	}
 	
 	public void enrengistreEcouteur(Controleur parC) {
 		boutonAjout.addActionListener(parC);
+		boutonPhoto.addActionListener(parC);
 	}
 
 }

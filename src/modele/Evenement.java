@@ -10,14 +10,16 @@ public class Evenement implements Comparable <Evenement>, Serializable
 	private String chTitre;
 	private String chLieu;
 	private String chDescription;
+	private String chPhoto;
 	private static int chNbInstancie;
 	
-	public Evenement(Date parDate, String parTitre, String parLieu, String parDescription)
+	public Evenement(Date parDate, String parTitre, String parLieu, String parDescription, String parPhoto)
 	{
 		chDate = parDate;
 		chTitre = parTitre;
 		chLieu = parLieu;
 		chDescription = parDescription;
+		chPhoto = parPhoto;
 		chNbInstancie += 1;
 	}
 	

@@ -78,6 +78,7 @@ public class PanelCreationFrise extends JPanel implements ConstantesTextes {
 		contrainte.gridy = 4;
 		
 		spinner = new JSpinner(new SpinnerNumberModel());
+		spinner.setValue(1);
 		add(spinner, contrainte);
 		
 		//Ajout des mnémoniques
