@@ -45,7 +45,7 @@ public class PanelAffichage extends JPanel {
 			panelNordCL.add(panelAffichageEvt, monEvt.toString());
 		}
 		
-		monGestionnaireDeCartes.first(panelNordCL);
+		monGestionnaireDeCartes.last(panelNordCL);
 				
 		panelNord.add(panelNordCL, BorderLayout.CENTER);
 		

@@ -22,7 +22,7 @@ public class PanelCreation extends JPanel {
 		
 		setLayout(new BorderLayout());
 		
-		panelAjoutEvt = new PanelCreationAjoutEvt();
+		panelAjoutEvt = new PanelCreationAjoutEvt(friseChronologique);
 		panelCreationFrise = new PanelCreationFrise();
 		
 		add(panelAjoutEvt, BorderLayout.EAST);
@@ -62,6 +62,14 @@ public class PanelCreation extends JPanel {
 	public void enrengistreEcouteur(Controleur parC) {
 		panelCreationFrise.enrengistreEcouteur(parC);
 		panelAjoutEvt.enrengistreEcouteur(parC);
+	}
+
+	public FriseChronologique getFriseChronologique() {
+		return friseChronologique;
+	}
+
+	public void setFriseChronologique(FriseChronologique friseChronologique) {
+		this.friseChronologique = friseChronologique;
 	}
 
 	public PanelCreationAjoutEvt getPanelAjoutEvt() {

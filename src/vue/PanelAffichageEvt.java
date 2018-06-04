@@ -13,15 +13,15 @@ public class PanelAffichageEvt extends JPanel {
 	JLabel labels[] = new JLabel[4];
 	
 	public PanelAffichageEvt(Evenement parEvt) {
-		
-		
+				
 		labels[0] = new JLabel(parEvt.getDate().toString());
-		labels[1] = new JLabel(parEvt.getTitre());
+		labels[1] = new JLabel("<html><h1>" + parEvt.getTitre() + "</h1></html>");
 		labels[2] = new JLabel(parEvt.getChDescription());
 		
 		if (!parEvt.getChPhoto().isEmpty()) {
 			labels[3] = new JLabel("");
 			labels[3].setIcon(new ImageIcon(parEvt.getChPhoto()));
+			//add(labels[3]);
 		}
 		
 		for (int i=0;i!=3;i++) {

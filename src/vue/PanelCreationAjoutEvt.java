@@ -15,6 +15,7 @@ import javax.swing.SpinnerNumberModel;
 import controleur.Controleur;
 import modele.ConstantesTextes;
 import modele.Evenement;
+import modele.FriseChronologique;
 
 public class PanelCreationAjoutEvt extends JPanel implements ConstantesTextes {
 
@@ -25,9 +26,14 @@ public class PanelCreationAjoutEvt extends JPanel implements ConstantesTextes {
 	JLabel listeLabels[] = new JLabel[6];
 	JTextArea textareaDescription = new JTextArea(5, 10);
 	JSpinner spinner;
+	FriseChronologique friseChronologique;
 	
-	public PanelCreationAjoutEvt() {
-
+	boolean estModification = false;
+	
+	public PanelCreationAjoutEvt(FriseChronologique parFrise) {
+		
+		friseChronologique = parFrise;
+		
 		setLayout(new GridBagLayout());
 		GridBagConstraints contrainte = new GridBagConstraints();
 
@@ -131,8 +137,14 @@ public class PanelCreationAjoutEvt extends JPanel implements ConstantesTextes {
 		listeTextField[0].setText(parEvt.getTitre());
 		listeTextField[1].setText(parEvt.getDate().dateFormatee());
 		listeTextField[2].setText(parEvt.getChPhoto());
-		spinner.setValue(0);
 		textareaDescription.setText(parEvt.getChDescription());
+		
+		int resultPoids = friseChronologique.getPoidsEvenement(parEvt);
+		
+		if (resultPoids != -1) 
+			spinner.setValue(resultPoids);
+		else 
+			spinner.setValue(0);
 	}
 	
 	public JButton getBoutonAjout() {

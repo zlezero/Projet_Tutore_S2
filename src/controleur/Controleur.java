@@ -172,7 +172,9 @@ public class Controleur implements ActionListener, ConstantesTextes {
 
 		}
 		else if (parEvt.getActionCommand().equals(AFFICHAGE_POPUPMENU_MODIFIER)) { //Si l'on veut modifier un événement
-			System.out.println("Modifier");
+			ModeleTable modele = (ModeleTable) panelAP.getPanelFrise().getMonModele();
+			Evenement evenementTab = (Evenement) modele.getValueAt(panelAP.getPanelFrise().getRowIndex(), panelAP.getPanelFrise().getColIndex());
+			panelCreation.getPanelAjoutEvt().setEvt(evenementTab);
 		}
 		else if (parEvt.getActionCommand().equals(AFFICHAGE_POPUPMENU_SUPPRIMER)) { //Si l'on veut supprimer un événement	
 			ModeleTable modele = (ModeleTable) panelAP.getPanelFrise().getMonModele();
