@@ -109,9 +109,14 @@ public class FriseChronologique implements Serializable {
 
 	}
 	
-	public void supprimerEvenement(int poids, Evenement parEvt) {
+	public void supprimerEvenement(Evenement parEvt) {
 		
-		
+		for (int i=0;i!=3;i++) {
+			HashMap<Integer,Evenement> maHashMap = new HashMap<Integer,Evenement>();
+			maHashMap.put(i, parEvt);
+			hashMapEvts.values().remove(maHashMap);
+		}
+
 		
 	}
 

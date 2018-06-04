@@ -20,7 +20,7 @@ public class PanelAffichageEvt extends JPanel {
 		labels[2] = new JLabel(parEvt.getChDescription());
 		
 		if (!parEvt.getChPhoto().isEmpty()) {
-			labels[3] = new JLabel();
+			labels[3] = new JLabel("");
 			labels[3].setIcon(new ImageIcon(parEvt.getChPhoto()));
 		}
 		

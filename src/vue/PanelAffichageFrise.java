@@ -27,12 +27,15 @@ public class PanelAffichageFrise extends JPanel implements ConstantesTextes {
 	
 	JTable tableFrise;
 	JMenuItem itemModifier, itemSupprimer;
+	JScrollPane scrollPane;
+	ModeleTable monModele;
+	int rowIndex, colIndex;
 	
 	public PanelAffichageFrise(FriseChronologique parFrise, CardLayout parGestionnaireDeCartes, Container panelCL) {
 		
 		setLayout(new BorderLayout());
 		
-		ModeleTable monModele = new ModeleTable(parFrise);
+		monModele = new ModeleTable(parFrise);
 		
 		tableFrise = new JTable(monModele);
 		tableFrise.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -40,7 +43,7 @@ public class PanelAffichageFrise extends JPanel implements ConstantesTextes {
 		tableFrise.setRowHeight(80);
 		tableFrise.setDefaultRenderer(Evenement.class, new CelluleRenderer());
 		
-		JScrollPane scrollPane = new JScrollPane(tableFrise,
+		scrollPane = new JScrollPane(tableFrise,
 				ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
 				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		
@@ -75,8 +78,8 @@ public class PanelAffichageFrise extends JPanel implements ConstantesTextes {
 				JTable table = (JTable) evt.getSource();
 				ModeleTable model = (ModeleTable) table.getModel();
 				Point point = evt.getPoint();
-				int rowIndex = table.rowAtPoint(point);
-				int colIndex = table.columnAtPoint(point);
+				rowIndex = table.rowAtPoint(point);
+				colIndex = table.columnAtPoint(point);
 				
 		        if (evt.isPopupTrigger() && model.getValueAt(rowIndex, colIndex) != null) {
 		        	popupMenu.show(evt.getComponent(), evt.getX(), evt.getY());
@@ -88,8 +91,8 @@ public class PanelAffichageFrise extends JPanel implements ConstantesTextes {
 				JTable table = (JTable) evt.getSource();
 				ModeleTable model = (ModeleTable) table.getModel();
 				Point point = evt.getPoint();
-				int rowIndex = table.rowAtPoint(point);
-				int colIndex = table.columnAtPoint(point);
+				rowIndex = table.rowAtPoint(point);
+				colIndex = table.columnAtPoint(point);
 				
 		        if (evt.isPopupTrigger() && model.getValueAt(rowIndex, colIndex) != null) {
 		        	popupMenu.show(evt.getComponent(), evt.getX(), evt.getY());
@@ -100,6 +103,38 @@ public class PanelAffichageFrise extends JPanel implements ConstantesTextes {
 		
 	}
 	
+	public ModeleTable getMonModele() {
+		return monModele;
+	}
+
+	public void setMonModele(ModeleTable monModele) {
+		this.monModele = monModele;
+	}
+
+	public JScrollPane getScrollPane() {
+		return scrollPane;
+	}
+
+	public void setScrollPane(JScrollPane scrollPane) {
+		this.scrollPane = scrollPane;
+	}
+
+	public int getRowIndex() {
+		return rowIndex;
+	}
+
+	public void setRowIndex(int rowIndex) {
+		this.rowIndex = rowIndex;
+	}
+
+	public int getColIndex() {
+		return colIndex;
+	}
+
+	public void setColIndex(int colIndex) {
+		this.colIndex = colIndex;
+	}
+
 	public void enrengistreEcouteur(Controleur parC) {
 		itemModifier.addActionListener(parC);
 		itemSupprimer.addActionListener(parC);
