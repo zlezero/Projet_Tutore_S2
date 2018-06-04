@@ -35,7 +35,7 @@ public class PanelCreationAjoutEvt extends JPanel implements ConstantesTextes {
 
 		// Ajouts des labels à gauche
 
-		String intitulesLabels[] = {"Création d'un événement", "Titre", "Date",
+		String intitulesLabels[] = {"Création d'un événement", "Titre", "Date (JJ/MM/AAAA)",
 				"Photo", "Poids", "Description"};
 
 		contrainte.gridx = 0;
@@ -108,6 +108,54 @@ public class PanelCreationAjoutEvt extends JPanel implements ConstantesTextes {
 		listeTextField[0].requestFocus();
 	}
 	
+	public JButton getBoutonAjout() {
+		return boutonAjout;
+	}
+
+	public void setBoutonAjout(JButton boutonAjout) {
+		this.boutonAjout = boutonAjout;
+	}
+
+	public JButton getBoutonPhoto() {
+		return boutonPhoto;
+	}
+
+	public void setBoutonPhoto(JButton boutonPhoto) {
+		this.boutonPhoto = boutonPhoto;
+	}
+
+	public JTextField[] getListeTextField() {
+		return listeTextField;
+	}
+
+	public void setListeTextField(JTextField[] listeTextField) {
+		this.listeTextField = listeTextField;
+	}
+
+	public JLabel[] getListeLabels() {
+		return listeLabels;
+	}
+
+	public void setListeLabels(JLabel[] listeLabels) {
+		this.listeLabels = listeLabels;
+	}
+
+	public JTextArea getTextareaDescription() {
+		return textareaDescription;
+	}
+
+	public void setTextareaDescription(JTextArea textareaDescription) {
+		this.textareaDescription = textareaDescription;
+	}
+
+	public JSpinner getSpinner() {
+		return spinner;
+	}
+
+	public void setSpinner(JSpinner spinner) {
+		this.spinner = spinner;
+	}
+
 	public void enrengistreEcouteur(Controleur parC) {
 		boutonAjout.addActionListener(parC);
 		boutonPhoto.addActionListener(parC);

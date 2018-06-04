@@ -32,7 +32,7 @@ public class PanelCreationFrise extends JPanel implements ConstantesTextes {
 
 		//Ajouts des labels à gauche
 
-		String intitulesLabels[] = { "Création de la frise", "Titre", "Début", "Fin", "Période" };
+		String intitulesLabels[] = { "Création de la frise", "Titre", "Début (Année)", "Fin (Année)", "Période" };
 
 		contrainte.gridx = 0;
 		contrainte.gridwidth = 1;

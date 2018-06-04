@@ -61,6 +61,14 @@ public class Evenement implements Comparable <Evenement>, Serializable
 		chTitre = parTitre;
 	}
 	
+	public String getChPhoto() {
+		return chPhoto;
+	}
+
+	public void setChPhoto(String chPhoto) {
+		this.chPhoto = chPhoto;
+	}
+
 	public void setLieu(String parLieu)
 	{
 		chLieu = parLieu;
@@ -77,6 +85,6 @@ public class Evenement implements Comparable <Evenement>, Serializable
 	
 	public String toString()
 	{
-		return "L'événement " + chTitre + " a lieu le " + chDate + " à " + chLieu;
+		return chTitre;
 	}
 }
