@@ -3,10 +3,8 @@ package vue;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.util.Calendar;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
@@ -16,14 +14,14 @@ import javax.swing.SpinnerNumberModel;
 
 import controleur.Controleur;
 import modele.ConstantesTextes;
-import modele.Date;
+import modele.Evenement;
 
 public class PanelCreationAjoutEvt extends JPanel implements ConstantesTextes {
 
 	private static final long serialVersionUID = 1L;
 
 	JButton boutonAjout, boutonPhoto;
-	JTextField listeTextField[] = new JTextField[4];
+	JTextField listeTextField[] = new JTextField[3];
 	JLabel listeLabels[] = new JLabel[6];
 	JTextArea textareaDescription = new JTextArea(5, 10);
 	JSpinner spinner;
@@ -106,6 +104,22 @@ public class PanelCreationAjoutEvt extends JPanel implements ConstantesTextes {
 		listeLabels[2].setLabelFor(listeTextField[1]);
 
 		listeTextField[0].requestFocus();
+	}
+	
+	public void resetUI() {
+		for (int i=0;i!=listeTextField.length;i++) {
+			listeTextField[i].setText("");
+		}
+		spinner.setValue(0);
+		textareaDescription.setText("");
+	}
+	
+	public void setEvt(Evenement parEvt) {
+		listeTextField[0].setText(parEvt.getTitre());
+		listeTextField[1].setText(parEvt.getDate().dateFormatee());
+		listeTextField[2].setText(parEvt.getChPhoto());
+		spinner.setValue(0);
+		textareaDescription.setText(parEvt.getChDescription());
 	}
 	
 	public JButton getBoutonAjout() {

@@ -132,6 +132,7 @@ public class Controleur implements ActionListener, ConstantesTextes {
 							
 							JOptionPane.showMessageDialog(panelCreation, "L'événement " + panelCreation.getPanelAjoutEvt().getListeTextField()[0].getText() + " a été créer !", "Succès", JOptionPane.INFORMATION_MESSAGE);
 							
+							panelCreation.getPanelAjoutEvt().resetUI();
 						}
 						else {
 							JOptionPane.showMessageDialog(panelCreation, "L'événement n'est pas dans la période de la frise chronologique !", "Erreur", JOptionPane.ERROR_MESSAGE);
