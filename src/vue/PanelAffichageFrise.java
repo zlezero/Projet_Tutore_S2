@@ -1,23 +1,33 @@
 package vue;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.Container;
+import java.awt.Point;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 
+import controleur.Controleur;
+import modele.ConstantesTextes;
 import modele.Evenement;
 import modele.FriseChronologique;
 import modele.ModeleTable;
 
-public class PanelAffichageFrise extends JPanel {
+public class PanelAffichageFrise extends JPanel implements ConstantesTextes {
 	
 	private static final long serialVersionUID = 1L;
 	
 	JTable tableFrise;
+	JMenuItem itemModifier, itemSupprimer;
 	
-	public PanelAffichageFrise(FriseChronologique parFrise) {
+	public PanelAffichageFrise(FriseChronologique parFrise, CardLayout parGestionnaireDeCartes, Container panelCL) {
 		
 		setLayout(new BorderLayout());
 		
@@ -35,6 +45,61 @@ public class PanelAffichageFrise extends JPanel {
 		
 		add(scrollPane, BorderLayout.CENTER);
 		
+		JPopupMenu popupMenu = new JPopupMenu("Outils");
+		itemModifier = new JMenuItem(AFFICHAGE_POPUPMENU_MODIFIER);
+		itemSupprimer = new JMenuItem(AFFICHAGE_POPUPMENU_SUPPRIMER);
+		
+		popupMenu.add(itemModifier);
+		popupMenu.add(itemSupprimer);
+		
+		tableFrise.addMouseListener(new MouseAdapter() {
+			
+			public void mouseClicked(MouseEvent evt) {
+				JTable table = (JTable) evt.getSource();
+				ModeleTable model = (ModeleTable) table.getModel();
+				Point point = evt.getPoint();
+				int rowIndex = table.rowAtPoint(point);
+				int colIndex = table.columnAtPoint(point);
+				if (model.getValueAt(rowIndex, colIndex) != null) {
+					Evenement evenementTab = (Evenement) model.getValueAt(rowIndex, colIndex);
+					parGestionnaireDeCartes.show(panelCL, evenementTab.toString());
+				}
+
+			}
+			
+			public void mousePressed(MouseEvent evt) {
+				
+				JTable table = (JTable) evt.getSource();
+				ModeleTable model = (ModeleTable) table.getModel();
+				Point point = evt.getPoint();
+				int rowIndex = table.rowAtPoint(point);
+				int colIndex = table.columnAtPoint(point);
+				
+		        if (evt.isPopupTrigger() && model.getValueAt(rowIndex, colIndex) != null) {
+		        	popupMenu.show(evt.getComponent(), evt.getX(), evt.getY());
+		        }
+		      }
+			
+			public void mouseReleased(MouseEvent evt) {
+				
+				JTable table = (JTable) evt.getSource();
+				ModeleTable model = (ModeleTable) table.getModel();
+				Point point = evt.getPoint();
+				int rowIndex = table.rowAtPoint(point);
+				int colIndex = table.columnAtPoint(point);
+				
+		        if (evt.isPopupTrigger() && model.getValueAt(rowIndex, colIndex) != null) {
+		        	popupMenu.show(evt.getComponent(), evt.getX(), evt.getY());
+		        }
+		      }
+			
+		});
+		
+	}
+	
+	public void enrengistreEcouteur(Controleur parC) {
+		itemModifier.addActionListener(parC);
+		itemSupprimer.addActionListener(parC);
 	}
 
 	public JTable getTableFrise() {

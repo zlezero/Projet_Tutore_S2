@@ -31,7 +31,8 @@ public class Controleur implements ActionListener, ConstantesTextes {
 		panelCreation = parPanelCreation;
 
 		panelCreation.enrengistreEcouteur(this);
-
+		panelAP.enrengistreEcouteur(this);
+		
 	}
 
 
@@ -168,6 +169,12 @@ public class Controleur implements ActionListener, ConstantesTextes {
 				panelCreation.getPanelAjoutEvt().getListeTextField()[2].setText(ouvrirPhoto.getSelectedFile().getPath());
 			}
 
+		}
+		else if (parEvt.getActionCommand().equals(AFFICHAGE_POPUPMENU_MODIFIER)) { //Si l'on veut modifier un événement
+			System.out.println("Modifier");
+		}
+		else if (parEvt.getActionCommand().equals(AFFICHAGE_POPUPMENU_SUPPRIMER)) { //Si l'on veut supprimer un événement
+			System.out.println("Supprimer");
 		}
 
 	}

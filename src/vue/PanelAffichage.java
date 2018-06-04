@@ -2,11 +2,13 @@ package vue;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
-import java.awt.Dimension;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import controleur.Controleur;
 import modele.Evenement;
 import modele.FriseChronologique;
 
@@ -15,43 +17,72 @@ public class PanelAffichage extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
 	PanelAffichageFrise panelFrise;
+	JPanel panelNord;
 	FriseChronologique friseChronologique;
 	
-	CardLayout monGestionnaireDeCartes;
+	protected CardLayout monGestionnaireDeCartes;
 	
-	JLabel titreFrise;
+	JLabel titreFrise, flecheGauche, flecheDroite;
 	
 	public PanelAffichage(FriseChronologique parFrise) {
 		
 		friseChronologique = parFrise;	
 
 		setLayout(new BorderLayout());
-
-		//On affiche la JTable
-		
-		panelFrise = new PanelAffichageFrise(parFrise);
-		add(panelFrise, BorderLayout.SOUTH);
 		
 		//On affiche la partie haute de l'affichage
 		
-		JPanel panelNord = new JPanel();
-		
 		monGestionnaireDeCartes = new CardLayout(50, 50);
-		panelNord.setLayout(monGestionnaireDeCartes);
 
+		panelNord = new JPanel();
+		panelNord.setLayout(new BorderLayout());
+		
+		JPanel panelNordCL = new JPanel();
+		panelNordCL.setLayout(monGestionnaireDeCartes);
+		
 		for (Evenement monEvt : parFrise.getListeEvenements()) {
 			PanelAffichageEvt panelAffichageEvt = new PanelAffichageEvt(monEvt.getTitre(), monEvt.getDate(), monEvt.getChDescription());
-			panelNord.add(panelAffichageEvt);
+			panelNordCL.add(panelAffichageEvt, monEvt.toString());
 		}
 		
-		monGestionnaireDeCartes.first(panelNord);
+		monGestionnaireDeCartes.first(panelNordCL);
 				
+		panelNord.add(panelNordCL, BorderLayout.CENTER);
+		
 		//On ajoute le titre de la frise
 		titreFrise = new JLabel(parFrise.getTitreFrise());
-		add(titreFrise, BorderLayout.NORTH);
+		panelNord.add(titreFrise, BorderLayout.NORTH);
 		
-		add(panelNord, BorderLayout.CENTER);
+		flecheGauche = new JLabel("<");
+		flecheDroite = new JLabel(">");
 		
+		panelNord.add(flecheGauche, BorderLayout.WEST);
+		panelNord.add(flecheDroite, BorderLayout.EAST);
+
+		add(panelNord, BorderLayout.NORTH);
+		
+		//On affiche la JTable
+		
+		panelFrise = new PanelAffichageFrise(parFrise, monGestionnaireDeCartes, panelNordCL);
+		add(panelFrise, BorderLayout.SOUTH);
+		
+		//On gère les événements des flèches
+		flecheGauche.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent evt) {
+				monGestionnaireDeCartes.previous(panelNordCL);
+			}
+		});
+		
+		flecheDroite.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent evt) {
+				monGestionnaireDeCartes.next(panelNordCL);
+			}
+		});
+		
+	}
+	
+	public void enrengistreEcouteur(Controleur parC) {
+		panelFrise.enrengistreEcouteur(parC);
 	}
 	
 	public void updatePanelNord() {
