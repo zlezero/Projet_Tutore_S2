@@ -111,7 +111,7 @@ public class FriseChronologique implements Serializable {
 	
 	public void supprimerEvenement(int poids, Evenement parEvt) {
 		
-		if (hashMapEvts.)
+		
 		
 	}
 
