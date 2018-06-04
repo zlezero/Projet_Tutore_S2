@@ -53,7 +53,7 @@ public class PanelFils extends JPanel implements ActionListener, ConstantesTexte
 					
 					try {
 						FriseChronologique maFriseTmp = (FriseChronologique) LectureEcriture.lecture(monFichier);
-						maFrise =  new FriseChronologique(maFriseTmp.getTitreFrise(), maFriseTmp.getDateDebut(), maFriseTmp.getDateFin(), maFriseTmp.getPeriodeFrise(), maFriseTmp.getHashMapEvts(), "Frise.ser"); //Et on le retourne d�serialis�
+						maFrise =  new FriseChronologique(maFriseTmp.getTitreFrise(), maFriseTmp.getDateDebut(), maFriseTmp.getDateFin(), maFriseTmp.getPeriodeFrise(), maFriseTmp.getHashMapEvts(), ouvrirFrise.getSelectedFile().getPath()); //Et on le retourne d�serialis�
 					}
 					catch (FileNotFoundException e) {
 						e.printStackTrace();
