@@ -17,7 +17,7 @@ public class PanelAffichage extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
 	PanelAffichageFrise panelFrise;
-	JPanel panelNord;
+	JPanel panelNord, panelNordCL;
 	FriseChronologique friseChronologique;
 	
 	protected CardLayout monGestionnaireDeCartes;
@@ -37,13 +37,10 @@ public class PanelAffichage extends JPanel {
 		panelNord = new JPanel();
 		panelNord.setLayout(new BorderLayout());
 		
-		JPanel panelNordCL = new JPanel();
+		panelNordCL = new JPanel();
 		panelNordCL.setLayout(monGestionnaireDeCartes);
 		
-		for (Evenement monEvt : parFrise.getListeEvenements()) {
-			PanelAffichageEvt panelAffichageEvt = new PanelAffichageEvt(monEvt);
-			panelNordCL.add(panelAffichageEvt, monEvt.toString());
-		}
+		resetCardLayout();
 		
 		monGestionnaireDeCartes.last(panelNordCL);
 				
@@ -79,6 +76,14 @@ public class PanelAffichage extends JPanel {
 			}
 		});
 		
+	}
+	
+	public void resetCardLayout() {
+		panelNordCL.removeAll();
+		for (Evenement monEvt : friseChronologique.getListeEvenements()) {
+			PanelAffichageEvt panelAffichageEvt = new PanelAffichageEvt(monEvt);
+			panelNordCL.add(panelAffichageEvt, monEvt.toString());
+		}
 	}
 	
 	public void enrengistreEcouteur(Controleur parC) {

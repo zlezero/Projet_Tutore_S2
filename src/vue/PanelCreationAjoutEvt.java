@@ -7,9 +7,11 @@ import java.awt.Insets;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.SpinnerNumberModel;
 
 import controleur.Controleur;
@@ -21,7 +23,7 @@ public class PanelCreationAjoutEvt extends JPanel implements ConstantesTextes {
 
 	private static final long serialVersionUID = 1L;
 
-	JButton boutonAjout, boutonPhoto;
+	JButton boutonAjout, boutonPhoto, boutonAnnulation;
 	JTextField listeTextField[] = new JTextField[3];
 	JLabel listeLabels[] = new JLabel[6];
 	JTextArea textareaDescription = new JTextArea(5, 10);
@@ -98,8 +100,11 @@ public class PanelCreationAjoutEvt extends JPanel implements ConstantesTextes {
 
 		contrainte.gridx = 1;
 		contrainte.gridy = 5;
-
-		add(textareaDescription, contrainte);
+		
+		JScrollPane scroll = new JScrollPane(textareaDescription, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
+				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		
+		add(scroll, contrainte);
 
 		// Ajout des mnémoniques
 
@@ -125,6 +130,14 @@ public class PanelCreationAjoutEvt extends JPanel implements ConstantesTextes {
 		listeTextField[0].requestFocus();
 	}
 	
+	public boolean isEstModification() {
+		return estModification;
+	}
+
+	public void setEstModification(boolean estModification) {
+		this.estModification = estModification;
+	}
+
 	public void resetUI() {
 		for (int i=0;i!=listeTextField.length;i++) {
 			listeTextField[i].setText("");
@@ -134,6 +147,7 @@ public class PanelCreationAjoutEvt extends JPanel implements ConstantesTextes {
 	}
 	
 	public void setEvt(Evenement parEvt) {
+		
 		listeTextField[0].setText(parEvt.getTitre());
 		listeTextField[1].setText(parEvt.getDate().dateFormatee());
 		listeTextField[2].setText(parEvt.getChPhoto());
@@ -145,6 +159,16 @@ public class PanelCreationAjoutEvt extends JPanel implements ConstantesTextes {
 			spinner.setValue(resultPoids);
 		else 
 			spinner.setValue(0);
+		
+		listeLabels[0].setText("Modification de l'événement");
+		boutonAjout.setText(CREATION_EVT_BOUTON_MODIF);
+		boutonAjout.setActionCommand(CREATION_EVT_BOUTON_AJOUT);
+	}
+	
+	public void finirModification() {
+		listeLabels[0].setText("Création d'un événement");
+		boutonAjout.setText(CREATION_EVT_BOUTON_AJOUT);
+		resetUI();
 	}
 	
 	public JButton getBoutonAjout() {

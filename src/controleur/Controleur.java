@@ -116,6 +116,13 @@ public class Controleur implements ActionListener, ConstantesTextes {
 						
 						if (annee >= friseChronologique.getDateDebut().getAnnee() && annee <= friseChronologique.getDateFin().getAnnee()) {
 							
+							if (panelCreation.getPanelAjoutEvt().isEstModification()) {
+								ModeleTable modele = (ModeleTable) panelAP.getPanelFrise().getMonModele();
+								Evenement evenementTab = (Evenement) modele.getValueAt(panelAP.getPanelFrise().getRowIndex(), panelAP.getPanelFrise().getColIndex());
+								friseChronologique.supprimerEvenement(evenementTab);
+								panelCreation.getPanelAjoutEvt().finirModification();
+							}
+							
 							friseChronologique.ajoutEvenement(
 									(int) panelCreation.getPanelAjoutEvt().getSpinner().getValue(),
 									new Evenement(new Date(jour, mois, annee),
@@ -124,7 +131,8 @@ public class Controleur implements ActionListener, ConstantesTextes {
 											panelCreation.getPanelAjoutEvt().getListeTextField()[2].getText()));
 							
 							panelAP.getPanelFrise().updateTable(friseChronologique);
-							
+							panelAP.resetCardLayout();
+							System.out.print(friseChronologique);
 							try {
 								LectureEcriture.ecriture(new File("Frise.ser"), friseChronologique);
 							} catch (IOException e) {
@@ -132,7 +140,12 @@ public class Controleur implements ActionListener, ConstantesTextes {
 								JOptionPane.showMessageDialog(panelCreation, "Erreur : La frise n'a pas pu être sauvegardée !", "Erreur", JOptionPane.ERROR_MESSAGE);
 							}
 							
-							JOptionPane.showMessageDialog(panelCreation, "L'événement " + panelCreation.getPanelAjoutEvt().getListeTextField()[0].getText() + " a été créer !", "Succés", JOptionPane.INFORMATION_MESSAGE);
+							if (panelCreation.getPanelAjoutEvt().isEstModification()) 
+								JOptionPane.showMessageDialog(panelCreation, "L'événement " + panelCreation.getPanelAjoutEvt().getListeTextField()[0].getText() + " a été modifier !", "Succés", JOptionPane.INFORMATION_MESSAGE);
+							else 
+								JOptionPane.showMessageDialog(panelCreation, "L'événement " + panelCreation.getPanelAjoutEvt().getListeTextField()[0].getText() + " a été créer !", "Succés", JOptionPane.INFORMATION_MESSAGE);
+							
+							
 							
 							panelCreation.getPanelAjoutEvt().resetUI();
 						}
@@ -171,16 +184,19 @@ public class Controleur implements ActionListener, ConstantesTextes {
 			}
 
 		}
-		else if (parEvt.getActionCommand().equals(AFFICHAGE_POPUPMENU_MODIFIER)) { //Si l'on veut modifier un événement
+		else if (parEvt.getActionCommand().equals(AFFICHAGE_POPUPMENU_MODIFIER)) { //Si l'on veut modifier un événement (va l'ajouter au menu de création d'événement)
 			ModeleTable modele = (ModeleTable) panelAP.getPanelFrise().getMonModele();
 			Evenement evenementTab = (Evenement) modele.getValueAt(panelAP.getPanelFrise().getRowIndex(), panelAP.getPanelFrise().getColIndex());
 			panelCreation.getPanelAjoutEvt().setEvt(evenementTab);
+			panelCreation.getPanelAjoutEvt().setEstModification(true);
 		}
 		else if (parEvt.getActionCommand().equals(AFFICHAGE_POPUPMENU_SUPPRIMER)) { //Si l'on veut supprimer un événement	
 			ModeleTable modele = (ModeleTable) panelAP.getPanelFrise().getMonModele();
 			Evenement evenementTab = (Evenement) modele.getValueAt(panelAP.getPanelFrise().getRowIndex(), panelAP.getPanelFrise().getColIndex());
+			//System.out.println("Row : " + panelAP.getPanelFrise().getRowIndex() + " / Column : " + panelAP.getPanelFrise().getColIndex() + " Model : " + modele.getValueAt(panelAP.getPanelFrise().getRowIndex(), panelAP.getPanelFrise().getColIndex()));
 			friseChronologique.supprimerEvenement(evenementTab);
 			panelAP.getPanelFrise().updateTable(friseChronologique);
+			panelAP.resetCardLayout();
 			JOptionPane.showMessageDialog(panelCreation, "L'événement a été supprimé avec succés !", "Succès", JOptionPane.INFORMATION_MESSAGE);
 		}
 

@@ -12,6 +12,7 @@ public interface ConstantesTextes {
 	
 	final String CREATION_FRISE_BOUTON_AJOUT = "Créer la frise";
 	final String CREATION_EVT_BOUTON_AJOUT = "Créer l'événement";
+	final String CREATION_EVT_BOUTON_MODIF = "Modifier l'événement";
 	final String CREATION_EVT_BOUTON_PHOTO = "Ajouter une photo";
 	
 	//Constantes des panels d'affichage
