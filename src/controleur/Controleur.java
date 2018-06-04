@@ -56,10 +56,7 @@ public class Controleur implements ActionListener, ConstantesTextes {
 								friseChronologique.setDateFin(new Date(1, 1, Integer.parseInt(panelCreation.getPanelCreationFrise().getListeTextField()[2].getText()) ));
 								friseChronologique.setPeriodeFrise((int)panelCreation.getPanelCreationFrise().getSpinner().getValue());
 								friseChronologique.setEstInitialisee(true);
-								
-								//friseChronologique.ajoutEvenement(1, new Evenement(new Date(6, 6, 2005), "TEST", "TEST", "C'est un bel evt !", ""));
-								//friseChronologique.ajoutEvenement(2, new Evenement(new Date(6, 6, 2014), "TEST2", "TEST2", "C'est un bel evt 2 !", ""));
-								
+
 								panelAP.getPanelFrise().updateTable(friseChronologique);
 								panelCreation.updateComponents();
 								panelAP.updatePanelNord();
@@ -119,7 +116,7 @@ public class Controleur implements ActionListener, ConstantesTextes {
 							if (panelCreation.getPanelAjoutEvt().isEstModification()) {
 								ModeleTable modele = (ModeleTable) panelAP.getPanelFrise().getMonModele();
 								Evenement evenementTab = (Evenement) modele.getValueAt(panelAP.getPanelFrise().getRowIndex(), panelAP.getPanelFrise().getColIndex());
-								System.out.println(evenementTab);
+								//System.out.println(evenementTab);
 								friseChronologique.supprimerEvenement(evenementTab);
 							}
 							
@@ -200,6 +197,9 @@ public class Controleur implements ActionListener, ConstantesTextes {
 			panelAP.getPanelFrise().updateTable(friseChronologique);
 			panelAP.resetCardLayout();
 			JOptionPane.showMessageDialog(panelCreation, "L'événement a été supprimé avec uccès !", "Succès", JOptionPane.INFORMATION_MESSAGE);
+		}
+		else if (parEvt.getActionCommand().equals(CREATION_EVT_BOUTON_ANNULATION)) { //Si l'on veut annuler la modification d'un événement
+			panelCreation.getPanelAjoutEvt().finirModification();
 		}
 
 	}

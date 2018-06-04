@@ -14,6 +14,7 @@ public interface ConstantesTextes {
 	final String CREATION_EVT_BOUTON_AJOUT = "Créer l'événement";
 	final String CREATION_EVT_BOUTON_MODIF = "Modifier l'événement";
 	final String CREATION_EVT_BOUTON_PHOTO = "Ajouter une photo";
+	final String CREATION_EVT_BOUTON_ANNULATION = "Annuler la modification";
 	
 	//Constantes des panels d'affichage
 	

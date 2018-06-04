@@ -62,7 +62,7 @@ public class PanelCreationAjoutEvt extends JPanel implements ConstantesTextes {
 			add(listeLabels[i], contrainte);
 		}
 
-		// Ajout du bouton ajout
+		//Ajout du bouton ajout
 
 		contrainte.gridx = 0;
 		contrainte.gridy = 6;
@@ -70,9 +70,15 @@ public class PanelCreationAjoutEvt extends JPanel implements ConstantesTextes {
 		boutonAjout = new JButton(CREATION_EVT_BOUTON_AJOUT);
 		add(boutonAjout, contrainte);
 
+		//Ajout du bouton annulation
+		
 		contrainte.gridx = 1;
-
-		// Ajouts des JTextField
+		
+		boutonAnnulation = new JButton(CREATION_EVT_BOUTON_ANNULATION);
+		add(boutonAnnulation, contrainte);
+		boutonAnnulation.setVisible(false);
+		
+		//Ajouts des JTextField
 
 		contrainte.gridx = 1;
 		contrainte.gridy = 1;
@@ -163,11 +169,14 @@ public class PanelCreationAjoutEvt extends JPanel implements ConstantesTextes {
 		listeLabels[0].setText("Modification de l'événement");
 		boutonAjout.setText(CREATION_EVT_BOUTON_MODIF);
 		boutonAjout.setActionCommand(CREATION_EVT_BOUTON_AJOUT);
+		boutonAnnulation.setVisible(true);
 	}
 	
 	public void finirModification() {
 		listeLabels[0].setText("Création d'un événement");
 		boutonAjout.setText(CREATION_EVT_BOUTON_AJOUT);
+		estModification = false;
+		boutonAnnulation.setVisible(false);
 		resetUI();
 	}
 	
@@ -222,6 +231,7 @@ public class PanelCreationAjoutEvt extends JPanel implements ConstantesTextes {
 	public void enrengistreEcouteur(Controleur parC) {
 		boutonAjout.addActionListener(parC);
 		boutonPhoto.addActionListener(parC);
+		boutonAnnulation.addActionListener(parC);
 	}
 
 }
