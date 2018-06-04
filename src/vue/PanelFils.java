@@ -90,7 +90,7 @@ public class PanelFils extends JPanel implements ActionListener, ConstantesTexte
 		PanelAffichage panelAffichage = new PanelAffichage(maFrise);
 		add(panelAffichage, ConstantesTextes.MENU_AFFICHAGE);
 
-		new Controleur(maFrise, panelAffichage, panelCreation);
+		new Controleur(maFrise, panelAffichage, panelCreation, monGestionnaireDeCartes, this);
 		
 		if (!maFrise.isEstInitialisee()) 
 			monGestionnaireDeCartes.show(this, ConstantesTextes.MENU_CREATION);

@@ -119,7 +119,6 @@ public class FriseChronologique implements Serializable {
 			hashMapEvts.values().remove(maHashMap);
 		}
 
-		
 	}
 
 	

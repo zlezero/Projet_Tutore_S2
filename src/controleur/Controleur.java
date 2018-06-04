@@ -1,5 +1,6 @@
 package controleur;
 
+import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -18,19 +19,24 @@ import modele.LectureEcriture;
 import modele.ModeleTable;
 import vue.PanelAffichage;
 import vue.PanelCreation;
+import vue.PanelFils;
 
 public class Controleur implements ActionListener, ConstantesTextes {
 
 	private FriseChronologique friseChronologique;
 	private PanelAffichage panelAP;
 	private PanelCreation panelCreation;
-
-	public Controleur(FriseChronologique parFrise, PanelAffichage parPanelAP, PanelCreation parPanelCreation) {
+	private CardLayout gestionnaireDeCartes;
+	private PanelFils panelFils;
+	
+	public Controleur(FriseChronologique parFrise, PanelAffichage parPanelAP, PanelCreation parPanelCreation, CardLayout parGestionnaireDeCartes, PanelFils parPanelFils) {
 
 		friseChronologique = parFrise;
 		panelAP = parPanelAP;
 		panelCreation = parPanelCreation;
-
+		gestionnaireDeCartes = parGestionnaireDeCartes;
+		panelFils = parPanelFils;
+		
 		panelCreation.enrengistreEcouteur(this);
 		panelAP.enrengistreEcouteur(this);
 		
@@ -188,6 +194,7 @@ public class Controleur implements ActionListener, ConstantesTextes {
 			Evenement evenementTab = (Evenement) modele.getValueAt(panelAP.getPanelFrise().getRowIndex(), panelAP.getPanelFrise().getColIndex());
 			panelCreation.getPanelAjoutEvt().setEvt(evenementTab);
 			panelCreation.getPanelAjoutEvt().setEstModification(true);
+			gestionnaireDeCartes.show(panelFils, MENU_CREATION);
 		}
 		else if (parEvt.getActionCommand().equals(AFFICHAGE_POPUPMENU_SUPPRIMER)) { //Si l'on veut supprimer un événement	
 			ModeleTable modele = (ModeleTable) panelAP.getPanelFrise().getMonModele();
