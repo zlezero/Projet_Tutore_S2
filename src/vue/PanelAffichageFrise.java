@@ -7,6 +7,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 
+import modele.Evenement;
 import modele.FriseChronologique;
 import modele.ModeleTable;
 
@@ -25,6 +26,8 @@ public class PanelAffichageFrise extends JPanel {
 		tableFrise = new JTable(monModele);
 		tableFrise.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		tableFrise.getTableHeader().setReorderingAllowed(false);
+		tableFrise.setRowHeight(80);
+		tableFrise.setDefaultRenderer(Evenement.class, new CelluleRenderer());
 		
 		JScrollPane scrollPane = new JScrollPane(tableFrise,
 				ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,

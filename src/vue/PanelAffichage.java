@@ -23,28 +23,34 @@ public class PanelAffichage extends JPanel {
 	
 	public PanelAffichage(FriseChronologique parFrise) {
 		
-		friseChronologique = parFrise;
-		
-		monGestionnaireDeCartes = new CardLayout(50, 50);
-		setLayout(monGestionnaireDeCartes);
-		
-		for (Evenement monEvt : parFrise.getListeEvenements()) {
-			PanelAffichageEvt panelAffichageEvt = new PanelAffichageEvt(monEvt.getTitre(), monEvt.getDate(), monEvt.getChDescription());
-			add(panelAffichageEvt);
-		}
-		
+		friseChronologique = parFrise;	
+
 		setLayout(new BorderLayout());
+
+		//On affiche la JTable
 		
 		panelFrise = new PanelAffichageFrise(parFrise);
 		add(panelFrise, BorderLayout.SOUTH);
-
+		
+		//On affiche la partie haute de l'affichage
+		
 		JPanel panelNord = new JPanel();
 		
+		monGestionnaireDeCartes = new CardLayout(50, 50);
+		panelNord.setLayout(monGestionnaireDeCartes);
+
+		for (Evenement monEvt : parFrise.getListeEvenements()) {
+			PanelAffichageEvt panelAffichageEvt = new PanelAffichageEvt(monEvt.getTitre(), monEvt.getDate(), monEvt.getChDescription());
+			panelNord.add(panelAffichageEvt);
+		}
+		
+		monGestionnaireDeCartes.first(panelNord);
+				
 		//On ajoute le titre de la frise
 		titreFrise = new JLabel(parFrise.getTitreFrise());
-		panelNord.add(titreFrise);
+		add(titreFrise, BorderLayout.NORTH);
 		
-		add(panelNord, BorderLayout.NORTH);
+		add(panelNord, BorderLayout.CENTER);
 		
 	}
 	

@@ -68,9 +68,20 @@ public class FriseChronologique implements Serializable {
 		
 	}
 
+	public Collection<HashMap<Integer, Evenement>> getHashMapEvenementsPoidsParAnnee(int annee) {
+		
+		ArrayList<HashMap<Integer, Evenement>> collectionHM = new ArrayList<HashMap<Integer, Evenement>>();
+		
+		
+		
+		return collectionHM;
+		
+	}
+	
 	public Collection<HashMap<Integer, Evenement>> getHashMapEvenementsPoids() {
 		return hashMapEvts.values();
 	}
+
 
 	public int getPoidsEvenement(int parAnnee, Evenement parEvenement) {
 
