@@ -1,6 +1,7 @@
 package controleur;
 
 import java.awt.CardLayout;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -20,6 +21,12 @@ import modele.ModeleTable;
 import vue.PanelAffichage;
 import vue.PanelCreation;
 import vue.PanelFils;
+
+/**
+ * Permet de synchroniser la vue et le modèle
+ * @author Thomas Vathonne
+ * @version 1
+ */
 
 public class Controleur implements ActionListener, ConstantesTextes {
 
@@ -131,7 +138,7 @@ public class Controleur implements ActionListener, ConstantesTextes {
 							friseChronologique.ajoutEvenement(
 									(int) panelCreation.getPanelAjoutEvt().getSpinner().getValue(),
 									new Evenement(new Date(jour, mois, annee),
-											panelCreation.getPanelAjoutEvt().getListeTextField()[0].getText(), "",
+											panelCreation.getPanelAjoutEvt().getListeTextField()[0].getText(),
 											panelCreation.getPanelAjoutEvt().getTextareaDescription().getText(),
 											panelCreation.getPanelAjoutEvt().getListeTextField()[2].getText()));
 							

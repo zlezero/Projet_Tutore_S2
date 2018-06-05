@@ -1,11 +1,18 @@
 package modele;
 
 import java.io.File;
+
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+
+/**
+ * Gère la frise chronologique
+ * @author Thomas Vathonne
+ * @version 1
+ */
 
 public class FriseChronologique implements Serializable {
 

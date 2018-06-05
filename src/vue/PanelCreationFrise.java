@@ -16,6 +16,12 @@ import controleur.Controleur;
 import modele.ConstantesTextes;
 import modele.FriseChronologique;
 
+/**
+ * Est le formulaire de création/modification d'une frise
+ * @author Thomas Vathonne
+ * @version 1
+ */
+
 public class PanelCreationFrise extends JPanel implements ConstantesTextes {
 
 	private static final long serialVersionUID = 1L;

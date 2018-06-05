@@ -9,6 +9,12 @@ import javax.swing.table.TableCellRenderer;
 
 import modele.Evenement;
 
+/**
+ * Génère le contenu d'une case de JTable
+ * @author Thomas Vathonne
+ * @version 1
+ */
+
 public class CelluleRenderer extends JLabel implements TableCellRenderer {
 
 	private static final long serialVersionUID = 1L;

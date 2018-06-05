@@ -21,6 +21,12 @@ import modele.Evenement;
 import modele.FriseChronologique;
 import modele.ModeleTable;
 
+/**
+ * Affiche la JTable d'événements
+ * @author Thomas Vathonne
+ * @version 1
+ */
+
 public class PanelAffichageFrise extends JPanel implements ConstantesTextes {
 
 	private static final long serialVersionUID = 1L;

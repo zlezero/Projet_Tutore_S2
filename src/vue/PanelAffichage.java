@@ -1,5 +1,11 @@
 package vue;
 
+/**
+ * Est le panel principal où est affiché la frise et le card layout des différents événements
+ * @author Thomas Vathonne
+ * @version 1
+ */
+
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Font;

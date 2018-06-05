@@ -8,6 +8,12 @@ import javax.swing.JPanel;
 import controleur.Controleur;
 import modele.FriseChronologique;
 
+/**
+ * Est le panel principal du menu de création d'événements qui contient le formulaire de création de frise et celui de création d'événement
+ * @author Thomas Vathonne
+ * @version 1
+ */
+
 public class PanelCreation extends JPanel {
 
 	private static final long serialVersionUID = 1L;

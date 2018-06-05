@@ -1,5 +1,11 @@
 package modele;
 
+/**
+ * Possède les différentes constantes utilisées par les boutons et les menus
+ * @author Thomas Vathonne
+ * @version 1
+ */
+
 public interface ConstantesTextes {
 	
 	//Constantes du menu

@@ -7,6 +7,12 @@ import java.util.Iterator;
 
 import javax.swing.table.DefaultTableModel;
 
+/**
+ * Est le modèle de base pour la JTable d'événements
+ * @author Thomas Vathonne
+ * @version 1
+ */
+
 public class ModeleTable extends DefaultTableModel {
 
 	private static final long serialVersionUID = 1L;

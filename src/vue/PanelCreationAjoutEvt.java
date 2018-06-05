@@ -19,6 +19,12 @@ import modele.ConstantesTextes;
 import modele.Evenement;
 import modele.FriseChronologique;
 
+/**
+ * Est le formulaire de création/modification d'un événement
+ * @author Thomas Vathonne
+ * @version 1
+ */
+
 public class PanelCreationAjoutEvt extends JPanel implements ConstantesTextes {
 
 	private static final long serialVersionUID = 1L;

@@ -8,6 +8,12 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+/**
+ * Gère la lecture/écriture dans un fichier
+ * @author Thomas Vathonne
+ * @version 1
+ */
+
 public class LectureEcriture {
 	
 	/**

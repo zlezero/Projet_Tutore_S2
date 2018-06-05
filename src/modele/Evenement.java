@@ -2,6 +2,12 @@ package modele;
 
 import java.io.Serializable;
 
+/**
+ * Gère les événements
+ * @author Thomas Vathonne
+ * @version 1
+ */
+
 public class Evenement implements Comparable <Evenement>, Serializable
 {
 	private static final long serialVersionUID = 1L;
@@ -13,11 +19,10 @@ public class Evenement implements Comparable <Evenement>, Serializable
 	private String chPhoto;
 	private static int chNbInstancie;
 		
-	public Evenement(Date parDate, String parTitre, String parLieu, String parDescription, String parPhoto)
+	public Evenement(Date parDate, String parTitre, String parDescription, String parPhoto)
 	{
 		chDate = parDate;
 		chTitre = parTitre;
-		chLieu = parLieu;
 		chDescription = parDescription;
 		chPhoto = parPhoto;
 		chNbInstancie += 1;
@@ -34,6 +39,7 @@ public class Evenement implements Comparable <Evenement>, Serializable
 
 	/**
 	* Modifieur qui permet de changer la description d'un objet Evenement
+	* @param chDescription La description de l'événement
 	*/
 	
 	public void setChDescription(String chDescription) {
@@ -82,6 +88,7 @@ public class Evenement implements Comparable <Evenement>, Serializable
 	
 	/**
 	* Modifieur qui permet de changer la date d'un évènement  
+	* @param parDate La date de l'événement
 	*/
 	
 	public void setDate(Date parDate)
@@ -91,6 +98,7 @@ public class Evenement implements Comparable <Evenement>, Serializable
 	
 	/**
 	* Modifieur qui permet de changer le titre d'un évènement
+	* @param parTitre Le titre de l'événement
 	*/
 	
 	public void setTitre(String parTitre)
@@ -109,7 +117,7 @@ public class Evenement implements Comparable <Evenement>, Serializable
 
 	/**
 	* Modifieur qui prend en paramètre une chaîne de caractère qui est le nouveau chemin d'accès que l'on veut attribuer à la photo
-	* @param Une chaîne de caractère qui est le chemin d'accès de la photo 
+	* @param chPhoto Une chaîne de caractère qui est le chemin d'accès de la photo 
 	*/
 	
 	public void setChPhoto(String chPhoto) {
@@ -118,7 +126,7 @@ public class Evenement implements Comparable <Evenement>, Serializable
 
 	/**
 	* Modifieur qui prend en paramètre une chaîne de caractère qui est le nouveau lieu que l'on veut attribuer à l'evenement
-	* @param Une chaîne de caractère qui est le lieu de l'évènement
+	* @param parLieu Une chaîne de caractère qui est le lieu de l'évènement
 	*/
 	
 	public void setLieu(String parLieu)
@@ -128,7 +136,7 @@ public class Evenement implements Comparable <Evenement>, Serializable
 	
 	/**
 	* Méthode qui compare l'objet appelant et l'objet en paramètre qui sont tout les deux des évènements
-	* @param Un objet Evenement
+	* @param parEvt Un objet Evenement
 	* @return -1 ou 0 ou 1 pour indiquer si l'objet appelant est considéré comme inférieur, égal ou supérieur à l'objet donné en paramètre
 	*/
 	

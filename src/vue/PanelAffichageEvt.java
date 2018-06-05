@@ -1,5 +1,11 @@
 package vue;
 
+/**
+ * Génère une mise en page d'un événement en fonction de celui-ci
+ * @author Thomas Vathonne
+ * @version 1
+ */
+
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;

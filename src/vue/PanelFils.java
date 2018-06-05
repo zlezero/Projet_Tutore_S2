@@ -16,6 +16,12 @@ import modele.ConstantesTextes;
 import modele.FriseChronologique;
 import modele.LectureEcriture;
 
+/**
+ * Est le panel principal regroupant les différents menus (Création/Affichage)
+ * @author Thomas Vathonne
+ * @version 1
+ */
+
 public class PanelFils extends JPanel implements ActionListener, ConstantesTextes {
 
 	private static final long serialVersionUID = 1L;

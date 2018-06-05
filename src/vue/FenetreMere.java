@@ -5,6 +5,12 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import modele.ConstantesTextes;
 
+/**
+ * Est la fenêtre principale du programme
+ * @author Thomas Vathonne
+ * @version 1
+ */
+
 public class FenetreMere extends JFrame implements ConstantesTextes {
 
 	private static final long serialVersionUID = 1L;
