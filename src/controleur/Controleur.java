@@ -197,13 +197,19 @@ public class Controleur implements ActionListener, ConstantesTextes {
 			gestionnaireDeCartes.show(panelFils, MENU_CREATION);
 		}
 		else if (parEvt.getActionCommand().equals(AFFICHAGE_POPUPMENU_SUPPRIMER)) { //Si l'on veut supprimer un événement	
-			ModeleTable modele = (ModeleTable) panelAP.getPanelFrise().getMonModele();
-			Evenement evenementTab = (Evenement) modele.getValueAt(panelAP.getPanelFrise().getRowIndex(), panelAP.getPanelFrise().getColIndex());
-			//System.out.println("Row : " + panelAP.getPanelFrise().getRowIndex() + " / Column : " + panelAP.getPanelFrise().getColIndex() + " Model : " + modele.getValueAt(panelAP.getPanelFrise().getRowIndex(), panelAP.getPanelFrise().getColIndex()));
-			friseChronologique.supprimerEvenement(evenementTab);
-			panelAP.getPanelFrise().updateTable(friseChronologique);
-			panelAP.resetCardLayout();
-			JOptionPane.showMessageDialog(panelCreation, "L'événement a été supprimé avec succès !", "Succès", JOptionPane.INFORMATION_MESSAGE);
+			
+			int resultat = JOptionPane.showConfirmDialog(panelAP, "Voulez-vous vraiment supprimer l'événement ?", "Supprimer ?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+			
+			if (resultat == JOptionPane.YES_OPTION) {
+				ModeleTable modele = (ModeleTable) panelAP.getPanelFrise().getMonModele();
+				Evenement evenementTab = (Evenement) modele.getValueAt(panelAP.getPanelFrise().getRowIndex(), panelAP.getPanelFrise().getColIndex());
+				//System.out.println("Row : " + panelAP.getPanelFrise().getRowIndex() + " / Column : " + panelAP.getPanelFrise().getColIndex() + " Model : " + modele.getValueAt(panelAP.getPanelFrise().getRowIndex(), panelAP.getPanelFrise().getColIndex()) + "/ Evt : " + evenementTab);
+				friseChronologique.supprimerEvenement(evenementTab);
+				panelAP.getPanelFrise().updateTable(friseChronologique);
+				panelAP.resetCardLayout();
+				JOptionPane.showMessageDialog(panelCreation, "L'événement a été supprimé avec succès !", "Succès", JOptionPane.INFORMATION_MESSAGE);
+			}
+		
 		}
 		else if (parEvt.getActionCommand().equals(CREATION_EVT_BOUTON_ANNULATION)) { //Si l'on veut annuler la modification d'un événement
 			panelCreation.getPanelAjoutEvt().finirModification();

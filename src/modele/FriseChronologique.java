@@ -89,11 +89,17 @@ public class FriseChronologique implements Serializable {
 
 	public int getPoidsEvenement(Evenement parEvenement) {	
 		
-		for (int i=0;i!=3;i++) {
-			HashMap<Integer,Evenement> maHashMap = new HashMap<Integer,Evenement>();
-			maHashMap.put(i, parEvenement);
-			if (hashMapEvts.containsValue(maHashMap)) {
-				return i;
+		int compteur = 0;
+		
+		for (HashMap<Integer,Evenement> maHashMap : hashMapEvts.values()) {
+			compteur = 0;
+			for (Evenement evt : maHashMap.values()) {
+				
+				if (evt.compareTo(parEvenement) == 0) {
+					return compteur;
+				}
+				
+				compteur += 1;
 			}
 		}
 		
@@ -127,10 +133,8 @@ public class FriseChronologique implements Serializable {
 	
 	public void supprimerEvenement(Evenement parEvt) {
 		
-		for (int i=0;i!=3;i++) {
-			HashMap<Integer,Evenement> maHashMap = new HashMap<Integer,Evenement>();
-			maHashMap.put(i, parEvt);
-			hashMapEvts.values().remove(maHashMap);
+		for (HashMap<Integer,Evenement> maHashMap : hashMapEvts.values()) {
+				maHashMap.values().remove(parEvt);
 		}
 
 	}
