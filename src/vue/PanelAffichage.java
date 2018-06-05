@@ -63,13 +63,14 @@ public class PanelAffichage extends JPanel {
 		panelFrise = new PanelAffichageFrise(parFrise, monGestionnaireDeCartes, panelNordCL);
 		add(panelFrise, BorderLayout.SOUTH);
 		
-		//On gère les événements des flèches
+		//On gère les événements de pour la flèche gauche du cardLayout
 		flecheGauche.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent evt) {
 				monGestionnaireDeCartes.previous(panelNordCL);
 			}
 		});
 		
+		//On gère les événements de pour la flèche droite du cardLayout
 		flecheDroite.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent evt) {
 				monGestionnaireDeCartes.next(panelNordCL);
@@ -77,6 +78,10 @@ public class PanelAffichage extends JPanel {
 		});
 		
 	}
+	
+	/**
+	* Méthode qui permet de reset le CardLayout
+	*/
 	
 	public void resetCardLayout() {
 		panelNordCL.removeAll();
@@ -86,18 +91,35 @@ public class PanelAffichage extends JPanel {
 		}
 	}
 	
+	/**
+	* Méthode qui permet l'utilisation du Controleur, PanelFrise sera à l'écoute du controleur
+	*/
+	
 	public void enrengistreEcouteur(Controleur parC) {
 		panelFrise.enrengistreEcouteur(parC);
 	}
 	
+	/**
+	* Méthode qui permet de modifier le texte présent dans le panel Nord du BordelLayout 
+	*/
+	
 	public void updatePanelNord() {
 		titreFrise.setText(friseChronologique.getTitreFrise());
 	}
+	
+	/**
+	* Accesseur qui permet d'obtenir le PanelFrise
+	* @return PanelFrise
+	*/
 
 	public PanelAffichageFrise getPanelFrise() {
 		return panelFrise;
 	}
 
+	/**
+	* Modifieur qui permet de changer le panelFrise
+	*/
+	
 	public void setPanelFrise(PanelAffichageFrise panelFrise) {
 		this.panelFrise = panelFrise;
 	}
