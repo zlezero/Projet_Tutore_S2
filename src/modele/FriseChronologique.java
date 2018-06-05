@@ -81,29 +81,22 @@ public class FriseChronologique implements Serializable {
 		return maListe;
 		
 	}
-	
-	public Collection<HashMap<Integer, Evenement>> getHashMapEvenementsPoids() {
-		return hashMapEvts.values();
-	}
 
 
 	public int getPoidsEvenement(Evenement parEvenement) {	
 		
-		int compteur = 0;
-		
 		for (HashMap<Integer,Evenement> maHashMap : hashMapEvts.values()) {
-			compteur = 0;
-			for (Evenement evt : maHashMap.values()) {
-				
+			
+			for (int i=0;i!=maHashMap.keySet().size();i++) {
+				Evenement evt = (Evenement)maHashMap.values().toArray()[i];
 				if (evt.compareTo(parEvenement) == 0) {
-					return compteur;
+					return (int)maHashMap.keySet().toArray()[i];
 				}
-				
-				compteur += 1;
 			}
 		}
 		
 		return -1;
+		
 	}
 
 	public int ajoutEvenement(int parPoids, Evenement parEvenement) {
@@ -143,6 +136,9 @@ public class FriseChronologique implements Serializable {
 		LectureEcriture.ecriture(new File(emplacementSauvegarde), this);
 	}
 
+	public Collection<HashMap<Integer, Evenement>> getHashMapEvenementsPoids() {
+		return hashMapEvts.values();
+	}
 	
 	public String toString() {
 		return hashMapEvts.toString();

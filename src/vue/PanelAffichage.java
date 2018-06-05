@@ -68,9 +68,11 @@ public class PanelAffichage extends JPanel {
 		
 		panelFrise = new PanelAffichageFrise(parFrise, monGestionnaireDeCartes, panelNordCL);
 		add(panelFrise, BorderLayout.SOUTH);
+		
 		//On gère les événements des flèches
 		flecheGauche.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent evt) {
+				//panelFrise.getScrollPane().getHorizontalScrollBar().setValue(panelFrise.getTableFrise().getColumn(Integer.toString(2004)).getWidth() * 4);
 				monGestionnaireDeCartes.previous(panelNordCL);
 			}
 		});

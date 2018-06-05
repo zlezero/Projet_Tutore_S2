@@ -16,8 +16,11 @@ public class PanelAffichageEvt extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
 	JLabel labels[] = new JLabel[4];
+	Evenement evt;
 	
 	public PanelAffichageEvt(Evenement parEvt) {
+		
+		evt = parEvt;
 		
 		//setBackground(new Color(100, 100, 100));
 		
