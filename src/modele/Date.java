@@ -48,7 +48,7 @@ public class Date implements Comparable<Date>, Serializable{
 			return -1;
 		if (annee > parDate.annee)
 			return 1;
-		// les annà¯Â¿Â½es sont =
+		// les années sont =
 		if (mois < parDate.mois)
 			return -1;
 		if (mois > parDate.mois)
@@ -134,66 +134,67 @@ public class Date implements Comparable<Date>, Serializable{
 		String chaine = new String();
 		switch (jourSemaine) {
 		case 1:
-			chaine = "dimanche";
+			chaine = "Dimanche";
 			break;
 		case 2:
-			chaine = "lundi";
+			chaine = "Lundi";
 			break;
 		case 3:
-			chaine = "mardi";
+			chaine = "Mardi";
 			break;
 		case 4:
-			chaine = "mercredi";
+			chaine = "Mercredi";
 			break;
 		case 5:
-			chaine = "jeudi";
+			chaine = "Jeudi";
 			break;
 		case 6:
-			chaine = "vendredi";
+			chaine = "Vendredi";
 			break;
 		case 7:
-			chaine = "samedi";
+			chaine = "Samedi";
 			break;
 		}
 		chaine += " " + jour + " ";
 		switch (mois) {
 		case 1:
-			chaine += "janvier";
+			chaine += "Janvier";
 			break;
 		case 2:
-			chaine += "février";
+			chaine += "Février";
 			break;
 		case 3:
-			chaine += "mars";
+			chaine += "Mars";
 			break;
 		case 4:
-			chaine += "avril";
+			chaine += "Avril";
 			break;
 		case 5:
-			chaine += "mai";
+			chaine += "Mai";
 			break;
 		case 6:
-			chaine += "juin";
+			chaine += "Juin";
 			break;
 		case 7:
-			chaine += "juillet";
+			chaine += "Juillet";
 			break;
 		case 8:
-			chaine += "août";
+			chaine += "Août";
 			break;
 		case 9:
-			chaine += "septembre";
+			chaine += "Septembre";
 			break;
 		case 10:
-			chaine += "octobre";
+			chaine += "Octobre";
 			break;
 		case 11:
-			chaine += "novembre";
+			chaine += "Novembre";
 			break;
 		case 12:
-			chaine += "décembre";
+			chaine += "Décembre";
 			break;
 		}
+		chaine += " " + annee;
 		return chaine;
 	}
 	
@@ -233,29 +234,29 @@ public class Date implements Comparable<Date>, Serializable{
 	public static String getNomMois(int numeroMois) {
 		switch (numeroMois) {
 		case 1:
-			return "janvier";
+			return "Janvier";
 		case 2:
-			return "février";
+			return "Février";
 		case 3:
-			return "mars";
+			return "Mars";
 		case 4:
-			return "avril";
+			return "Avril";
 		case 5:
-			return "mai";
+			return "Mai";
 		case 6:
-			return "juin";
+			return "Juin";
 		case 7:
-			return "juillet";
+			return "Juillet";
 		case 8:
-			return "août";
+			return "Août";
 		case 9:
-			return "septembre";
+			return "Septembre";
 		case 10:
-			return "octobre";
+			return "Octobre";
 		case 11:
-			return "novembre";
+			return "Novembre";
 		case 12:
-			return "décembre";
+			return "Décembre";
 		default:
 			return "Mois invalide";
 		}
@@ -283,12 +284,6 @@ public class Date implements Comparable<Date>, Serializable{
 		return datePrem;
 	}
 
-	public static String getChMoisString(int chMois) {
-		String mois[] = { "janvier", "février", "mars", "avril", "mai", "juin",
-				"juillet", "août", "septembre", "novembre", "octobre",
-				"décembre" };
-		return mois[chMois - 1];
-	}
 	
 	/**
 	 * Retourne si l'objet date correspond à la date d'aujourd'hui

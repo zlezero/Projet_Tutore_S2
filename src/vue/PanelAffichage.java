@@ -50,8 +50,8 @@ public class PanelAffichage extends JPanel {
 		titreFrise = new JLabel(parFrise.getTitreFrise());
 		panelNord.add(titreFrise, BorderLayout.NORTH);
 		
-		flecheGauche = new JLabel("<");
-		flecheDroite = new JLabel(">");
+		flecheGauche = new JLabel("<html><h1>&lt;</h1></html>");
+		flecheDroite = new JLabel("<html><h1>></h1></html>");
 		
 		panelNord.add(flecheGauche, BorderLayout.WEST);
 		panelNord.add(flecheDroite, BorderLayout.EAST);

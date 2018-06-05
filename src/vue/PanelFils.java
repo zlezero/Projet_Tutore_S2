@@ -119,7 +119,7 @@ public class PanelFils extends JPanel implements ActionListener, ConstantesTexte
 			}
 		} 
 		else if (evt.getActionCommand().equals(MENU_AIDE)) { //Affichage du menu d'aide
-			JOptionPane.showMessageDialog(this, "Frise Chronologique 1.0 créer par Thomas Vathonne et Yanis Levesque", "Aide", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(this, "<html>Frise Chronologique 1.0 créer par Thomas Vathonne et Yanis Levesque<br/>Pour consulter l'aide référez vous au manuel utilisateur : Manuel_Utilisateur.docx </html>", "Aide", JOptionPane.INFORMATION_MESSAGE);
 		}
 		else { //Affichage des autres panels
 			
