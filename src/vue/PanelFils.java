@@ -53,7 +53,7 @@ public class PanelFils extends JPanel implements ActionListener, ConstantesTexte
 					
 					try {
 						FriseChronologique maFriseTmp = (FriseChronologique) LectureEcriture.lecture(monFichier);
-						maFrise =  new FriseChronologique(maFriseTmp.getTitreFrise(), maFriseTmp.getDateDebut(), maFriseTmp.getDateFin(), maFriseTmp.getPeriodeFrise(), maFriseTmp.getHashMapEvts()); //Et on le retourne d�serialis�
+						maFrise =  new FriseChronologique(maFriseTmp.getTitreFrise(), maFriseTmp.getDateDebut(), maFriseTmp.getDateFin(), maFriseTmp.getPeriodeFrise(), maFriseTmp.getHashMapEvts(), ouvrirFrise.getSelectedFile().getPath()); //Et on le retourne d�serialis�
 					}
 					catch (FileNotFoundException e) {
 						e.printStackTrace();
@@ -79,7 +79,7 @@ public class PanelFils extends JPanel implements ActionListener, ConstantesTexte
 		} //while
 
 		try {
-			LectureEcriture.ecriture(new File("Frise.ser"), maFrise);
+			maFrise.sauvegarderFrise();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -90,7 +90,7 @@ public class PanelFils extends JPanel implements ActionListener, ConstantesTexte
 		PanelAffichage panelAffichage = new PanelAffichage(maFrise);
 		add(panelAffichage, ConstantesTextes.MENU_AFFICHAGE);
 
-		new Controleur(maFrise, panelAffichage, panelCreation);
+		new Controleur(maFrise, panelAffichage, panelCreation, monGestionnaireDeCartes, this);
 		
 		if (!maFrise.isEstInitialisee()) 
 			monGestionnaireDeCartes.show(this, ConstantesTextes.MENU_CREATION);
@@ -119,7 +119,7 @@ public class PanelFils extends JPanel implements ActionListener, ConstantesTexte
 			}
 		} 
 		else if (evt.getActionCommand().equals(MENU_AIDE)) { //Affichage du menu d'aide
-			JOptionPane.showMessageDialog(this, "Frise Chronologique 1.0 créer par Thomas Vathonne et Yanis Levesque", "Aide", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(this, "<html>Frise Chronologique 1.0 créer par Thomas Vathonne et Yanis Levesque<br/>Pour consulter l'aide référez vous au manuel utilisateur : Manuel_Utilisateur.docx </html>", "Aide", JOptionPane.INFORMATION_MESSAGE);
 		}
 		else { //Affichage des autres panels
 			

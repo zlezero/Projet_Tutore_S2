@@ -1,5 +1,6 @@
 package controleur;
 
+import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -18,19 +19,24 @@ import modele.LectureEcriture;
 import modele.ModeleTable;
 import vue.PanelAffichage;
 import vue.PanelCreation;
+import vue.PanelFils;
 
 public class Controleur implements ActionListener, ConstantesTextes {
 
 	private FriseChronologique friseChronologique;
 	private PanelAffichage panelAP;
 	private PanelCreation panelCreation;
-
-	public Controleur(FriseChronologique parFrise, PanelAffichage parPanelAP, PanelCreation parPanelCreation) {
+	private CardLayout gestionnaireDeCartes;
+	private PanelFils panelFils;
+	
+	public Controleur(FriseChronologique parFrise, PanelAffichage parPanelAP, PanelCreation parPanelCreation, CardLayout parGestionnaireDeCartes, PanelFils parPanelFils) {
 
 		friseChronologique = parFrise;
 		panelAP = parPanelAP;
 		panelCreation = parPanelCreation;
-
+		gestionnaireDeCartes = parGestionnaireDeCartes;
+		panelFils = parPanelFils;
+		
 		panelCreation.enrengistreEcouteur(this);
 		panelAP.enrengistreEcouteur(this);
 		
@@ -56,13 +62,15 @@ public class Controleur implements ActionListener, ConstantesTextes {
 								friseChronologique.setDateFin(new Date(1, 1, Integer.parseInt(panelCreation.getPanelCreationFrise().getListeTextField()[2].getText()) ));
 								friseChronologique.setPeriodeFrise((int)panelCreation.getPanelCreationFrise().getSpinner().getValue());
 								friseChronologique.setEstInitialisee(true);
-
+								
+								friseChronologique.supprimerEvenementsHorsPeriode();
+								
 								panelAP.getPanelFrise().updateTable(friseChronologique);
 								panelCreation.updateComponents();
 								panelAP.updatePanelNord();
 								
 								try {
-									LectureEcriture.ecriture(new File("Frise.ser"), friseChronologique);
+									LectureEcriture.ecriture(new File(friseChronologique.getEmplacementSauvegarde()), friseChronologique);
 								} catch (IOException e) {
 									e.printStackTrace();
 									JOptionPane.showMessageDialog(panelCreation, "Erreur : La frise n'a pas pu étre sauvegardée !", "Erreur", JOptionPane.ERROR_MESSAGE);
@@ -131,7 +139,7 @@ public class Controleur implements ActionListener, ConstantesTextes {
 							panelAP.resetCardLayout();
 							
 							try {
-								LectureEcriture.ecriture(new File("Frise.ser"), friseChronologique);
+								LectureEcriture.ecriture(new File(friseChronologique.getEmplacementSauvegarde()), friseChronologique);
 							} catch (IOException e) {
 								e.printStackTrace();
 								JOptionPane.showMessageDialog(panelCreation, "Erreur : La frise n'a pas pu être sauvegardée !", "Erreur", JOptionPane.ERROR_MESSAGE);
@@ -188,18 +196,65 @@ public class Controleur implements ActionListener, ConstantesTextes {
 			Evenement evenementTab = (Evenement) modele.getValueAt(panelAP.getPanelFrise().getRowIndex(), panelAP.getPanelFrise().getColIndex());
 			panelCreation.getPanelAjoutEvt().setEvt(evenementTab);
 			panelCreation.getPanelAjoutEvt().setEstModification(true);
+			gestionnaireDeCartes.show(panelFils, MENU_CREATION);
 		}
 		else if (parEvt.getActionCommand().equals(AFFICHAGE_POPUPMENU_SUPPRIMER)) { //Si l'on veut supprimer un événement	
-			ModeleTable modele = (ModeleTable) panelAP.getPanelFrise().getMonModele();
-			Evenement evenementTab = (Evenement) modele.getValueAt(panelAP.getPanelFrise().getRowIndex(), panelAP.getPanelFrise().getColIndex());
-			//System.out.println("Row : " + panelAP.getPanelFrise().getRowIndex() + " / Column : " + panelAP.getPanelFrise().getColIndex() + " Model : " + modele.getValueAt(panelAP.getPanelFrise().getRowIndex(), panelAP.getPanelFrise().getColIndex()));
-			friseChronologique.supprimerEvenement(evenementTab);
-			panelAP.getPanelFrise().updateTable(friseChronologique);
-			panelAP.resetCardLayout();
-			JOptionPane.showMessageDialog(panelCreation, "L'événement a été supprimé avec uccès !", "Succès", JOptionPane.INFORMATION_MESSAGE);
+			
+			int resultat = JOptionPane.showConfirmDialog(panelAP, "Voulez-vous vraiment supprimer l'événement ?", "Supprimer ?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+			
+			if (resultat == JOptionPane.YES_OPTION) {
+				ModeleTable modele = (ModeleTable) panelAP.getPanelFrise().getMonModele();
+				Evenement evenementTab = (Evenement) modele.getValueAt(panelAP.getPanelFrise().getRowIndex(), panelAP.getPanelFrise().getColIndex());
+				//System.out.println("Row : " + panelAP.getPanelFrise().getRowIndex() + " / Column : " + panelAP.getPanelFrise().getColIndex() + " Model : " + modele.getValueAt(panelAP.getPanelFrise().getRowIndex(), panelAP.getPanelFrise().getColIndex()) + "/ Evt : " + evenementTab);
+				friseChronologique.supprimerEvenement(evenementTab);
+				panelAP.getPanelFrise().updateTable(friseChronologique);
+				panelAP.resetCardLayout();
+				JOptionPane.showMessageDialog(panelCreation, "L'événement a été supprimé avec succès !", "Succès", JOptionPane.INFORMATION_MESSAGE);
+				try {
+					friseChronologique.sauvegarderFrise();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		
 		}
 		else if (parEvt.getActionCommand().equals(CREATION_EVT_BOUTON_ANNULATION)) { //Si l'on veut annuler la modification d'un événement
 			panelCreation.getPanelAjoutEvt().finirModification();
+		}
+		else if (parEvt.getActionCommand().equals(CREATION_FRISE_BOUTON_SAUVEGARDE)) { //Si l'on veut sauvegarder la frise
+			
+			boolean showFileChooser = false;
+			
+			if (friseChronologique.getEmplacementSauvegarde() != "Frise.ser") {
+				
+				int resultat = JOptionPane.showConfirmDialog(panelAP, "Voulez-vous garder le même emplacement de sauvegarde ?", "Sauvegarde", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+				
+				if (resultat == JOptionPane.NO_OPTION) {
+					showFileChooser = true;
+				}
+				else if (resultat != JOptionPane.YES_OPTION)
+					return;
+			}
+			
+			if (showFileChooser || friseChronologique.getEmplacementSauvegarde().equals("Frise.ser")) {
+				JFileChooser enrengistrerFrise = new JFileChooser();
+				int resultatOuverture = enrengistrerFrise.showSaveDialog(panelCreation);
+				
+				if (resultatOuverture == JFileChooser.APPROVE_OPTION) { //Si l'utilisateur a sélectionné un fichier
+					friseChronologique.setEmplacementSauvegarde(enrengistrerFrise.getSelectedFile().getPath());
+				}
+				else 
+					return;
+			}
+			
+			try {
+				friseChronologique.sauvegarderFrise();
+				JOptionPane.showMessageDialog(panelCreation, "La frise a été enrengistrée avec succès !", "Succès", JOptionPane.INFORMATION_MESSAGE);
+			} catch (IOException e) {
+				e.printStackTrace();
+				JOptionPane.showMessageDialog(panelCreation, "Une erreur est survenue lors de l'enrengistrement de la frise !", "Erreur", JOptionPane.INFORMATION_MESSAGE);
+			}
+			
 		}
 
 	}

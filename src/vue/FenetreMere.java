@@ -30,7 +30,7 @@ public class FenetreMere extends JFrame implements ConstantesTextes {
 		
 		setContentPane(contentPane);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setSize(1200, 700);
+		setSize(1200, 850);
 		setVisible(true);
 	}
 	

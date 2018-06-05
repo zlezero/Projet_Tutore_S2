@@ -1,5 +1,7 @@
 package modele;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -15,8 +17,9 @@ public class FriseChronologique implements Serializable {
 	private Date dateFin;
 	private int periodeFrise;
 	private boolean estInitialisee = true;
-
-	public FriseChronologique(String parTitre, Date parDateDebut, Date parDateFin, int parPeriodeFrise) {
+	private String emplacementSauvegarde;
+	
+	public FriseChronologique(String parTitre, Date parDateDebut, Date parDateFin, int parPeriodeFrise, String parEmplacementSauvegarde) {
 
 		titreFrise = parTitre;
 		dateDebut = parDateDebut;
@@ -24,7 +27,8 @@ public class FriseChronologique implements Serializable {
 		periodeFrise = parPeriodeFrise;
 		hashMapEvts = new HashMap<>();
 		estInitialisee = true;
-
+		emplacementSauvegarde = parEmplacementSauvegarde;
+		
 		for (int i=0; i != dateFin.getAnnee() - dateDebut.getAnnee();i++) {
 			HashMap<Integer, Evenement> hashMap = new HashMap<>();
 			hashMap.put(0, null);
@@ -33,7 +37,15 @@ public class FriseChronologique implements Serializable {
 
 	}
 
-	public FriseChronologique(String parTitre, Date parDateDebut, Date parDateFin, int parPeriodeFrise, HashMap<Integer, HashMap<Integer, Evenement>> parHashMapEvts) {
+	public String getEmplacementSauvegarde() {
+		return emplacementSauvegarde;
+	}
+
+	public void setEmplacementSauvegarde(String emplacementSauvegarde) {
+		this.emplacementSauvegarde = emplacementSauvegarde;
+	}
+
+	public FriseChronologique(String parTitre, Date parDateDebut, Date parDateFin, int parPeriodeFrise, HashMap<Integer, HashMap<Integer, Evenement>> parHashMapEvts, String parEmplacementSauvegarde) {
 
 		titreFrise = parTitre;
 		dateDebut = parDateDebut;
@@ -41,6 +53,7 @@ public class FriseChronologique implements Serializable {
 		periodeFrise = parPeriodeFrise;
 		hashMapEvts = parHashMapEvts;
 		estInitialisee = true;	
+		emplacementSauvegarde = parEmplacementSauvegarde;
 	}
 
 	public FriseChronologique() {
@@ -50,6 +63,7 @@ public class FriseChronologique implements Serializable {
 		periodeFrise = 1;
 		hashMapEvts = new HashMap<>();
 		estInitialisee = false;
+		emplacementSauvegarde = "Frise.ser";
 	}
 	
 	/**
@@ -82,6 +96,7 @@ public class FriseChronologique implements Serializable {
 		return hashMapEvts.values();
 	}
 
+
 	/**
 	* Accesseur qui permet d'obtenir le poids d'un Evenement
 	* @param un entier parAnnee, un Evenement evenement
@@ -89,15 +104,18 @@ public class FriseChronologique implements Serializable {
 
 	public int getPoidsEvenement(Evenement parEvenement) {	
 		
-		for (int i=0;i!=3;i++) {
-			HashMap<Integer,Evenement> maHashMap = new HashMap<Integer,Evenement>();
-			maHashMap.put(i, parEvenement);
-			if (hashMapEvts.containsValue(maHashMap)) {
-				return i;
+		for (HashMap<Integer,Evenement> maHashMap : hashMapEvts.values()) {
+			
+			for (int i=0;i!=maHashMap.keySet().size();i++) {
+				Evenement evt = (Evenement)maHashMap.values().toArray()[i];
+				if (evt.compareTo(parEvenement) == 0) {
+					return (int)maHashMap.keySet().toArray()[i];
+				}
 			}
 		}
 		
 		return -1;
+		
 	}
 	
 	/**
@@ -127,7 +145,17 @@ public class FriseChronologique implements Serializable {
 		else {
 			return -1;
 		}
-
+		
+	}
+	
+	public void supprimerEvenementsHorsPeriode() {
+		
+		for (Evenement evt : getListeEvenements()) {
+			if (evt.getDate().getAnnee() <= dateDebut.getAnnee() || evt.getDate().getAnnee() >= dateFin.getAnnee()) {
+				supprimerEvenement(evt);
+			}
+		}
+		
 	}
 	
 	/**
@@ -137,19 +165,23 @@ public class FriseChronologique implements Serializable {
 	
 	public void supprimerEvenement(Evenement parEvt) {
 		
-		for (int i=0;i!=3;i++) {
-			HashMap<Integer,Evenement> maHashMap = new HashMap<Integer,Evenement>();
-			maHashMap.put(i, parEvt);
-			hashMapEvts.values().remove(maHashMap);
+		for (HashMap<Integer,Evenement> maHashMap : hashMapEvts.values()) {
+				maHashMap.values().remove(parEvt);
 		}
 
-		
+	}
+	
+	public void sauvegarderFrise() throws IOException {
+		LectureEcriture.ecriture(new File(emplacementSauvegarde), this);
 	}
 
 	/**
 	* Méthode qui permet de retourner une hashMap en format chaîne de caractère 
 	* @return une hashMap d'évènement en format 
 	*/
+	public Collection<HashMap<Integer, Evenement>> getHashMapEvenementsPoids() {
+		return hashMapEvts.values();
+	}
 	
 	public String toString() {
 		return hashMapEvts.toString();

@@ -36,36 +36,39 @@ public class PanelAffichageFrise extends JPanel implements ConstantesTextes {
 		setLayout(new BorderLayout());
 		
 		monModele = new ModeleTable(parFrise);
-		
+    
 		//Création d'une JTable et de toute ces caractéristiques
 		tableFrise = new JTable(monModele);
 		tableFrise.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		tableFrise.getTableHeader().setReorderingAllowed(false);
 		tableFrise.setRowHeight(80);
 		tableFrise.setDefaultRenderer(Evenement.class, new CelluleRenderer());
-		
+    
 		//On créer un JScrollPane
 		scrollPane = new JScrollPane(tableFrise,
 				ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
-				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED); 
+				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		
-		scrollPane.setPreferredSize(new Dimension(360, 360));//On lui définie une taille par défault
+		scrollPane.setPreferredSize(new Dimension(360, 360));
 		
-		add(scrollPane, BorderLayout.CENTER);//Puis on l'ajoute au BorderLayout
+		add(scrollPane, BorderLayout.CENTER);
 		
-		//Création d'un popupMenu
+		//scrollPane.getHorizontalScrollBar().setValue(scrollPane.getX() +500);
+		//scrollPane.getHorizontalScrollBar().setValue(scrollPane.getX() +300);
+    
+    //Création d'un popupMenu
 		JPopupMenu popupMenu = new JPopupMenu("Outils");
 		itemModifier = new JMenuItem(AFFICHAGE_POPUPMENU_MODIFIER);
 		itemSupprimer = new JMenuItem(AFFICHAGE_POPUPMENU_SUPPRIMER);
-		
-		//Ajout des items 
+    
+		//Ajout des items de menu
 		popupMenu.add(itemModifier);
 		popupMenu.add(itemSupprimer);
-		
+    
 		/**
 		*Méthode qui permet d'utiliser MouseListener sur la tableFrise 
 		*/
-		
+    
 		tableFrise.addMouseListener(new MouseAdapter() {
 			
 			public void mouseClicked(MouseEvent evt) {
@@ -80,11 +83,11 @@ public class PanelAffichageFrise extends JPanel implements ConstantesTextes {
 				}
 
 			}
-			
+      
 			/**
 			* Méthode qui permet de savoir s'il y a un eu un clic sur la JTable 
 			*/
-			
+      
 			public void mousePressed(MouseEvent evt) {
 				
 				JTable table = (JTable) evt.getSource();
@@ -97,7 +100,7 @@ public class PanelAffichageFrise extends JPanel implements ConstantesTextes {
 		        	popupMenu.show(evt.getComponent(), evt.getX(), evt.getY());
 		        }
 		      }
-			
+      
 			/**
 			* Méthode qui permet de savoir si le clic de la souris est fini 
 			*/
