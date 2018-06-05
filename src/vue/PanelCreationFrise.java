@@ -101,6 +101,8 @@ public class PanelCreationFrise extends JPanel implements ConstantesTextes {
 		
 		boutonAjout.setMnemonic('C');
 		
+		boutonSauvegarde.setMnemonic('S');
+		
 		listeTextField[0].requestFocus();
 
 	}

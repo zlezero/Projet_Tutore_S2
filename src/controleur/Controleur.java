@@ -62,7 +62,9 @@ public class Controleur implements ActionListener, ConstantesTextes {
 								friseChronologique.setDateFin(new Date(1, 1, Integer.parseInt(panelCreation.getPanelCreationFrise().getListeTextField()[2].getText()) ));
 								friseChronologique.setPeriodeFrise((int)panelCreation.getPanelCreationFrise().getSpinner().getValue());
 								friseChronologique.setEstInitialisee(true);
-
+								
+								friseChronologique.supprimerEvenementsHorsPeriode();
+								
 								panelAP.getPanelFrise().updateTable(friseChronologique);
 								panelCreation.updateComponents();
 								panelAP.updatePanelNord();

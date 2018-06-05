@@ -133,6 +133,8 @@ public class PanelCreationAjoutEvt extends JPanel implements ConstantesTextes {
 		
 		boutonAjout.setMnemonic('r');
 		
+		boutonAnnulation.setMnemonic('n');
+		
 		listeTextField[0].requestFocus();
 	}
 	

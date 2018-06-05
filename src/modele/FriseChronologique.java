@@ -121,7 +121,17 @@ public class FriseChronologique implements Serializable {
 		else {
 			return -1;
 		}
-
+		
+	}
+	
+	public void supprimerEvenementsHorsPeriode() {
+		
+		for (Evenement evt : getListeEvenements()) {
+			if (evt.getDate().getAnnee() <= dateDebut.getAnnee() || evt.getDate().getAnnee() >= dateFin.getAnnee()) {
+				supprimerEvenement(evt);
+			}
+		}
+		
 	}
 	
 	public void supprimerEvenement(Evenement parEvt) {
