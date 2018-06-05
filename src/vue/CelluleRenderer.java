@@ -19,6 +19,11 @@ public class CelluleRenderer extends JLabel implements TableCellRenderer {
 		setHorizontalAlignment(JLabel.CENTER);
 	}
 	
+	/**
+	* Pour définir ce qu'il y a dans une cellule de la JTable
+	* @return this qui est le Component 
+	*/
+	
 	public Component getTableCellRendererComponent(JTable table, Object valeur, boolean estSelectionne, boolean aLeFocus, int ligne, int colonne) {
 				
 		if (valeur != null) {

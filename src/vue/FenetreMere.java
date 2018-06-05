@@ -34,6 +34,10 @@ public class FenetreMere extends JFrame implements ConstantesTextes {
 		setVisible(true);
 	}
 	
+	/**
+	* Méthode main de la Classe FenetreMere permettant de créer une fenêtre mère
+	*/
+	
 	public static void main(String[] args) {
 		new FenetreMere("Frise chronologique");
 	}

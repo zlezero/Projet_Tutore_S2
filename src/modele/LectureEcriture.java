@@ -10,6 +10,12 @@ import java.io.ObjectOutputStream;
 
 public class LectureEcriture {
 	
+	/**
+	* Méthode qui permet de lire un fichier en prenant en paramètre un fichier
+	* @param un fichier 
+	* @return un Objet 
+	*/
+	
 	public static Object lecture(File parFichier) throws FileNotFoundException, IOException {
 		
 		ObjectInputStream flux;
@@ -28,6 +34,11 @@ public class LectureEcriture {
 		return objetLu;
 		
 	}
+
+	/**
+	* Méthode qui permet d'écrire dans un fichier en indiquant ce même fichier en paramètre
+	* @param un fichier 
+	*/
 	
 	public static void ecriture(File parFichier, Object parObjet) throws IOException
 	{
@@ -44,5 +55,4 @@ public class LectureEcriture {
 			System.exit(1);
 		}
 	}
-	
 }

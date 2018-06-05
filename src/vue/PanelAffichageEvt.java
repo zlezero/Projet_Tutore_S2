@@ -15,11 +15,13 @@ public class PanelAffichageEvt extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	
-	JLabel labels[] = new JLabel[4];
+	JLabel labels[] = new JLabel[4]; //Création d'un tableau de JLabel, qui contiendra la date, le titre, la description et l'image associé à l'évènement
 	Evenement evt;
 	
 	public PanelAffichageEvt(Evenement parEvt) {
-		
+    
+			//Permet d'obtenir l'affichage au niveau texte des évènements dans le cardLayout avec la date, le titre et la description de ceux-ci 		
+
 		evt = parEvt;
 		
 		//setBackground(new Color(100, 100, 100));
@@ -52,8 +54,8 @@ public class PanelAffichageEvt extends JPanel {
 		messageLabelDesc += "</html>";
 		
 		labels[2] = new JLabel(messageLabelDesc);
-
-		if (!parEvt.getChPhoto().isEmpty()) {
+    
+		if (!parEvt.getChPhoto().isEmpty()) { 		//Si l'évènement a une image qui lui est associée, on la lui attribue
 			labels[3] = new JLabel("");
 			ImageIcon monImage = new ImageIcon(new ImageIcon(parEvt.getChPhoto()).getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
 			labels[3].setIcon(monImage);
@@ -61,11 +63,13 @@ public class PanelAffichageEvt extends JPanel {
 			contrainte.gridy = 0;
 			add(labels[3], contrainte);
 		}
+	  
+    //on ajoute tout ça pour pouvoir l'afficher réellement !
 		
 		contrainte.gridx = 1;
 		contrainte.gridy = 0;
 		
-		for (int i=0;i!=3;i++) {
+    for (int i=0;i!=3;i++) {
 			add(labels[i], contrainte);
 			contrainte.gridy += 1;
 		}
