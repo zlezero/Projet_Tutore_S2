@@ -1,6 +1,7 @@
 package vue;
 
 import java.awt.Component;
+import java.awt.Image;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -41,7 +42,8 @@ public class CelluleRenderer extends JLabel implements TableCellRenderer {
 			if (evt.getChPhoto().isEmpty()) {
 				setText(evt.toString());
 			} else {
-				setIcon(new ImageIcon(evt.getChPhoto()));
+				setIcon(new ImageIcon(
+						new ImageIcon(evt.getChPhoto()).getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT)));
 			}
 
 		} else {
