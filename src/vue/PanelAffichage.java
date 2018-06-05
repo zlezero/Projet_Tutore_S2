@@ -107,6 +107,7 @@ public class PanelAffichage extends JPanel {
 	/**
 	 * Méthode qui permet l'utilisation du Controleur, PanelFrise sera à l'écoute du
 	 * controleur
+	 * @param parC Le controleur qui doit se mettre à l'écoute
 	 */
 
 	public void enrengistreEcouteur(Controleur parC) {
@@ -134,6 +135,7 @@ public class PanelAffichage extends JPanel {
 
 	/**
 	 * Modifieur qui permet de changer le panelFrise
+	 * @param panelFrise Le panel frise que l'on veut mettre dans l'affichage
 	 */
 
 	public void setPanelFrise(PanelAffichageFrise panelFrise) {

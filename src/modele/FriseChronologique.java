@@ -107,7 +107,8 @@ public class FriseChronologique implements Serializable {
 
 	/**
 	* Accesseur qui permet d'obtenir le poids d'un Evenement
-	* @param un entier parAnnee, un Evenement evenement
+	* @param parEvenement Un entier parAnnee, un Evenement evenement
+	* @return Le poids de l'événement si il existe et -1 sinon
 	*/
 
 	public int getPoidsEvenement(Evenement parEvenement) {	
@@ -127,8 +128,10 @@ public class FriseChronologique implements Serializable {
 	}
 	
 	/**
-	* Méthode qui permet d'ajouter un évènement en donnant en paramètre l'évènement que l'on veut ajouter
-	* @param un Evenement 
+	* Méthode qui permet d'ajouter un événement en donnant en paramètre l'évènement que l'on veut ajouter
+	* @param parEvenement Un Evenement
+	* @param parPoids le poids de l'événement que l'on veut ajouter 
+	* @return 1 si il n'y a pas d'erreurs / -1 si il y a eu une erreur
 	*/
 
 	public int ajoutEvenement(int parPoids, Evenement parEvenement) {
@@ -168,7 +171,7 @@ public class FriseChronologique implements Serializable {
 	
 	/**
 	* Méthode qui permet de supprimer un évènement en donnant en paramètre l'évènement que l'on veut supprimer
-	* @param un Evenement 
+	* @param parEvt Un Evenement 
 	*/
 	
 	public void supprimerEvenement(Evenement parEvt) {
@@ -198,6 +201,7 @@ public class FriseChronologique implements Serializable {
 	
 	/**
 	* Modifieur de la hashMap 
+	* @param hashMapEvts La hash map complète des événements en fonction des années
 	*/
 
 	public void setHashMapEvts(HashMap<Integer, HashMap<Integer, Evenement>> hashMapEvts) {
@@ -215,6 +219,7 @@ public class FriseChronologique implements Serializable {
 	
 	/**	
 	* Modifieur qui permet de changer le titre de la frise 
+	* @param titreFrise Le titre de la frise
 	*/
 
 	public void setTitreFrise(String titreFrise) {
@@ -231,7 +236,8 @@ public class FriseChronologique implements Serializable {
 	}
 	
 	/**
-	*Modifieur qui permet de changer la date du début de la frise chronologique
+	* Modifieur qui permet de changer la date du début de la frise chronologique
+	* @param dateDebut La date du début de la frise
 	*/	
 
 	public void setDateDebut(Date dateDebut) {
@@ -249,6 +255,7 @@ public class FriseChronologique implements Serializable {
 	
 	/**
 	*Modifieur qui permet de changer la date de fin de la frise chronologique
+	*@param dateFin La date de la fin de la frise
 	*/	
 
 	public void setDateFin(Date dateFin) {
@@ -266,7 +273,8 @@ public class FriseChronologique implements Serializable {
 	
 	/**
 	*Modifieur qui permet de changer la période de la frise chronologique
-	*/	
+	*@param periodeFrise La période de la frise
+	*/
 
 	public void setPeriodeFrise(int periodeFrise) {
 		this.periodeFrise = periodeFrise;
@@ -283,6 +291,7 @@ public class FriseChronologique implements Serializable {
 	
 	/**
 	*Modifieur qui permet de changer l'état du booléen indiquant si la frise chronologique a été initialisé 
+	*@param estInitialisee Si la frise est initialisée
 	*/
 
 	public void setEstInitialisee(boolean estInitialisee) {

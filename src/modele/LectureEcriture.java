@@ -18,8 +18,10 @@ public class LectureEcriture {
 	
 	/**
 	* Méthode qui permet de lire un fichier en prenant en paramètre un fichier
-	* @param un fichier 
+	* @param parFichier Un fichier que l'on veut lire 
 	* @return un Objet 
+	* @throws FileNotFoundException Si le fichier n'est pas trouvé
+	* @throws IOException Si il y a une erreur de lecture du fichier
 	*/
 	
 	public static Object lecture(File parFichier) throws FileNotFoundException, IOException {
@@ -43,7 +45,9 @@ public class LectureEcriture {
 
 	/**
 	* Méthode qui permet d'écrire dans un fichier en indiquant ce même fichier en paramètre
-	* @param un fichier 
+	* @param parFichier Le fichier où l'on veut écrire
+	* @param parObjet L'objet que l'on veut sérialiser dans le fichier 
+	* @throws IOException Si il y a une erreur lors de l'écriture du fichier
 	*/
 	
 	public static void ecriture(File parFichier, Object parObjet) throws IOException

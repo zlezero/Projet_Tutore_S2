@@ -42,6 +42,7 @@ public class FenetreMere extends JFrame implements ConstantesTextes {
 
 	/**
 	 * Méthode main de la Classe FenetreMere permettant de créer une fenêtre mère
+	 * @param args Les arguments venant du système d'exploitation
 	 */
 
 	public static void main(String[] args) {

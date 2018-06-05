@@ -139,6 +139,7 @@ public class PanelAffichageFrise extends JPanel implements ConstantesTextes {
 
 	/**
 	 * Modifieur de la ModeleTable
+	 * @param monModele Le modele que l'on veut mettre dans le tableau
 	 */
 
 	public void setMonModele(ModeleTable monModele) {
@@ -157,6 +158,7 @@ public class PanelAffichageFrise extends JPanel implements ConstantesTextes {
 
 	/**
 	 * Modifieur du JScrollPane
+	 * @param scrollPane Un scrollPane pour le tableau
 	 */
 
 	public void setScrollPane(JScrollPane scrollPane) {
@@ -175,6 +177,7 @@ public class PanelAffichageFrise extends JPanel implements ConstantesTextes {
 
 	/**
 	 * Modifieur qui permet de changer l'indice d'une ligne de la JTable
+	 * @param rowIndex La ligne du tableau
 	 */
 
 	public void setRowIndex(int rowIndex) {
@@ -193,6 +196,7 @@ public class PanelAffichageFrise extends JPanel implements ConstantesTextes {
 
 	/**
 	 * Modifieur qui permet de changer l'indice d'une colonne de la JTable
+	 * @param colIndex La colonne du tableau
 	 */
 
 	public void setColIndex(int colIndex) {
@@ -202,6 +206,7 @@ public class PanelAffichageFrise extends JPanel implements ConstantesTextes {
 	/**
 	 * Méthode qui permet de synchroniser l'écoute sur le contrôleur des items du
 	 * popmenu
+	 * @param parC Le controleur qui doit se mettre à l'écoute du popmenu
 	 */
 
 	public void enrengistreEcouteur(Controleur parC) {
@@ -221,6 +226,7 @@ public class PanelAffichageFrise extends JPanel implements ConstantesTextes {
 
 	/**
 	 * Modifieur qui permet de changer la tableFrise
+	 * @param tableFrise La frise que l'on veut mettre dans le tableau
 	 */
 
 	public void setTableFrise(JTable tableFrise) {
@@ -229,6 +235,7 @@ public class PanelAffichageFrise extends JPanel implements ConstantesTextes {
 
 	/**
 	 * Méthode qui permet de mettre a jour la JTable
+	 * @param parFrise La frise qui sera affichée dans le tableau
 	 */
 
 	public void updateTable(FriseChronologique parFrise) {

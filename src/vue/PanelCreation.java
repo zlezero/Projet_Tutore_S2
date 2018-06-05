@@ -45,6 +45,7 @@ public class PanelCreation extends JPanel {
 
 	/**
 	 * Méthode qui permet de désactiver les composants pour la JPanel
+	 * @param parPanel Le panel dont on veut désactiver les composants
 	 */
 
 	public void disablePanelComponents(JPanel parPanel) {
@@ -56,6 +57,7 @@ public class PanelCreation extends JPanel {
 
 	/**
 	 * Méthode qui permet d'activer les composants pour la JPanel
+	 * @param parPanel Le panel dont on veut activer les composants
 	 */
 
 	public void activatePanelComponents(JPanel parPanel) {
@@ -81,6 +83,7 @@ public class PanelCreation extends JPanel {
 	/**
 	 * Méthode qui met à l'écoute le controleur pour panelCreationFrise et
 	 * panelAjout
+	 * @param parC Le controleur qui doit se mettre à l'écoute
 	 */
 
 	public void enrengistreEcouteur(Controleur parC) {
@@ -100,6 +103,7 @@ public class PanelCreation extends JPanel {
 
 	/**
 	 * Modifieur qui permet de modifier la frise chronologique
+	 * @param friseChronologique La frise chronologique
 	 */
 
 	public void setFriseChronologique(FriseChronologique friseChronologique) {

@@ -63,8 +63,8 @@ public class ModeleTable extends DefaultTableModel {
 	/**
 	 * Méthode qui permet de détermine si la cellule est éditable
 	 * 
-	 * @param l'indice
-	 *            de la ligne et de la colonne
+	 * @param indiceLigne L'indice de la ligne
+	 * @param indiceColonne L'indice de la colonne
 	 * @return false
 	 */
 	public boolean isCellEditable(int indiceLigne, int indiceColonne) {
@@ -84,8 +84,8 @@ public class ModeleTable extends DefaultTableModel {
 	/**
 	 * Méthode qui permet de rajouter un évènement a la JTable
 	 * 
-	 * @param un
-	 *            entier témoin du poids et un évènement
+	 * @param parPoids Le poids de l'événement
+	 * @param parEvt L'événement à ajouter
 	 */
 
 	public void ajoutEvenement(int parPoids, Evenement parEvt) {
