@@ -64,7 +64,7 @@ public class ModeleTable extends DefaultTableModel {
 	}
 	
 	/**
-	* Méthode qui retourne la Class de la colonne  
+	* Méthode qui retourne la classe de la colonne  
 	* @return Evenement.class
 	*/
 
