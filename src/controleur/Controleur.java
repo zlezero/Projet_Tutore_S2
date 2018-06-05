@@ -216,18 +216,36 @@ public class Controleur implements ActionListener, ConstantesTextes {
 		}
 		else if (parEvt.getActionCommand().equals(CREATION_FRISE_BOUTON_SAUVEGARDE)) { //Si l'on veut sauvegarder la frise
 			
-			JFileChooser enrengistrerFrise = new JFileChooser();
-			int resultatOuverture = enrengistrerFrise.showSaveDialog(panelCreation);
+			boolean showFileChooser = false;
 			
-			if (resultatOuverture == JFileChooser.APPROVE_OPTION) { //Si l'utilisateur a sélectionné un fichier
-				friseChronologique.setEmplacementSauvegarde(enrengistrerFrise.getSelectedFile().getPath());
-				try {
-					friseChronologique.sauvegarderFrise();
-					JOptionPane.showMessageDialog(panelCreation, "La frise à été enrengistrée avec succès !", "Succès", JOptionPane.INFORMATION_MESSAGE);
-				} catch (IOException e) {
-					e.printStackTrace();
-					JOptionPane.showMessageDialog(panelCreation, "Une erreur est survenue lors de l'enrengistrement de la frise !", "Erreur", JOptionPane.INFORMATION_MESSAGE);
+			if (friseChronologique.getEmplacementSauvegarde() != "Frise.ser") {
+				
+				int resultat = JOptionPane.showConfirmDialog(panelAP, "Voulez-vous garder le même emplacement de sauvegarde ?", "Sauvegarde", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+				
+				if (resultat == JOptionPane.NO_OPTION) {
+					showFileChooser = true;
 				}
+				else if (resultat != JOptionPane.YES_OPTION)
+					return;
+			}
+			
+			if (showFileChooser || friseChronologique.getEmplacementSauvegarde().equals("Frise.ser")) {
+				JFileChooser enrengistrerFrise = new JFileChooser();
+				int resultatOuverture = enrengistrerFrise.showSaveDialog(panelCreation);
+				
+				if (resultatOuverture == JFileChooser.APPROVE_OPTION) { //Si l'utilisateur a sélectionné un fichier
+					friseChronologique.setEmplacementSauvegarde(enrengistrerFrise.getSelectedFile().getPath());
+				}
+				else 
+					return;
+			}
+			
+			try {
+				friseChronologique.sauvegarderFrise();
+				JOptionPane.showMessageDialog(panelCreation, "La frise à été enrengistrée avec succès !", "Succès", JOptionPane.INFORMATION_MESSAGE);
+			} catch (IOException e) {
+				e.printStackTrace();
+				JOptionPane.showMessageDialog(panelCreation, "Une erreur est survenue lors de l'enrengistrement de la frise !", "Erreur", JOptionPane.INFORMATION_MESSAGE);
 			}
 			
 		}
