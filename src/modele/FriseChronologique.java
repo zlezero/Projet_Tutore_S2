@@ -87,9 +87,10 @@ public class FriseChronologique implements Serializable {
 		
 	}
 	
+
 	/**
-	* Accesseur qui permet d'obtenir les valeurs de la HashMap d'évènements
-	* @return Un ensemble d'évènements
+	* Méthode qui permet de retourner une hashMap en format chaîne de caractère 
+	* @return une hashMap d'évènement en format 
 	*/
 	
 	public Collection<HashMap<Integer, Evenement>> getHashMapEvenementsPoids() {
@@ -173,14 +174,6 @@ public class FriseChronologique implements Serializable {
 	
 	public void sauvegarderFrise() throws IOException {
 		LectureEcriture.ecriture(new File(emplacementSauvegarde), this);
-	}
-
-	/**
-	* Méthode qui permet de retourner une hashMap en format chaîne de caractère 
-	* @return une hashMap d'évènement en format 
-	*/
-	public Collection<HashMap<Integer, Evenement>> getHashMapEvenementsPoids() {
-		return hashMapEvts.values();
 	}
 	
 	public String toString() {

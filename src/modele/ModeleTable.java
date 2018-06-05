@@ -15,20 +15,20 @@ public class ModeleTable extends DefaultTableModel {
 	private int columnNumber;
 
 	public ModeleTable(FriseChronologique parFrise) {
-		
-		columnNumber = (parFrise.getDateFin().getAnnee() - parFrise.getDateDebut().getAnnee())+1;
+
+		columnNumber = (parFrise.getDateFin().getAnnee() - parFrise.getDateDebut().getAnnee()) + 1;
 
 		this.setRowCount(rowNumber);
 		this.setColumnCount(columnNumber);
 
 		ArrayList<String> intitulesTab = new ArrayList<String>();
 
-		//Créer les intitulés du tableau
-		for (int i=0;i!=(parFrise.getDateFin().getAnnee() - parFrise.getDateDebut().getAnnee())+1;i++) {
-			if ( (i % parFrise.getPeriodeFrise() == 0) || (i == (parFrise.getDateFin().getAnnee() - parFrise.getDateDebut().getAnnee())) ) {
+		// Créer les intitulés du tableau
+		for (int i = 0; i != (parFrise.getDateFin().getAnnee() - parFrise.getDateDebut().getAnnee()) + 1; i++) {
+			if ((i % parFrise.getPeriodeFrise() == 0)
+					|| (i == (parFrise.getDateFin().getAnnee() - parFrise.getDateDebut().getAnnee()))) {
 				intitulesTab.add(Integer.toString(parFrise.getDateDebut().getAnnee() + i));
-			}
-			else { 
+			} else {
 				intitulesTab.add("");
 			}
 		}
@@ -37,7 +37,7 @@ public class ModeleTable extends DefaultTableModel {
 
 		Collection<HashMap<Integer, Evenement>> evenements = parFrise.getHashMapEvenementsPoids();
 
-		if (evenements != null) {	
+		if (evenements != null) {
 
 			Iterator<HashMap<Integer, Evenement>> iterateur = evenements.iterator();
 
@@ -45,9 +45,9 @@ public class ModeleTable extends DefaultTableModel {
 
 				HashMap<Integer, Evenement> hashMap = iterateur.next();
 
-				for (int i = 0; i!=hashMap.values().toArray().length;i++) {
-					if ((Evenement)hashMap.values().toArray()[i] != null) {
-						ajoutEvenement((int)hashMap.keySet().toArray()[i], (Evenement)hashMap.values().toArray()[i]);
+				for (int i = 0; i != hashMap.values().toArray().length; i++) {
+					if ((Evenement) hashMap.values().toArray()[i] != null) {
+						ajoutEvenement((int) hashMap.keySet().toArray()[i], (Evenement) hashMap.values().toArray()[i]);
 					}
 				}
 			}
@@ -55,39 +55,46 @@ public class ModeleTable extends DefaultTableModel {
 	}
 
 	/**
-	* Méthode qui permet de détermine si la cellule est éditable 
-	* @param l'indice de la ligne et de la colonne
-	* @return false
-	*/
+	 * Méthode qui permet de détermine si la cellule est éditable
+	 * 
+	 * @param l'indice
+	 *            de la ligne et de la colonne
+	 * @return false
+	 */
 	public boolean isCellEditable(int indiceLigne, int indiceColonne) {
 		return false;
 	}
-	
+
 	/**
-	* Méthode qui retourne la classe de la colonne  
-	* @return Evenement.class
-	*/
+	 * Méthode qui retourne la classe de la colonne
+	 * 
+	 * @return Evenement.class
+	 */
 
 	public Class<?> getColumnClass(int parNum) {
 		return Evenement.class;
 	}
-	
+
 	/**
-	* Méthode qui permet de rajouter un évènement a la JTable
-	* @param un entier témoin du poids et un évènement
-	*/
+	 * Méthode qui permet de rajouter un évènement a la JTable
+	 * 
+	 * @param un
+	 *            entier témoin du poids et un évènement
+	 */
 
 	public void ajoutEvenement(int parPoids, Evenement parEvt) {
 
 		int indiceColonne = this.findColumn(Integer.toString(parEvt.getDate().getAnnee()));
 		int indiceLigne = parPoids;
 
-		//System.out.println("Indice colonne : " + indiceColonne + " / Indice Ligne : " + indiceLigne);
+		// System.out.println("Indice colonne : " + indiceColonne + " / Indice Ligne : "
+		// + indiceLigne);
 
 		int compteur = 0;
 
 		if (indiceColonne == -1) {
-			while(Integer.parseInt((String) this.columnIdentifiers.lastElement()) - compteur != parEvt.getDate().getAnnee()) {
+			while (Integer.parseInt((String) this.columnIdentifiers.lastElement()) - compteur != parEvt.getDate()
+					.getAnnee()) {
 				compteur += 1;
 			}
 			indiceColonne = (this.columnNumber - compteur) - 1;

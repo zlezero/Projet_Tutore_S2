@@ -18,31 +18,31 @@ public class CelluleRenderer extends JLabel implements TableCellRenderer {
 		setOpaque(false);
 		setHorizontalAlignment(JLabel.CENTER);
 	}
-	
+
 	/**
-	* Pour définir ce qu'il y a dans une cellule de la JTable
-	* @return this qui est le Component 
-	*/
-	
-	public Component getTableCellRendererComponent(JTable table, Object valeur, boolean estSelectionne, boolean aLeFocus, int ligne, int colonne) {
-				
+	 * Pour définir ce qu'il y a dans une cellule de la JTable
+	 * 
+	 * @return this qui est le Component
+	 */
+
+	public Component getTableCellRendererComponent(JTable table, Object valeur, boolean estSelectionne,
+			boolean aLeFocus, int ligne, int colonne) {
+
 		if (valeur != null) {
-			
+
 			Evenement evt = (Evenement) valeur;
-			
+
 			if (evt.getChPhoto().isEmpty()) {
 				setText(evt.toString());
-			}
-			else {
+			} else {
 				setIcon(new ImageIcon(evt.getChPhoto()));
 			}
-			
-		}
-		else {
+
+		} else {
 			setIcon(null);
 			setText("");
 		}
-		
+
 		return this;
 	}
 
