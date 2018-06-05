@@ -26,10 +26,10 @@ public class PanelCreationFrise extends JPanel implements ConstantesTextes {
 
 	private static final long serialVersionUID = 1L;
 
-	JButton boutonAjout, boutonSauvegarde;
-	JTextField listeTextField[] = new JTextField[3];
-	JLabel listeLabels[] = new JLabel[6];
-	JSpinner spinner;
+	private JButton boutonAjout, boutonSauvegarde;
+	private JTextField listeTextField[] = new JTextField[3];
+	private JLabel listeLabels[] = new JLabel[6];
+	private JSpinner spinner;
 	
 	public PanelCreationFrise() {
 

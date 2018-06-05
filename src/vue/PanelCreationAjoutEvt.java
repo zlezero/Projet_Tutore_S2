@@ -29,14 +29,14 @@ public class PanelCreationAjoutEvt extends JPanel implements ConstantesTextes {
 
 	private static final long serialVersionUID = 1L;
 
-	JButton boutonAjout, boutonPhoto, boutonAnnulation;
-	JTextField listeTextField[] = new JTextField[3];
-	JLabel listeLabels[] = new JLabel[6];
-	JTextArea textareaDescription = new JTextArea(5, 10);
-	JSpinner spinner;
-	FriseChronologique friseChronologique;
+	private JButton boutonAjout, boutonPhoto, boutonAnnulation;
+	private JTextField listeTextField[] = new JTextField[3];
+	private JLabel listeLabels[] = new JLabel[6];
+	private JTextArea textareaDescription = new JTextArea(5, 10);
+	private JSpinner spinner;
+	private FriseChronologique friseChronologique;
 	
-	boolean estModification = false;
+	private boolean estModification = false;
 	
 	public PanelCreationAjoutEvt(FriseChronologique parFrise) {
 		

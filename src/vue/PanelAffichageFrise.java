@@ -31,11 +31,11 @@ public class PanelAffichageFrise extends JPanel implements ConstantesTextes {
 
 	private static final long serialVersionUID = 1L;
 
-	JTable tableFrise;
-	JMenuItem itemModifier, itemSupprimer;
-	JScrollPane scrollPane;
-	ModeleTable monModele;
-	int rowIndex, colIndex;
+	private JTable tableFrise;
+	private JMenuItem itemModifier, itemSupprimer;
+	private JScrollPane scrollPane;
+	private ModeleTable monModele;
+	private int rowIndex, colIndex;
 
 	public PanelAffichageFrise(FriseChronologique parFrise, CardLayout parGestionnaireDeCartes, Container panelCL) {
 

@@ -23,13 +23,13 @@ public class PanelAffichage extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	PanelAffichageFrise panelFrise;
-	JPanel panelNord, panelNordCL;
-	FriseChronologique friseChronologique;
+	private PanelAffichageFrise panelFrise;
+	private JPanel panelNord, panelNordCL;
+	private FriseChronologique friseChronologique;
 
-	protected CardLayout monGestionnaireDeCartes;
+	private CardLayout monGestionnaireDeCartes;
 
-	JLabel titreFrise, flecheGauche, flecheDroite;
+	private JLabel titreFrise, flecheGauche, flecheDroite;
 
 	public PanelAffichage(FriseChronologique parFrise) {
 

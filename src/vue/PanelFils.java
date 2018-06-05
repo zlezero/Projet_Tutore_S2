@@ -26,9 +26,9 @@ public class PanelFils extends JPanel implements ActionListener, ConstantesTexte
 
 	private static final long serialVersionUID = 1L;
 
-	CardLayout monGestionnaireDeCartes;
-	FriseChronologique maFrise;
-	PanelCreation panelCreation;
+	private CardLayout monGestionnaireDeCartes;
+	private FriseChronologique maFrise;
+	private PanelCreation panelCreation;
 	
 	public PanelFils() {
 

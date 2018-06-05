@@ -21,16 +21,12 @@ public class PanelAffichageEvt extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	JLabel labels[] = new JLabel[4]; // Création d'un tableau de JLabel, qui contiendra la date, le titre, la
+	private JLabel labels[] = new JLabel[4]; // Création d'un tableau de JLabel, qui contiendra la date, le titre, la
 										// description et l'image associé à l'évènement
-	Evenement evt;
-
 	public PanelAffichageEvt(Evenement parEvt) {
 
 		// Permet d'obtenir l'affichage au niveau texte des évènements dans le
 		// cardLayout avec la date, le titre et la description de ceux-ci
-
-		evt = parEvt;
 
 		// setBackground(new Color(100, 100, 100));
 

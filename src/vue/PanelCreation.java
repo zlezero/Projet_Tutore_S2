@@ -18,9 +18,9 @@ public class PanelCreation extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	PanelCreationAjoutEvt panelAjoutEvt;
-	PanelCreationFrise panelCreationFrise;
-	FriseChronologique friseChronologique;
+	private PanelCreationAjoutEvt panelAjoutEvt;
+	private PanelCreationFrise panelCreationFrise;
+	private FriseChronologique friseChronologique;
 
 	public PanelCreation(FriseChronologique parFrise) {
 
