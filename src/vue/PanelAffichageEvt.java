@@ -1,6 +1,5 @@
 package vue;
 
-import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
@@ -29,6 +28,7 @@ public class PanelAffichageEvt extends JPanel {
 		contrainte.anchor = GridBagConstraints.WEST;
 		
 		labels[0] = new JLabel(parEvt.getDate().toString());
+		
 		labels[1] = new JLabel("<html><b>" + parEvt.getTitre() + "</b></html>");
 		
 		String messageLabelDesc = "<html>";

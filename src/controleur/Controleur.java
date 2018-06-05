@@ -68,7 +68,7 @@ public class Controleur implements ActionListener, ConstantesTextes {
 								panelAP.updatePanelNord();
 								
 								try {
-									LectureEcriture.ecriture(new File("Frise.ser"), friseChronologique);
+									LectureEcriture.ecriture(new File(friseChronologique.getEmplacementSauvegarde()), friseChronologique);
 								} catch (IOException e) {
 									e.printStackTrace();
 									JOptionPane.showMessageDialog(panelCreation, "Erreur : La frise n'a pas pu étre sauvegardée !", "Erreur", JOptionPane.ERROR_MESSAGE);
@@ -247,7 +247,7 @@ public class Controleur implements ActionListener, ConstantesTextes {
 			
 			try {
 				friseChronologique.sauvegarderFrise();
-				JOptionPane.showMessageDialog(panelCreation, "La frise à été enrengistrée avec succès !", "Succès", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(panelCreation, "La frise a été enrengistrée avec succès !", "Succès", JOptionPane.INFORMATION_MESSAGE);
 			} catch (IOException e) {
 				e.printStackTrace();
 				JOptionPane.showMessageDialog(panelCreation, "Une erreur est survenue lors de l'enrengistrement de la frise !", "Erreur", JOptionPane.INFORMATION_MESSAGE);

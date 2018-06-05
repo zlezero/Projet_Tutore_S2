@@ -2,6 +2,7 @@ package vue;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -48,8 +49,13 @@ public class PanelAffichage extends JPanel {
 		
 		//On ajoute le titre de la frise
 		titreFrise = new JLabel(parFrise.getTitreFrise());
-		panelNord.add(titreFrise, BorderLayout.NORTH);
 		
+		titreFrise.setHorizontalAlignment(JLabel.CENTER);
+		titreFrise.setVerticalAlignment(JLabel.CENTER);
+		titreFrise.setFont(new Font("Dialog.plain", Font.BOLD, 20));
+		
+		panelNord.add(titreFrise, BorderLayout.NORTH);
+
 		flecheGauche = new JLabel("<html><h1>&lt;</h1></html>");
 		flecheDroite = new JLabel("<html><h1>></h1></html>");
 		
@@ -62,7 +68,6 @@ public class PanelAffichage extends JPanel {
 		
 		panelFrise = new PanelAffichageFrise(parFrise, monGestionnaireDeCartes, panelNordCL);
 		add(panelFrise, BorderLayout.SOUTH);
-		
 		//On gère les événements des flèches
 		flecheGauche.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent evt) {
