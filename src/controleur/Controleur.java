@@ -137,7 +137,7 @@ public class Controleur implements ActionListener, ConstantesTextes {
 							panelAP.resetCardLayout();
 							
 							try {
-								LectureEcriture.ecriture(new File("Frise.ser"), friseChronologique);
+								LectureEcriture.ecriture(new File(friseChronologique.getEmplacementSauvegarde()), friseChronologique);
 							} catch (IOException e) {
 								e.printStackTrace();
 								JOptionPane.showMessageDialog(panelCreation, "Erreur : La frise n'a pas pu être sauvegardée !", "Erreur", JOptionPane.ERROR_MESSAGE);
@@ -208,6 +208,11 @@ public class Controleur implements ActionListener, ConstantesTextes {
 				panelAP.getPanelFrise().updateTable(friseChronologique);
 				panelAP.resetCardLayout();
 				JOptionPane.showMessageDialog(panelCreation, "L'événement a été supprimé avec succès !", "Succès", JOptionPane.INFORMATION_MESSAGE);
+				try {
+					friseChronologique.sauvegarderFrise();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		
 		}
