@@ -2,6 +2,7 @@ package vue;
 
 import java.awt.Component;
 import java.awt.Image;
+import java.io.File;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -43,8 +44,15 @@ public class CelluleRenderer extends JLabel implements TableCellRenderer {
 			if (evt.getChPhoto().isEmpty()) { //Si l'événement ne possède pas de photo
 				setText(evt.toString()); //Alors on affiche juste le titre de l'événement
 			} else { //Sinon on affiche l'image
-				setIcon(new ImageIcon(
-						new ImageIcon(evt.getChPhoto()).getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT)));
+				
+				if (new File(evt.getChPhoto()).length() != 0) { //Si le fichier existe
+					setIcon(new ImageIcon(
+							new ImageIcon(evt.getChPhoto()).getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT)));
+				}
+				else {
+					setText(evt.toString());
+				}
+
 			}
 
 		} else { //Sinon on affiche rien
