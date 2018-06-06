@@ -125,7 +125,7 @@ public class Controleur implements ActionListener, ConstantesTextes {
 			}
 
 		}
-		else if (parEvt.getActionCommand().equals(CREATION_EVT_BOUTON_AJOUT)) { //Si l'on veut ajouter un événement
+		else if (parEvt.getActionCommand().equals(CREATION_EVT_BOUTON_AJOUT)) { //Si l'on veut ajouter (modifier) un événement
 			
 			//Si le textfield du titre n'est pas vide
 			if (!panelCreation.getPanelAjoutEvt().getListeTextField()[0].getText().isEmpty()) {
@@ -143,6 +143,18 @@ public class Controleur implements ActionListener, ConstantesTextes {
 						
 						//Si l'année indiquée pour l'événement est bien dans la période de la frise
 						if (annee >= friseChronologique.getDateDebut().getAnnee() && annee <= friseChronologique.getDateFin().getAnnee()) {
+							
+							
+							if (friseChronologique.evenementExisteFrise(annee, (int)panelCreation.getPanelAjoutEvt().getSpinner().getValue())) { //Si un événement existe déjà dans la case où l'on veut le placer
+								
+								//On demande une confirmation à l'utilisateur
+								int resultat = JOptionPane.showConfirmDialog(panelCreation, "Un événement existe déjà a cet emplacement. Voulez-vous le remplacer ?", "Événement existant", JOptionPane.YES_NO_OPTION ,JOptionPane.INFORMATION_MESSAGE);
+								
+								//Si l'utilisateur ne confirme pas alors on ne fait rien et on quitte la fonction
+								if (resultat != JOptionPane.YES_OPTION) {
+									return;
+								}
+							}
 							
 							//Si il s'agit d'une modification d'un événement existant
 							if (panelCreation.getPanelAjoutEvt().isEstModification()) {

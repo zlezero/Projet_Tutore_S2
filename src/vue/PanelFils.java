@@ -118,16 +118,10 @@ public class PanelFils extends JPanel implements ActionListener, ConstantesTexte
 		if (evt.getActionCommand().equals(MENU_QUITTER)) { //Si l'utilisateur veut quitter
 			
 			//On lui demande une confirmation
-			int resultat = JOptionPane.showConfirmDialog(this, "Voulez-vous vraiment quitter ?", "Quitter ?", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
-
-			switch (resultat) {
-				case JOptionPane.CLOSED_OPTION: //Si l'utilisateur a cliqué sur la croix alors on ne fait rien
-					break;
-				case JOptionPane.OK_OPTION: //Si l'utilisateur a cliqué sur ok alors on quitte
-					System.exit(0);
-					break;
-				case JOptionPane.CANCEL_OPTION: //Si l'utilisateur a cliqué sur annuler alors on ne fait rien
-					break;
+			int resultat = JOptionPane.showConfirmDialog(this, "Voulez-vous vraiment quitter ?", "Quitter ?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+			
+			if (resultat == JOptionPane.YES_OPTION) { //Si l'utilisateur a cliqué sur oui alors on quitte l'application
+				System.exit(0);
 			}
 		} 
 		else if (evt.getActionCommand().equals(MENU_AIDE)) { //Affichage du menu d'aide

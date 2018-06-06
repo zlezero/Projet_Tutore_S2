@@ -154,6 +154,21 @@ public class FriseChronologique implements Serializable {
 		
 	}
 	
+	
+	/**
+	 * Regarde si un événement existe déjà pour une année et un poids donné
+	 * @param annee Une année
+	 * @param poids Un poids
+	 * @return True si un événement existe et false sinon
+	 */
+	
+	public boolean evenementExisteFrise(int annee, int poids) {
+		if (hashMapEvts.containsKey(annee) && hashMapEvts.get(annee).containsKey(poids))
+			return true;
+		else
+			return false;
+	}
+	
 	/**
 	 * Supprime tout les événements de la frise qui ne sont plus compris entre son année de début et de fin
 	 */
