@@ -11,6 +11,7 @@ import java.util.HashMap;
 /**
  * Gère la frise chronologique
  * @author Thomas Vathonne
+ * @author Yanis Levesque
  * @version 1
  */
 
@@ -44,14 +45,6 @@ public class FriseChronologique implements Serializable {
 
 	}
 
-	public String getEmplacementSauvegarde() {
-		return emplacementSauvegarde;
-	}
-
-	public void setEmplacementSauvegarde(String emplacementSauvegarde) {
-		this.emplacementSauvegarde = emplacementSauvegarde;
-	}
-
 	public FriseChronologique(String parTitre, Date parDateDebut, Date parDateFin, int parPeriodeFrise, HashMap<Integer, HashMap<Integer, Evenement>> parHashMapEvts, String parEmplacementSauvegarde) {
 
 		titreFrise = parTitre;
@@ -82,7 +75,7 @@ public class FriseChronologique implements Serializable {
 		
 		ArrayList<Evenement> maListe = new ArrayList<Evenement>();
 		
-		for (HashMap<Integer,Evenement> hashMap : hashMapEvts.values()) {	
+		for (HashMap<Integer,Evenement> hashMap : hashMapEvts.values()) {
 			for (Evenement monEvt : hashMap.values()) {
 				if (monEvt != null) {
 					maListe.add(monEvt);
@@ -117,8 +110,8 @@ public class FriseChronologique implements Serializable {
 			
 			for (int i=0;i!=maHashMap.keySet().size();i++) {
 				Evenement evt = (Evenement)maHashMap.values().toArray()[i];
-				if (evt.compareTo(parEvenement) == 0) {
-					return (int)maHashMap.keySet().toArray()[i];
+				if (evt.compareTo(parEvenement) == 0) { //Si les événements sont égaux
+					return (int)maHashMap.keySet().toArray()[i]; //On retourne la clé associée
 				}
 			}
 		}
@@ -136,18 +129,18 @@ public class FriseChronologique implements Serializable {
 
 	public int ajoutEvenement(int parPoids, Evenement parEvenement) {
 
-		if (parEvenement.getDate().getAnnee() >= dateDebut.getAnnee() && parEvenement.getDate().getAnnee() <= dateFin.getAnnee()) {
-			if (hashMapEvts.containsKey(parEvenement.getDate().getAnnee())) {
+		if (parEvenement.getDate().getAnnee() >= dateDebut.getAnnee() && parEvenement.getDate().getAnnee() <= dateFin.getAnnee()) { //Si l'événement a ses années dans les périodes de la frise
+			if (hashMapEvts.containsKey(parEvenement.getDate().getAnnee())) { //Si la hash map contient déjà un couple correspondant à cette année
 
-				if (hashMapEvts.get(parEvenement.getDate().getAnnee()).size() <= 4) {
-					hashMapEvts.get(parEvenement.getDate().getAnnee()).put(parPoids, parEvenement);
+				if (hashMapEvts.get(parEvenement.getDate().getAnnee()).size() <= 4) { //Si il y a moins de 4 événements dans cette hashMap
+					hashMapEvts.get(parEvenement.getDate().getAnnee()).put(parPoids, parEvenement); //Alors on ajoute l'événement
 					return 1;
 				}
 				else {
 					return -1;
 				}
 			}
-			else {
+			else { //Sinon on ajoute l'année correspondante et on ajoute l'événement
 				hashMapEvts.put(parEvenement.getDate().getAnnee(), new HashMap<Integer, Evenement>());
 				hashMapEvts.get(parEvenement.getDate().getAnnee()).put(parPoids, parEvenement);
 				return 1;
@@ -159,10 +152,14 @@ public class FriseChronologique implements Serializable {
 		
 	}
 	
+	/**
+	 * Supprime tout les événements de la frise qui ne sont plus compris entre son année de début et de fin
+	 */
+	
 	public void supprimerEvenementsHorsPeriode() {
 		
 		for (Evenement evt : getListeEvenements()) {
-			if (evt.getDate().getAnnee() <= dateDebut.getAnnee() || evt.getDate().getAnnee() >= dateFin.getAnnee()) {
+			if (evt.getDate().getAnnee() <= dateDebut.getAnnee() || evt.getDate().getAnnee() >= dateFin.getAnnee()) { //Si l'événement est hors période
 				supprimerEvenement(evt);
 			}
 		}
@@ -182,9 +179,19 @@ public class FriseChronologique implements Serializable {
 
 	}
 	
+	/**
+	 * Permet d'écrire la frise dans un fichier défini par l'emplacement de sauvegarde : emplacementSauvegarde
+	 * @throws IOException Si il y a une erreur d'écriture dans le fichier
+	 */
+	
 	public void sauvegarderFrise() throws IOException {
 		LectureEcriture.ecriture(new File(emplacementSauvegarde), this);
 	}
+	
+	/**
+	 * Retourne l'écriture de la frise chronologique
+	 * @return La hash map d'événements en string
+	 */
 	
 	public String toString() {
 		return hashMapEvts.toString();
@@ -296,5 +303,21 @@ public class FriseChronologique implements Serializable {
 
 	public void setEstInitialisee(boolean estInitialisee) {
 		this.estInitialisee = estInitialisee;
+	}
+	
+	/**
+	 * Accesseur qui retourne l'emplacement de sauvegarde de la frise
+	 * @return Un chemin d'accès vers l'emplacement de sauvegarde
+	 */
+	public String getEmplacementSauvegarde() {
+		return emplacementSauvegarde;
+	}
+	
+	/**
+	 * Modifieur qui permet de changer l'emplacement de sauvegarde de la frise
+	 * @param emplacementSauvegarde Un chemin d'accès où sauvegarder la frise
+	 */
+	public void setEmplacementSauvegarde(String emplacementSauvegarde) {
+		this.emplacementSauvegarde = emplacementSauvegarde;
 	}
 }

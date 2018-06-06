@@ -10,6 +10,7 @@ import javax.swing.table.DefaultTableModel;
 /**
  * Est le modèle de base pour la JTable d'événements
  * @author Thomas Vathonne
+ * @author Yanis Levesque
  * @version 1
  */
 
@@ -22,14 +23,15 @@ public class ModeleTable extends DefaultTableModel {
 
 	public ModeleTable(FriseChronologique parFrise) {
 
-		columnNumber = (parFrise.getDateFin().getAnnee() - parFrise.getDateDebut().getAnnee()) + 1;
+		columnNumber = (parFrise.getDateFin().getAnnee() - parFrise.getDateDebut().getAnnee()) + 1; //On calcule le nombre de colonnes nécessaires
 
 		this.setRowCount(rowNumber);
 		this.setColumnCount(columnNumber);
 
 		ArrayList<String> intitulesTab = new ArrayList<String>();
 
-		// Créer les intitulés du tableau
+		//On créer les intitulés du tableau en fonction de la période
+		
 		for (int i = 0; i != (parFrise.getDateFin().getAnnee() - parFrise.getDateDebut().getAnnee()) + 1; i++) {
 			if ((i % parFrise.getPeriodeFrise() == 0)
 					|| (i == (parFrise.getDateFin().getAnnee() - parFrise.getDateDebut().getAnnee()))) {
@@ -39,11 +41,11 @@ public class ModeleTable extends DefaultTableModel {
 			}
 		}
 
-		setColumnIdentifiers(intitulesTab.toArray());
+		setColumnIdentifiers(intitulesTab.toArray()); //On met les identifiants
 
 		Collection<HashMap<Integer, Evenement>> evenements = parFrise.getHashMapEvenementsPoids();
 
-		if (evenements != null) {
+		if (evenements != null) { //Si l'événement n'est pas null
 
 			Iterator<HashMap<Integer, Evenement>> iterateur = evenements.iterator();
 
@@ -53,7 +55,7 @@ public class ModeleTable extends DefaultTableModel {
 
 				for (int i = 0; i != hashMap.values().toArray().length; i++) {
 					if ((Evenement) hashMap.values().toArray()[i] != null) {
-						ajoutEvenement((int) hashMap.keySet().toArray()[i], (Evenement) hashMap.values().toArray()[i]);
+						ajoutEvenement((int) hashMap.keySet().toArray()[i], (Evenement) hashMap.values().toArray()[i]); //On ajoute l'événement au tableau
 					}
 				}
 			}
@@ -90,15 +92,12 @@ public class ModeleTable extends DefaultTableModel {
 
 	public void ajoutEvenement(int parPoids, Evenement parEvt) {
 
-		int indiceColonne = this.findColumn(Integer.toString(parEvt.getDate().getAnnee()));
+		int indiceColonne = this.findColumn(Integer.toString(parEvt.getDate().getAnnee())); //On essaye de trouver la colonne correspondant à l'année de l'événement
 		int indiceLigne = parPoids;
-
-		// System.out.println("Indice colonne : " + indiceColonne + " / Indice Ligne : "
-		// + indiceLigne);
 
 		int compteur = 0;
 
-		if (indiceColonne == -1) {
+		if (indiceColonne == -1) { //Si on a pas trouvé l'indice de la colonne alors on le calcul
 			while (Integer.parseInt((String) this.columnIdentifiers.lastElement()) - compteur != parEvt.getDate()
 					.getAnnee()) {
 				compteur += 1;
@@ -106,11 +105,11 @@ public class ModeleTable extends DefaultTableModel {
 			indiceColonne = (this.columnNumber - compteur) - 1;
 		}
 
-		while (indiceLigne < columnNumber && getValueAt(indiceLigne, indiceColonne) != null) {
+		while (indiceLigne < columnNumber && getValueAt(indiceLigne, indiceColonne) != null) { //On décale pour trouver un emplacement de libre dans le tableau
 			indiceLigne++;
 		}
 
-		setValueAt(parEvt, indiceLigne, indiceColonne);
-
+		setValueAt(parEvt, indiceLigne, indiceColonne); //On ajoute l'événement au tableau
+		
 	}
 }

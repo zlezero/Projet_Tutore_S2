@@ -11,6 +11,7 @@ import java.io.ObjectOutputStream;
 /**
  * Gère la lecture/écriture dans un fichier
  * @author Thomas Vathonne
+ * @author Yanis Levesque
  * @version 1
  */
 

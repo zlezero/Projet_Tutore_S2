@@ -3,6 +3,7 @@ package vue;
 /**
  * Génère une mise en page d'un événement en fonction de celui-ci
  * @author Thomas Vathonne
+ * @author Yanis Levesque
  * @version 1
  */
 
@@ -22,7 +23,7 @@ public class PanelAffichageEvt extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	private JLabel labels[] = new JLabel[4]; // Création d'un tableau de JLabel, qui contiendra la date, le titre, la
-										// description et l'image associé à l'évènement
+											 // description et l'image associé à l'évènement
 	public PanelAffichageEvt(Evenement parEvt) {
 
 		// Permet d'obtenir l'affichage au niveau texte des évènements dans le
@@ -35,11 +36,13 @@ public class PanelAffichageEvt extends JPanel {
 
 		contrainte.insets = new Insets(5, 10, 10, 0);
 		contrainte.anchor = GridBagConstraints.WEST;
+		
+		labels[0] = new JLabel(parEvt.getDate().toString()); //Label de la date de l'evt
 
-		labels[0] = new JLabel(parEvt.getDate().toString());
+		labels[1] = new JLabel("<html><b>" + parEvt.getTitre() + "</b></html>"); //Label du titre que l'on met en gras
 
-		labels[1] = new JLabel("<html><b>" + parEvt.getTitre() + "</b></html>");
-
+		//On formatte la description de l'événement
+		
 		String messageLabelDesc = "<html>";
 		int compteurMots = 0;
 
@@ -48,7 +51,7 @@ public class PanelAffichageEvt extends JPanel {
 			messageLabelDesc += parEvt.getChDescription().split(" ")[i] + " ";
 			compteurMots += 1;
 
-			if (compteurMots == 12) {
+			if (compteurMots == 12) { //On ajoute un saut de ligne tout les 12 mots
 				compteurMots = 0;
 				messageLabelDesc += "<br>";
 			}
@@ -57,7 +60,7 @@ public class PanelAffichageEvt extends JPanel {
 
 		messageLabelDesc += "</html>";
 
-		labels[2] = new JLabel(messageLabelDesc);
+		labels[2] = new JLabel(messageLabelDesc); //Label du message de description
 
 		if (!parEvt.getChPhoto().isEmpty()) { // Si l'évènement a une image qui lui est associée, on la lui attribue
 			labels[3] = new JLabel("");
@@ -69,7 +72,7 @@ public class PanelAffichageEvt extends JPanel {
 			add(labels[3], contrainte);
 		}
 
-		// on ajoute tout ça pour pouvoir l'afficher réellement !
+		// On ajoute tout ça pour pouvoir l'afficher réellement !
 
 		contrainte.gridx = 1;
 		contrainte.gridy = 0;

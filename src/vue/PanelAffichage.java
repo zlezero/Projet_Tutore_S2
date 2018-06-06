@@ -3,6 +3,7 @@ package vue;
 /**
  * Est le panel principal où est affiché la frise et le card layout des différents événements
  * @author Thomas Vathonne
+ * @author Yanis Levesque
  * @version 1
  */
 
@@ -37,7 +38,7 @@ public class PanelAffichage extends JPanel {
 
 		setLayout(new BorderLayout());
 
-		// On affiche la partie haute de l'affichage
+		// On affiche et on gère la partie haute de l'affichage
 
 		monGestionnaireDeCartes = new CardLayout(50, 50);
 
@@ -47,7 +48,7 @@ public class PanelAffichage extends JPanel {
 		panelNordCL = new JPanel();
 		panelNordCL.setLayout(monGestionnaireDeCartes);
 
-		resetCardLayout();
+		resetCardLayout(); //On ajoute tous les événements dans le card layout
 
 		monGestionnaireDeCartes.last(panelNordCL);
 
@@ -61,7 +62,9 @@ public class PanelAffichage extends JPanel {
 		titreFrise.setFont(new Font("Dialog.plain", Font.BOLD, 20));
 
 		panelNord.add(titreFrise, BorderLayout.NORTH);
-
+		
+		//On créer les flèches pour pouvoir faire défiler le diaporama
+		
 		flecheGauche = new JLabel("<html><h1>&lt;</h1></html>");
 		flecheDroite = new JLabel("<html><h1>></h1></html>");
 
@@ -76,6 +79,7 @@ public class PanelAffichage extends JPanel {
 		add(panelFrise, BorderLayout.SOUTH);
 
 		// On gère les événements des flèches
+		
 		flecheGauche.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent evt) {
 				// panelFrise.getScrollPane().getHorizontalScrollBar().setValue(panelFrise.getTableFrise().getColumn(Integer.toString(2004)).getWidth()

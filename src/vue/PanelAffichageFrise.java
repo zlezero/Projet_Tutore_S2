@@ -24,6 +24,7 @@ import modele.ModeleTable;
 /**
  * Affiche la JTable d'événements
  * @author Thomas Vathonne
+ * @author Yanis Levesque
  * @version 1
  */
 

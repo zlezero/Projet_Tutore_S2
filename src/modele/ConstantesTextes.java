@@ -3,6 +3,7 @@ package modele;
 /**
  * Possède les différentes constantes utilisées par les boutons et les menus
  * @author Thomas Vathonne
+ * @author Yanis Levesque
  * @version 1
  */
 

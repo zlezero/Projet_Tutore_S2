@@ -7,6 +7,7 @@ import java.util.Calendar;
 /**
  * Gère la date
  * @author Thomas Vathonne
+ * @author Yanis Levesque
  * @version 1
  */
 
@@ -17,9 +18,11 @@ public class Date implements Comparable<Date>, Serializable{
 	private int jour;
 	private int mois;
 	private int annee;
+	
 	/**
 	 * Contient le jour de la semaine de la date instanciée
 	 */
+	
 	private int jourSemaine;
 
 	public Date() {
@@ -39,7 +42,9 @@ public class Date implements Comparable<Date>, Serializable{
 	}
 
 	/**
-	 * retourne 0 si this et parDate sont égales, -1 si this précède parDate, 1
+	 * Permet de comparer deux dates si elles sont égales ou l'une inférieure à l'autre
+	 * @param parDate La date que l'on veut comparer
+	 * @return Retourne 0 si this et parDate sont égales, -1 si this précède parDate, 1
 	 * si parDate précède this
 	 */
 	

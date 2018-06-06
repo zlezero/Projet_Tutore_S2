@@ -8,6 +8,7 @@ import modele.ConstantesTextes;
 /**
  * Est la fenêtre principale du programme
  * @author Thomas Vathonne
+ * @author Yanis Levesque
  * @version 1
  */
 
@@ -25,11 +26,11 @@ public class FenetreMere extends JFrame implements ConstantesTextes {
 		JMenuBar menuBar = new JMenuBar();
 		this.setJMenuBar(menuBar);
 
-		String[] nomsItemsMenu = { MENU_CREATION, MENU_AFFICHAGE, MENU_AIDE, MENU_QUITTER };
+		String[] nomsItemsMenu = { MENU_CREATION, MENU_AFFICHAGE, MENU_AIDE, MENU_QUITTER }; //Noms des items du menu
 
-		for (int i = 0; i != nomsItemsMenu.length; i++) {
+		for (int i = 0; i != nomsItemsMenu.length; i++) { //On ajoute les différents items de menu et on les mets à l'écoute
 			JMenuItem item = new JMenuItem(nomsItemsMenu[i]);
-			item.addActionListener(contentPane);
+			item.addActionListener(contentPane); 
 			item.setActionCommand(nomsItemsMenu[i]);
 			menuBar.add(item);
 		}

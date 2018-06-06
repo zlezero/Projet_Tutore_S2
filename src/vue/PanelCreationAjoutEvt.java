@@ -22,6 +22,7 @@ import modele.FriseChronologique;
 /**
  * Est le formulaire de création/modification d'un événement
  * @author Thomas Vathonne
+ * @author Yanis Levesque
  * @version 1
  */
 
@@ -56,7 +57,7 @@ public class PanelCreationAjoutEvt extends JPanel implements ConstantesTextes {
 		contrainte.insets = new Insets(5, 10, 10, 10);
 		contrainte.anchor = GridBagConstraints.WEST;
 
-		for (int i = 0; i < intitulesLabels.length; i++) {
+		for (int i = 0; i < intitulesLabels.length; i++) { //Pour tous les intitulés de labels
 			contrainte.gridy = i;
 
 			if (i == 0)
@@ -64,7 +65,7 @@ public class PanelCreationAjoutEvt extends JPanel implements ConstantesTextes {
 			else
 				contrainte.gridwidth = 1;
 
-			listeLabels[i] = new JLabel(intitulesLabels[i]);
+			listeLabels[i] = new JLabel(intitulesLabels[i]); //On créer un nouveau label
 			add(listeLabels[i], contrainte);
 		}
 
@@ -151,14 +152,23 @@ public class PanelCreationAjoutEvt extends JPanel implements ConstantesTextes {
 	public void setEstModification(boolean estModification) {
 		this.estModification = estModification;
 	}
+	
+	/**
+	 * Remet vide tout les champs du formulaire d'ajout d'événement 
+	 */
 
 	public void resetUI() {
-		for (int i=0;i!=listeTextField.length;i++) {
+		for (int i=0;i!=listeTextField.length;i++) { //Pout tout les textfields
 			listeTextField[i].setText("");
 		}
 		spinner.setValue(0);
 		textareaDescription.setText("");
 	}
+	
+	/**
+	 * Met les caractéristiques d'un événement dans le formulaire d'ajout d'événement
+	 * @param parEvt L'événement à mettre
+	 */
 	
 	public void setEvt(Evenement parEvt) {
 		
@@ -169,9 +179,9 @@ public class PanelCreationAjoutEvt extends JPanel implements ConstantesTextes {
 		
 		int resultPoids = friseChronologique.getPoidsEvenement(parEvt);
 		
-		if (resultPoids != -1) 
+		if (resultPoids != -1) //Si il n'y a pas d'erreurs
 			spinner.setValue(resultPoids);
-		else 
+		else //Sinon on met à 0
 			spinner.setValue(0);
 		
 		listeLabels[0].setText("Modification de l'événement");
@@ -179,6 +189,10 @@ public class PanelCreationAjoutEvt extends JPanel implements ConstantesTextes {
 		boutonAjout.setActionCommand(CREATION_EVT_BOUTON_AJOUT);
 		boutonAnnulation.setVisible(true);
 	}
+	
+	/**
+	 * Permet de remettre le formulaire d'ajout d'événements prêt après une modification
+	 */
 	
 	public void finirModification() {
 		listeLabels[0].setText("Création d'un événement");
@@ -188,58 +202,123 @@ public class PanelCreationAjoutEvt extends JPanel implements ConstantesTextes {
 		resetUI();
 	}
 	
-	public JButton getBoutonAjout() {
-		return boutonAjout;
-	}
-
-	public void setBoutonAjout(JButton boutonAjout) {
-		this.boutonAjout = boutonAjout;
-	}
-
-	public JButton getBoutonPhoto() {
-		return boutonPhoto;
-	}
-
-	public void setBoutonPhoto(JButton boutonPhoto) {
-		this.boutonPhoto = boutonPhoto;
-	}
-
-	public JTextField[] getListeTextField() {
-		return listeTextField;
-	}
-
-	public void setListeTextField(JTextField[] listeTextField) {
-		this.listeTextField = listeTextField;
-	}
-
-	public JLabel[] getListeLabels() {
-		return listeLabels;
-	}
-
-	public void setListeLabels(JLabel[] listeLabels) {
-		this.listeLabels = listeLabels;
-	}
-
-	public JTextArea getTextareaDescription() {
-		return textareaDescription;
-	}
-
-	public void setTextareaDescription(JTextArea textareaDescription) {
-		this.textareaDescription = textareaDescription;
-	}
-
-	public JSpinner getSpinner() {
-		return spinner;
-	}
-
-	public void setSpinner(JSpinner spinner) {
-		this.spinner = spinner;
-	}
-
+	/**
+	 * Permet à un controleur de se mettre à l'écoute des boutons du formulaire
+	 * @param parC Un controleur
+	 */
+	
 	public void enrengistreEcouteur(Controleur parC) {
 		boutonAjout.addActionListener(parC);
 		boutonPhoto.addActionListener(parC);
 		boutonAnnulation.addActionListener(parC);
+	}
+	
+	/**
+	 * Accesseur du bouton d'ajout
+	 * @return Un composant JButton contenant le bouton d'ajout
+	 */
+	
+	public JButton getBoutonAjout() {
+		return boutonAjout;
+	}
+	
+	/**
+	 * Modifieur du bouton d'ajout
+	 * @param boutonAjout Un JButton
+	 */
+
+	public void setBoutonAjout(JButton boutonAjout) {
+		this.boutonAjout = boutonAjout;
+	}
+	
+	/**
+	 * Accesseur du bouton pour choisir une photo
+	 * @return Un composant JButton contenant le bouton de photo
+	 */
+	
+	public JButton getBoutonPhoto() {
+		return boutonPhoto;
+	}
+	
+	/**
+	 * Modifieur du bouton de photo
+	 * @param boutonPhoto Un JButton
+	 */
+	
+	public void setBoutonPhoto(JButton boutonPhoto) {
+		this.boutonPhoto = boutonPhoto;
+	}
+	
+	/**
+	 * Accesseur de la liste des textFields
+	 * @return Un tableau de JTextField
+	 */
+	
+	public JTextField[] getListeTextField() {
+		return listeTextField;
+	}
+	
+	/**
+	 * Modifieur des textFields
+	 * @param listeTextField Un tableau de JTextField
+	 */
+	
+	public void setListeTextField(JTextField[] listeTextField) {
+		this.listeTextField = listeTextField;
+	}
+	
+	/**
+	 * Accesseur de la liste des labels
+	 * @return Un tableau de JLabel
+	 */
+	
+	public JLabel[] getListeLabels() {
+		return listeLabels;
+	}
+	
+	/**
+	 * Modifieur de la liste des labels
+	 * @param listeLabels Un tableau de JLabel
+	 */
+	
+	public void setListeLabels(JLabel[] listeLabels) {
+		this.listeLabels = listeLabels;
+	}
+	
+	/**
+	 * Accesseur du textarea de la description d'un événement
+	 * @return Un composant JTextArea
+	 */
+	
+	public JTextArea getTextareaDescription() {
+		return textareaDescription;
+	}
+	
+	/**
+	 * Modifieur du textarea de la description d'un événement
+	 * @param textareaDescription Un composant JTextArea
+	 */
+	
+	public void setTextareaDescription(JTextArea textareaDescription) {
+		this.textareaDescription = textareaDescription;
+	}
+	
+	/**
+	 * Accesseur du spinner
+	 * @return Un composant JSpinner
+	 */
+	
+	public JSpinner getSpinner() {
+		return spinner;
+	}
+	
+	/**
+	 * Modifieur du spinner
+	 * @param spinner Un composant JSpinner
+	 */
+	
+	public void setSpinner(JSpinner spinner) {
+		this.spinner = spinner;
 	}
 
 }

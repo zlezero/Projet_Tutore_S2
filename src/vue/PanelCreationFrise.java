@@ -19,6 +19,7 @@ import modele.FriseChronologique;
 /**
  * Est le formulaire de création/modification d'une frise
  * @author Thomas Vathonne
+ * @author Yanis Levesque
  * @version 1
  */
 
@@ -45,7 +46,7 @@ public class PanelCreationFrise extends JPanel implements ConstantesTextes {
 		contrainte.insets = new Insets(5, 10, 10, 10);
 		contrainte.anchor = GridBagConstraints.WEST;
 
-		for (int i = 0; i < intitulesLabels.length; i++) {
+		for (int i = 0; i < intitulesLabels.length; i++) { //Pour tous les intitulés de labels
 			contrainte.gridy = i;
 
 			if (i == 0)
@@ -53,7 +54,7 @@ public class PanelCreationFrise extends JPanel implements ConstantesTextes {
 			else
 				contrainte.gridwidth = 1;
 
-			listeLabels[i] = new JLabel(intitulesLabels[i]);
+			listeLabels[i] = new JLabel(intitulesLabels[i]); //On créer un nouveau label
 			add(listeLabels[i], contrainte);
 		}
 
@@ -83,6 +84,7 @@ public class PanelCreationFrise extends JPanel implements ConstantesTextes {
 		}
 		
 		//Ajouts du JSpinner pour choisir la période
+		
 		contrainte.gridwidth = 1;
 		contrainte.gridx = 1;
 		contrainte.gridy = 4;
@@ -118,6 +120,11 @@ public class PanelCreationFrise extends JPanel implements ConstantesTextes {
 		boutonSauvegarde.addActionListener(parC);
 	}
 	
+	/**
+	 * Permet de mettre les informations d'une frise chronologique dans le formulaire
+	 * @param parFrise La frise chronologique à mettre
+	 */
+	
 	public void setFrise(FriseChronologique parFrise) {
 		if (parFrise.isEstInitialisee()) {
 			listeLabels[0].setText("Modification de la frise");
@@ -132,35 +139,74 @@ public class PanelCreationFrise extends JPanel implements ConstantesTextes {
 		boutonSauvegarde.setVisible(true);
 	}
 	
-
+	/**
+	 * Accesseur du bouton d'ajout
+	 * @return Un JButton contenant le bouton d'ajout
+	 */
+	
 	public JButton getBoutonAjout() {
 		return boutonAjout;
 	}
-
+	
+	/**
+	 * Modifieur du bouton d'ajout
+	 * @param boutonAjout Un JButton
+	 */
+	
 	public void setBoutonAjout(JButton boutonAjout) {
 		this.boutonAjout = boutonAjout;
 	}
-
+	
+	/**
+	 * Accesseur de la liste des différents texteFields
+	 * @return Les différents textFields
+	 */
+	
 	public JTextField[] getListeTextField() {
 		return listeTextField;
 	}
-
+	
+	/**
+	 * Modifieur de la liste des textFields
+	 * @param listeTextField Un tableau de textFields
+	 */
+	
 	public void setListeTextField(JTextField[] listeTextField) {
 		this.listeTextField = listeTextField;
 	}
-
+	
+	/**
+	 * Accesseur de la liste des labels
+	 * @return Un tableau contenant la liste des labels
+	 */
+	
 	public JLabel[] getListeLabels() {
 		return listeLabels;
 	}
-
+	
+	/**
+	 * Modifieur de la liste des labels
+	 * @param listeLabels Un tableau de labels
+	 */
+	
 	public void setListeLabels(JLabel[] listeLabels) {
 		this.listeLabels = listeLabels;
 	}
-
+	
+	/**
+	 * Accesseur du JSpinner
+	 * @return Un composant JSpinner
+	 */
+	
 	public JSpinner getSpinner() {
 		return spinner;
 	}
-
+	
+	/**
+	 * Modifieur du JSpinner
+	 * @param spinner Un JSpinner
+	 */
+	
 	public void setSpinner(JSpinner spinner) {
 		this.spinner = spinner;
 	}

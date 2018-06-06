@@ -5,6 +5,7 @@ import java.io.Serializable;
 /**
  * Gère les événements
  * @author Thomas Vathonne
+ * @author Yanis Levesque
  * @version 1
  */
 
