@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 
@@ -67,13 +68,15 @@ public class FriseChronologique implements Serializable {
 	}
 	
 	/**
-	* Accesseur qui permet d'obtenir la liste d'évènement  
-	* @return une liste d'évènements
+	* Accesseur qui permet d'obtenir la liste d'évènement triée par date croissante
+	* @return une liste d'évènements triée par date croissante
 	*/
 
-	public ArrayList<Evenement> getListeEvenements() {
+	public ArrayList <Evenement> getListeEvenements() {
 		
-		ArrayList<Evenement> maListe = new ArrayList<Evenement>();
+		ArrayList <Evenement> maListe = new ArrayList<Evenement>();
+
+		//On obtient les événements
 		
 		for (HashMap<Integer,Evenement> hashMap : hashMapEvts.values()) {
 			for (Evenement monEvt : hashMap.values()) {
@@ -83,11 +86,35 @@ public class FriseChronologique implements Serializable {
 			}
 		}
 		
-		return maListe;
+		Evenement[] tabEvt = new Evenement[maListe.size()]; //On créer un tableau d'événement
+		int compteur = 0;
+		
+		for (Evenement evt : maListe) { //On ajoute tout les événements de la liste dans le tableau
+			tabEvt[compteur] = evt;
+			compteur += 1;
+		}
+		
+		//On fait un tri par bulle pour trier par ordre croissante
+		
+		int n = maListe.size() - 1; 
+		
+		for (int i = n;i >= 1;i--) {
+			for (int j = 1;j <= i;j++) {
+				if (tabEvt[j - 1].getDate().getAnnee() > tabEvt[j].getDate().getAnnee())
+				{
+					Evenement temp = tabEvt[j - 1];
+					tabEvt[j - 1] = tabEvt[j];
+					tabEvt[j] = temp;
+				}
+			}
+		}
+		
+		maListe = new ArrayList<>(Arrays.asList(tabEvt)); //On retransforme le tableau en liste
+		
+		return maListe; //On retourne la liste triée
 		
 	}
 	
-
 	/**
 	* Méthode qui permet de retourner une hashMap en format chaîne de caractère 
 	* @return une hashMap d'évènement en format 

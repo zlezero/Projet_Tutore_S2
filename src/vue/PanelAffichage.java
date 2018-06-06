@@ -50,7 +50,7 @@ public class PanelAffichage extends JPanel {
 
 		resetCardLayout(); //On ajoute tous les événements dans le card layout
 
-		monGestionnaireDeCartes.last(panelNordCL);
+		monGestionnaireDeCartes.first(panelNordCL);
 
 		panelNord.add(panelNordCL, BorderLayout.CENTER);
 
@@ -103,7 +103,7 @@ public class PanelAffichage extends JPanel {
 	public void resetCardLayout() {
 		
 		panelNordCL.removeAll();
-		System.out.println(friseChronologique.getListeEvenements());
+		
 		for (Evenement monEvt : friseChronologique.getListeEvenements()) {
 			PanelAffichageEvt panelAffichageEvt = new PanelAffichageEvt(monEvt);
 			panelNordCL.add(panelAffichageEvt, monEvt.toString());
