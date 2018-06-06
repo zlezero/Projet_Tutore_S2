@@ -137,4 +137,25 @@ class TestFriseChronologique extends TestCase {
 		}
 	}
 	
+	@Test
+	void testEvenementExisteFrise() {
+		
+		FriseChronologique maFrise = new FriseChronologique("Ma frise de test", new Date(1, 1, 2000), new Date(1, 1, 2018), 2, "Frise.ser");
+
+		Evenement monEvt = new Evenement(new Date(1, 1, 2010), "Mon evt !", "Ma desc !", "");
+		Evenement monEvt2 = new Evenement(new Date(1, 1, 2010), "Mon evt 2 !", "Ma desc 2 !", "");
+		Evenement monEvt3 = new Evenement(new Date(1, 1, 2012), "Mon evt 3 !", "Ma desc 3 !", "");
+		
+		maFrise.ajoutEvenement(0, monEvt);
+		maFrise.ajoutEvenement(1, monEvt2);
+		maFrise.ajoutEvenement(0, monEvt3);
+		
+		assertEquals(true, maFrise.evenementExisteFrise(2010, 0));
+		assertEquals(true, maFrise.evenementExisteFrise(2010, 1));
+		assertEquals(true, maFrise.evenementExisteFrise(2012, 0));
+		assertEquals(false, maFrise.evenementExisteFrise(2010, 2));
+		assertEquals(false, maFrise.evenementExisteFrise(2013, 0));
+
+	}
+	
 }

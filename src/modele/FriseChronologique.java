@@ -163,7 +163,7 @@ public class FriseChronologique implements Serializable {
 	 */
 	
 	public boolean evenementExisteFrise(int annee, int poids) {
-		if (hashMapEvts.containsKey(annee) && hashMapEvts.get(annee).containsKey(poids))
+		if (hashMapEvts.containsKey(annee) && hashMapEvts.get(annee).containsKey(poids) && hashMapEvts.get(annee).get(poids) != null)
 			return true;
 		else
 			return false;
