@@ -15,7 +15,6 @@ public class Evenement implements Comparable <Evenement>, Serializable
 	
 	private Date chDate;
 	private String chTitre;
-	private String chLieu;
 	private String chDescription;
 	private String chPhoto;
 	private static int chNbInstancie;
@@ -27,7 +26,6 @@ public class Evenement implements Comparable <Evenement>, Serializable
 		chDescription = parDescription;
 		chPhoto = parPhoto;
 		chNbInstancie += 1;
-		chLieu = "";
 	}
 	
 	/**
@@ -66,16 +64,6 @@ public class Evenement implements Comparable <Evenement>, Serializable
 	public String getTitre()
 	{
 		return chTitre;
-	}
-	
-	/**
-	* Accesseur qui retourne une chaîne de caractère qui est le lieu d'un objet Evenement
-	* @return une chaîne de caractère qui est le lieu de l'évènement
-	*/
-	
-	public String getLieu()
-	{
-		return chLieu;
 	}
 	
 	/**
@@ -125,19 +113,9 @@ public class Evenement implements Comparable <Evenement>, Serializable
 	public void setChPhoto(String chPhoto) {
 		this.chPhoto = chPhoto;
 	}
-
-	/**
-	* Modifieur qui prend en paramètre une chaîne de caractère qui est le nouveau lieu que l'on veut attribuer à l'evenement
-	* @param parLieu Une chaîne de caractère qui est le lieu de l'évènement
-	*/
-	
-	public void setLieu(String parLieu)
-	{
-		chLieu = parLieu;
-	}
 	
 	/**
-	* Méthode qui compare l'objet appelant et l'objet en paramètre qui sont tout les deux des évènements
+	* Méthode qui compare l'objet appelant et l'objet en paramètre qui sont tout les deux des évènements égaux
 	* @param parEvt Un objet Evenement
 	* @return -1 ou 0 ou 1 pour indiquer si l'objet appelant est considéré comme inférieur, égal ou supérieur à l'objet donné en paramètre
 	*/
@@ -148,7 +126,7 @@ public class Evenement implements Comparable <Evenement>, Serializable
 			return chDate.compareTo(parEvt.chDate);
 		if (chTitre.compareTo(parEvt.chTitre) != 0)
 			return chTitre.compareTo(parEvt.chTitre);
-		return chLieu.compareTo(parEvt.chLieu);
+		return chPhoto.compareTo(parEvt.chPhoto);
 	}
 	
 	/**

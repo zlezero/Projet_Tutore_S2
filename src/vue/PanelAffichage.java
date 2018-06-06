@@ -101,11 +101,14 @@ public class PanelAffichage extends JPanel {
 	 */
 
 	public void resetCardLayout() {
+		
 		panelNordCL.removeAll();
+		System.out.println(friseChronologique.getListeEvenements());
 		for (Evenement monEvt : friseChronologique.getListeEvenements()) {
 			PanelAffichageEvt panelAffichageEvt = new PanelAffichageEvt(monEvt);
 			panelNordCL.add(panelAffichageEvt, monEvt.toString());
 		}
+		
 	}
 
 	/**
