@@ -26,7 +26,7 @@ class TestFriseChronologique extends TestCase {
 			}
 		}
 		
-		fail();
+		fail("L'ajout de l'événement a échoué !");
 	}
 	
 	@Test
@@ -44,7 +44,7 @@ class TestFriseChronologique extends TestCase {
 		
 		for (HashMap<Integer, Evenement> maHashMap : maFrise.getHashMapEvts().values()) {
 			if (maHashMap.containsValue(monEvt2)) {
-				fail();
+				fail("La suppression de l'événement a échoué !");
 			}
 		}
 				
@@ -62,7 +62,7 @@ class TestFriseChronologique extends TestCase {
 		maFrise.ajoutEvenement(0, monEvt);
 		maFrise.ajoutEvenement(1, monEvt2);
 		maFrise.ajoutEvenement(3, monEvt3);
-		System.out.println(maFrise);
+		
 		assertEquals(0, maFrise.getPoidsEvenement(monEvt));
 		assertEquals(1, maFrise.getPoidsEvenement(monEvt2));
 		assertEquals(3, maFrise.getPoidsEvenement(monEvt3));
@@ -133,7 +133,7 @@ class TestFriseChronologique extends TestCase {
 		try {
 			maFrise.sauvegarderFrise();
 		} catch (IOException e) {
-			fail();
+			fail("La sauvegarde de la frise a échoué !");
 		}
 	}
 	
