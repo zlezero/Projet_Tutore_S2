@@ -110,9 +110,11 @@ public class FriseChronologique implements Serializable {
 			
 			for (int i=0;i!=maHashMap.keySet().size();i++) {
 				Evenement evt = (Evenement)maHashMap.values().toArray()[i];
-				if (evt.compareTo(parEvenement) == 0) { //Si les événements sont égaux
-					return (int)maHashMap.keySet().toArray()[i]; //On retourne la clé associée
-				}
+				if (evt != null) {
+					if (evt.equals(parEvenement)) { //Si les événements sont égaux
+						return (int)maHashMap.keySet().toArray()[i]; //On retourne la clé associée
+					}
+				}	
 			}
 		}
 		
@@ -159,7 +161,7 @@ public class FriseChronologique implements Serializable {
 	public void supprimerEvenementsHorsPeriode() {
 		
 		for (Evenement evt : getListeEvenements()) {
-			if (evt.getDate().getAnnee() <= dateDebut.getAnnee() || evt.getDate().getAnnee() >= dateFin.getAnnee()) { //Si l'événement est hors période
+			if (evt.getDate().getAnnee() < dateDebut.getAnnee() || evt.getDate().getAnnee() > dateFin.getAnnee()) { //Si l'événement est hors période
 				supprimerEvenement(evt);
 			}
 		}

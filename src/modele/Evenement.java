@@ -27,6 +27,7 @@ public class Evenement implements Comparable <Evenement>, Serializable
 		chDescription = parDescription;
 		chPhoto = parPhoto;
 		chNbInstancie += 1;
+		chLieu = "";
 	}
 	
 	/**
