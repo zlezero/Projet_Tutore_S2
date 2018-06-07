@@ -71,12 +71,30 @@ public class Controleur implements ActionListener, ConstantesTextes {
 							//Si l'année de début est inférieure à l'année de fin
 							if (Integer.parseInt(panelCreation.getPanelCreationFrise().getListeTextField()[1].getText()) <= Integer.parseInt(panelCreation.getPanelCreationFrise().getListeTextField()[2].getText()) ) {
 								
+								if (friseChronologique.isEstInitialisee() && (Integer.parseInt(panelCreation.getPanelCreationFrise().getListeTextField()[1].getText()) > friseChronologique.getDateDebut().getAnnee() || Integer.parseInt(panelCreation.getPanelCreationFrise().getListeTextField()[2].getText()) < friseChronologique.getDateFin().getAnnee())) {
+									
+									//On demande une confirmation à l'utilisateur
+									int resultat = JOptionPane.showConfirmDialog(panelCreation, "Si des événements se trouvent hors des nouvelles périodes de la frise ils seront supprimés. Voulez-vous continuer ?", "Modification de la frise", JOptionPane.YES_NO_OPTION ,JOptionPane.QUESTION_MESSAGE);
+									
+									//Si l'utilisateur ne confirme pas alors on ne fait rien et on quitte la fonction
+									if (resultat != JOptionPane.YES_OPTION) {
+										panelCreation.setFriseChronologique(friseChronologique);
+										return;
+									}
+								}
+								
 								//Alors on met à jour les informations de la frise chronologique
 								
 								friseChronologique.setTitreFrise(panelCreation.getPanelCreationFrise().getListeTextField()[0].getText());
 								friseChronologique.setDateDebut(new Date(1, 1, Integer.parseInt(panelCreation.getPanelCreationFrise().getListeTextField()[1].getText()) ));
 								friseChronologique.setDateFin(new Date(1, 1, Integer.parseInt(panelCreation.getPanelCreationFrise().getListeTextField()[2].getText()) ));
 								friseChronologique.setPeriodeFrise((int)panelCreation.getPanelCreationFrise().getSpinner().getValue());
+								
+								if (!friseChronologique.isEstInitialisee()) //Si la frise n'est pas initialisée alors on affiche un message différent
+									JOptionPane.showMessageDialog(panelCreation, "La frise a été créer avec succès !", "Succès", JOptionPane.INFORMATION_MESSAGE);
+								else
+									JOptionPane.showMessageDialog(panelCreation, "La frise a été modifiée avec succès !", "Succès", JOptionPane.INFORMATION_MESSAGE);
+								
 								friseChronologique.setEstInitialisee(true);
 								
 								//On supprimer les événements qui ne sont plus dans la période de la frise
@@ -93,11 +111,6 @@ public class Controleur implements ActionListener, ConstantesTextes {
 									e.printStackTrace();
 									JOptionPane.showMessageDialog(panelCreation, "Erreur : La frise n'a pas pu étre sauvegardée !", "Erreur", JOptionPane.ERROR_MESSAGE);
 								}
-								
-								if (!friseChronologique.isEstInitialisee()) //Si la frise n'est pas initialisée alors on affiche un message différent
-									JOptionPane.showMessageDialog(panelCreation, "La frise a été créer avec succès !", "Succès", JOptionPane.INFORMATION_MESSAGE);
-								else
-									JOptionPane.showMessageDialog(panelCreation, "La frise a été modifiée avec succès !", "Succès", JOptionPane.INFORMATION_MESSAGE);
 
 							}
 							else {
