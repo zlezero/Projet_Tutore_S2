@@ -25,3 +25,4 @@ hs_err_pid*
 *.gitattributes
 *.project
 Test_JUnit.ser
+Frise.ser

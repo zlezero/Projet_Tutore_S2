@@ -71,6 +71,7 @@ public class Controleur implements ActionListener, ConstantesTextes {
 							//Si l'année de début est inférieure à l'année de fin
 							if (Integer.parseInt(panelCreation.getPanelCreationFrise().getListeTextField()[1].getText()) <= Integer.parseInt(panelCreation.getPanelCreationFrise().getListeTextField()[2].getText()) ) {
 								
+								//Si cela risque de supprimer des événements hors période
 								if (friseChronologique.isEstInitialisee() && (Integer.parseInt(panelCreation.getPanelCreationFrise().getListeTextField()[1].getText()) > friseChronologique.getDateDebut().getAnnee() || Integer.parseInt(panelCreation.getPanelCreationFrise().getListeTextField()[2].getText()) < friseChronologique.getDateFin().getAnnee())) {
 									
 									//On demande une confirmation à l'utilisateur
