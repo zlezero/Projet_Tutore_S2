@@ -65,7 +65,7 @@ public class PanelAffichageEvt extends JPanel {
 		if (!parEvt.getChPhoto().isEmpty()) { // Si l'évènement a une image qui lui est associée, on la lui attribue
 			labels[3] = new JLabel("");
 			ImageIcon monImage = new ImageIcon(
-					new ImageIcon(parEvt.getChPhoto()).getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+					new ImageIcon(parEvt.getChPhoto()).getImage().getScaledInstance(150, 100, Image.SCALE_DEFAULT));
 			labels[3].setIcon(monImage);
 			contrainte.gridx = 0;
 			contrainte.gridy = 0;
@@ -76,7 +76,7 @@ public class PanelAffichageEvt extends JPanel {
 
 		contrainte.gridx = 1;
 		contrainte.gridy = 0;
-
+		
 		for (int i = 0; i != 3; i++) {
 			add(labels[i], contrainte);
 			contrainte.gridy += 1;
