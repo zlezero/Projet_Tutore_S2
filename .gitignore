@@ -26,3 +26,4 @@ hs_err_pid*
 *.project
 Test_JUnit.ser
 Frise.ser
+*.tmp
